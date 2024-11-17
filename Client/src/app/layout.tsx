@@ -11,11 +11,14 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className="d-flex flex-column vh-100">
         <Navbar />
-        {children}
+        <main className="flex-grow-1">{children}</main>
         <Footer />
-        <Script src="vendor/bootstrap/bootstrap.bundle.min.js" strategy="beforeInteractive"/>
+        <Script
+          src="vendor/bootstrap/bootstrap.bundle.min.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

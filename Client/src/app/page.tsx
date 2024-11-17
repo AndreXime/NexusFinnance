@@ -1,7 +1,6 @@
-import React from "react";
-import "../styles/home.css"
+import "../styles/home.css";
 
-export default function HomePage(){
+export default function HomePage() {
   return (
     <main>
       <header className="text-white">
@@ -9,7 +8,9 @@ export default function HomePage(){
         <h3>
           Simplificando a gestão para você focar no que realmente importa!
         </h3>
-        <a className="btn btn-primary mt-4 fs-4" href="/entrar">Começar a produzir</a>
+        <a className="btn btn-primary mt-4 fs-4" href="/plataforma">
+          Começar a produzir
+        </a>
       </header>
       <section className="container">
         <h2>Nosso objetivos</h2>
@@ -84,4 +85,4 @@ export default function HomePage(){
       </section>
     </main>
   );
-};
+}
