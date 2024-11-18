@@ -10,7 +10,7 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
 ## 💻 **Tecnologias Utilizadas**
 - **Front-End:** [Next.js](https://nextjs.org/)
 - **Back-End:** [Express.js](https://expressjs.com/)
-- **Banco de Dados:**Postgree**
+- **Banco de Dados:**Postgree
 - **Estilização:** Material-UI
 ---
 
