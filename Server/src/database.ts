@@ -1,12 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize({
-  database: "rootDatabase",
-  username: "nexusfin",
-  password: "nexusadmin",
-  host: "localhost",
-  dialect: "postgres",
-  port: 5432,
+const databaseUrl = process.env.databaseUrl || '';
+
+const sequelize = new Sequelize(databaseUrl,{
   logging: false,
 });
 

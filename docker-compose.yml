@@ -8,5 +8,24 @@ services:
     ports:
       - "5432:5432"
     
+  client:
+    build:
+      context: ./Client
+      dockerfile: Dockerfile
+    ports:
+    - "3000:3000"
+    environment:
+      NODE_ENV: production
+
+  server:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    ports:
+    - "3001:3001"
+    environment:
+      - databaseUrl=postgres://nexusfin:nexusadmin@database:5432/rootDatabase
+
+    
 volumes:
   pgdata:
