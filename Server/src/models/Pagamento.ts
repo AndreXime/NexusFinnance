@@ -2,32 +2,32 @@ import { DataTypes, Sequelize } from "sequelize";
 
 export default (sequelize: Sequelize) => {
    
-  const Payroll = sequelize.define("Payroll", {
-    employeeName: {
+  const PagamentoModel = sequelize.define("Pagamento", {
+    nomeFuncionario: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    baseSalary: {
+    salarioBruto: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    deductions: {
+    deducoes: {
       type: DataTypes.FLOAT,
       defaultValue: 0,
     },
-    benefits: {
+    beneficios: {
       type: DataTypes.FLOAT,
       defaultValue: 0,
     },
-    netSalary: {
+    salarioLiquido: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    paymentDate: {
+    dataPagamento: {
       type: DataTypes.DATE,
       allowNull: false,
     },
   });
 
-  return Payroll;
+  return PagamentoModel;
 };

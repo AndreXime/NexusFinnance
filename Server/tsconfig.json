@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES2023", // Define a versão do JavaScript de saída (ex: "es5", "es6", etc.)
-    "module": "NodeNext", // Define o tipo de módulo (ex: "commonjs", "es6", "amd")
+    "target": "ES2023",
+    "module": "NodeNext",
     "moduleResolution": "nodenext",
     "strict": true, 
     "outDir": "./dist",
-    "rootDir": "./src" 
+    "rootDir": "./src",
+    "paths": {
+      "*": ["/node_modules/*", "/src/types/*"]  // Inclui o diretório de tipos
+    }
   },
   "include": [
     "src/*",
-    "src/models/User.ts"
+    "src/**/*.ts",
+    "src/@types/*.d.ts"
   ],
   "exclude": [
     "node_modules" 
