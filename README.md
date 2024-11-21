@@ -10,8 +10,8 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
 ## 💻 **Tecnologias Utilizadas**
 - **Front-End:** [Next.js](https://nextjs.org/)
 - **Back-End:** [Express.js](https://expressjs.com/)
-- **Banco de Dados:**Postgree
-- **Estilização:** Material-UI
+- **Banco de Dados:** Postgree
+- **Estilização:** Bootstrap, FontAwesome
 ---
 
 ## 🔑 **Funcionalidades Principais**
@@ -19,10 +19,8 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
 ### **Controle Financeiro e Contábil**
 - **Cadastro de Receitas e Despesas**
 - **Fluxo de Caixa**
-  - Visualização diária, semanal ou mensal.
 - **Contas Bancárias**
 - **Relatórios Contábeis**
-  - Balancete, DRE, Balanço Patrimonial e previsões de fluxo de caixa.
 
 ### **Gestão de Recursos Humanos**
 - **Folha de Pagamento**

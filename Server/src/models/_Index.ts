@@ -12,7 +12,7 @@ import EmpresaModel from "./Empresa.js"
 const databaseUrl = process.env.databaseUrl || "postgres://nexusfin:nexusadmin@localhost:5432/rootDatabase";
 
 const sequelize = new Sequelize(databaseUrl, {
-  logging: console.log,
+  logging: false,
 });
 
 const Usuario = UsuarioModel(sequelize);
@@ -54,17 +54,16 @@ Pagamento.belongsTo(Usuario, { foreignKey: 'usuarioId' });
 Empresa.hasMany(Relatorio, { foreignKey: 'empresaId' });
 Relatorio.belongsTo(Empresa, { foreignKey: 'empresaId' });
 
-const testConnection = async () => {
+const testConnection = async (env:string) => {
    try {
-      await sequelize.authenticate();
-      await sequelize.sync({ force: true });
-      console.log("Conexão com PostgreSQL estabelecida\n");
+      await sequelize.authenticate({ logging: false });
+      console.info("Conexão com PostgreSQL estabelecida");
+      if (env !== "production")
+         await sequelize.sync({ force: true , logging: false } );
    } catch (err) {
       console.error("Erro ao conectar ao PostgreSQL:", err);
    }
 };
 
-testConnection();
-
-export { sequelize };
+export { testConnection };
 export default { Usuario, Transacoes, BancoConta, Relatorio, Pagamento, Beneficios, BeneficioUsuario, Empresa };

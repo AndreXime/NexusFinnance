@@ -4,6 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "clean-build": "rm -rf ./dist && npx tsc",
     "build": "npx tsc",
     "start": "node dist/server.js"
   },

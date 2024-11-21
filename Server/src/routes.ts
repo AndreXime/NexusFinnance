@@ -1,9 +1,10 @@
 import { Router, Response, Request, NextFunction } from "express";
+import { verifyToken, generateToken } from "./JWT.js";
+
 const router = Router();
-import { verifyToken, generateToken} from "./JWT.js";
 
 router.get("/", async (req: Request, res:Response) => {
-  res.status(200).json({ response:"Olá voce" });
+  res.status(200).json({ response: "Olá voce" });
 });
 
 router.get("/login", async (req: Request, res: Response) => {

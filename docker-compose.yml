@@ -19,7 +19,8 @@ services:
     ports:
     - "3001:3001"
     environment:
-      - databaseUrl=postgres://nexusfin:nexusadmin@database:5432/rootDatabase
+      NODE_ENV: production
+      databaseUrl: postgres://nexusfin:nexusadmin@database:5432/rootDatabase
 
   client:
     build:
