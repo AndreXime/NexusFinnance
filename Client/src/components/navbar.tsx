@@ -1,32 +1,39 @@
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          NexusFinance
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <a className="nav-link active" aria-current="page" href="#">
-              Inicio
-            </a>
-            <a className="nav-link" href="#">
-              Vantagens
-            </a>
-            <a className="nav-link" href="#">
-              Planos
-            </a>
+    <nav className="p-3">
+      <div className="container">
+        <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li>
+              <a href="#" className="nav-link px-2 text-secondary">Home</a>
+            </li>
+            <li>
+              <a href="#funcionalidades" className="nav-link px-2 text-white">Features</a>
+            </li>
+            <li>
+              <a href="#" className="nav-link px-2 text-white">Pricing</a>
+            </li>
+            <li>
+              <a href="#" className="nav-link px-2 text-white">FAQs</a>
+            </li>
+            <li>
+              <a href="#sobre-nos" className="nav-link px-2 text-white">About</a>
+            </li>
+          </ul>
+
+          <div className="text-end">
+            <button
+              type="button"
+              className="btn btn-primary btn-outline-light me-2"
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              className="btn btn-warning btn-outline-light "
+            >
+              Sign-up
+            </button>
           </div>
         </div>
       </div>

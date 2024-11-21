@@ -3,17 +3,15 @@ import "../styles/home.css";
 export default function HomePage() {
   return (
     <main>
-      <header className="text-white">
+      <header className="text-bg-dark">
         <h1 className="mb-3">Bem-vindo à NexusFinance HR</h1>
         <h3>
           Simplificando a gestão para você focar no que realmente importa!
         </h3>
-        <a className="btn btn-primary mt-4 fs-4" href="/plataforma">
-          Começar a produzir
-        </a>
       </header>
-      <section className="container">
-        <h2>Nosso objetivos</h2>
+      <section id="sobre-nos" className="container text-bg-dark">
+        <h2>Sobre nós</h2>
+        <h3>Nosso objetivos</h3>
         <p>
           Na NexusFinance HR, nossa missão é transformar a gestão financeira e
           de recursos humanos da sua empresa, oferecendo uma plataforma
@@ -22,9 +20,8 @@ export default function HomePage() {
           pagamento, controle de benefícios e geração de relatórios, sempre com
           precisão e praticidade.
         </p>
-      </section>
-      <section className="container">
-        <h2>Por que escolher a NexusFinance HR?</h2>
+
+        <h3 className="mt-4">Por que escolher a NexusFinance HR?</h3>
         <p>
           Nossa plataforma foi desenvolvida para proporcionar uma visão clara e
           completa do seu negócio, unindo as áreas financeira e de recursos
@@ -34,8 +31,8 @@ export default function HomePage() {
           cuidamos das complexidades operacionais.
         </p>
       </section>
-      <section className="container">
-        <h2>Funcionalidades Principais</h2>
+      <section id="funcionalidades" className="container text-bg-dark">
+        <h2>Funcionalidades principais</h2>
         <div className="row">
           <div className="col-6">
             <h3 className="text-center">Controle Financeiro e Contábil</h3>

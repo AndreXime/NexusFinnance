@@ -8,7 +8,7 @@ interface DecodedToken extends JwtPayload {
 }
 
 // Função para gerar o JWT
-export const generateToken = (userId:number):string => {
+export const generateToken = (userId:string):string => {
   const payload = { userId };
   const token = jwt.sign(payload, secretKey, { expiresIn: "1h" }); // Token expira em 1 hora
   return token;
@@ -16,7 +16,8 @@ export const generateToken = (userId:number):string => {
 
 // Middleware para verificar o JWT
 export const verifyToken = (req: Request, res: Response, next: NextFunction):void=> {
-  const token = req.cookies.token; // Acesso ao token no cabeçalho Authorization: 'Bearer <token>'
+  const token = req.cookies.token;
+  
   if (!token) {
     res.status(403).json({ response: "Acesso negado." });
     return;

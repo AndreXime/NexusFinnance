@@ -10,7 +10,7 @@ export default function Pages() {
     const checkLoginStatus = async () => {
       try {
         // Requisição para a rota protegida
-        const response = await fetch("http://localhost:3001/api/protegido", {
+        const response = await fetch("http://localhost:3001/api/logout", {
           method: "GET",
           credentials: "include", // Envia os cookies com a requisição
         });
@@ -36,7 +36,7 @@ export default function Pages() {
     <main className="text-center">
       <h1>VOCẼ ESTÁ LOGADO??</h1>
       {error && <p style={{ color: "red" }}>Erro: {error}</p>}
-      {data && <p style={{ color: "green" }}>{data}</p>}
+      {data && <p style={{ color: "green" }}>API: {data}</p>}
       <a href="/plataforma">Ir para lá</a>  
     </main>
   );
