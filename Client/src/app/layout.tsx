@@ -11,9 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className="d-flex flex-column vh-100 bg-dark">
+      <body className="d-flex flex-column vh-100 bg-dark text-bg-dark">
         <Navbar />
-        <main className="flex-grow-1 mb-5">{children}</main>
+        <main className="flex-grow-1">{children}</main>
         <Footer />
         <Script
           src="vendor/bootstrap/bootstrap.bundle.min.js"

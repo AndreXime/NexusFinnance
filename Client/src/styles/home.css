@@ -1,9 +1,10 @@
 header {
-  height: 80vh; 
+  height: 69vh; 
   display: flex; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 12vh;
 }
 header h1 {
   font-size: 3.8rem; /* Define o tamanho da fonte, você pode ajustar conforme necessário */

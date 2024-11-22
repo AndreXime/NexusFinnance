@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function Pages() {
+const LogoutPage = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -41,3 +41,5 @@ export default function Pages() {
     </main>
   );
 }
+
+export default LogoutPage;

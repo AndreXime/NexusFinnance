@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function pages() {
+const DashboardPage = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -35,3 +35,5 @@ export default function pages() {
     </main>
   );
 }
+
+export default DashboardPage;

@@ -1,6 +1,6 @@
 import "../styles/home.css";
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <main>
       <header className="text-bg-dark">
@@ -83,3 +83,5 @@ export default function HomePage() {
     </main>
   );
 }
+
+export default HomePage;
