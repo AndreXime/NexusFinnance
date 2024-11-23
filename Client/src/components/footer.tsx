@@ -1,4 +1,6 @@
-const Footer:React.FC = () => {
+import Link from "next/link";
+
+const Footer: React.FC = () => {
    return (
      <footer className="mt-4">
        <ul className="nav justify-content-center p-3 text-bg-dark">
@@ -6,29 +8,29 @@ const Footer:React.FC = () => {
           <span className="text-bg-dark nav-link px-2">&copy; 2022 Company, Inc</span>
          </li>
          <li className="nav-item">
-           <a href="/" className="nav-link px-2">
+           <Link href="/" className="nav-link px-2">
              Home
-           </a>
+           </Link>
          </li>
          <li className="nav-item">
-           <a href="#" className="nav-link px-2 ">
+           <Link href="#" className="nav-link px-2 ">
              Features
-           </a>
+           </Link>
          </li>
          <li className="nav-item">
-           <a href="#" className="nav-link px-2 ">
+           <Link href="#" className="nav-link px-2 ">
              Pricing
-           </a>
+           </Link>
          </li>
          <li className="nav-item">
-           <a href="#" className="nav-link px-2">
+           <Link href="#" className="nav-link px-2">
              FAQs
-           </a>
+           </Link>
          </li>
          <li className="nav-item">
-           <a href="#" className="nav-link px-2">
+           <Link href="#" className="nav-link px-2">
              About
-           </a>
+           </Link>
          </li>
        </ul>
      </footer>

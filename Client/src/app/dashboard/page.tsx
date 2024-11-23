@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const DashboardPage = () => {
   const [data, setData] = useState(null);
@@ -31,7 +32,7 @@ const DashboardPage = () => {
       <h1>COMO FICAR LOGADO</h1>
       {error && <p style={{ color: "red" }}>Erro: {error}</p>}
       {data && <p style={{ color: "green" }}>API: {data}</p>}
-      <a href="/logado">Ir para cá</a>
+      <Link href="/logado">Ir para cá</Link>
     </main>
   );
 }

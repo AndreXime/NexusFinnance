@@ -23,18 +23,12 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction):voi
     return;
   }
 
-  jwt.verify(token!, secretKey, (err:any, decoded:any) => {
-    if (err) {
-      res.status(401).json({ message: "Token inválido." });
-      return;
-    }
+  try {
+    const decoded = jwt.verify(token, secretKey) as DecodedToken;
 
-    if (!decoded) {
-      res.status(401).json({ message: "Token não pode ser decodificado." });
-      return;
-    }
-
-    req.userId = (decoded as DecodedToken).userId; // Armazenar o ID do usuário no req para uso posterior
+    req.userId = decoded.userId;
     next();
-  });
+  } catch {
+    res.status(401).json({ message: "Token inválido." });
+  }
 };

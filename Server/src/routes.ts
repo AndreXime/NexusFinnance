@@ -1,4 +1,4 @@
-import { Router, Response, Request, NextFunction } from "express";
+import { Router, Response, Request } from "express";
 import { verifyToken, generateToken } from "./JWT.js";
 
 const router = Router();
@@ -35,7 +35,7 @@ router.get("/protegido", verifyToken, async (req: Request, res: Response) => {
   res.status(200).json({ response: `Voce está logado como id :${req.userId}` });
 });
 
-router.use(async (req: Request, res:Response, next:NextFunction) => {
+router.use(async (req: Request, res:Response) => {
   res.status(404).json({ response: "Não encontrado" });
 });
 

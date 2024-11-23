@@ -5,7 +5,6 @@ import "../../styles/font-awesome/css/all.min.css"
 
 const LoginPage: React.FC = () => {
   const [isRegistering, setIsRegistering] = useState(false);
-  const [email, setEmail] = useState("");
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
@@ -19,7 +18,7 @@ const LoginPage: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }), 
+        body: JSON.stringify({ }), 
         credentials: "include",
       });
       const jsonData = await response.json();
@@ -39,7 +38,7 @@ return (
 <main className="container d-flex justify-content-center align-items-center">      
   <div className="card p-5" style={{ width: '70vh' }}>
         <h1 className="text-center mb-4">{isRegistering ? 'Criar Conta' : 'Entrar'}</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* Formulário de Login ou Registro */}
           {isRegistering ? (
             <>
