@@ -1,33 +1,24 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-export default (sequelize: Sequelize) => {
-   
-  const PagamentoModel = sequelize.define("Pagamento", {
-    nomeFuncionario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    salarioBruto: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    deducoes: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0,
-    },
-    beneficios: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0,
-    },
-    salarioLiquido: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    dataPagamento: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-  });
+@Table({ tableName: 'Pagamento', timestamps: true })
+class Pagamento extends Model {
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare nomeFuncionario: string;
+    
+  @Column({ type: DataType.DECIMAL, allowNull: false })
+  declare salarioBruto: string;
 
-  return PagamentoModel;
-};
+  @Column({ type: DataType.DECIMAL, allowNull: false })
+  declare deducoes: string;
+    
+  @Column({ type: DataType.DECIMAL, allowNull: false })
+  declare beneficios: string;
+  
+  @Column({ type: DataType.DECIMAL, allowNull: false })
+  declare salarioLiquido: string;
+
+  @Column({ type: DataType.DATE, allowNull: false })
+  declare dataPagamento: Date;
+}
+
+export default Pagamento;

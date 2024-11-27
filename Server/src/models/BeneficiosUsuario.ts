@@ -1,14 +1,9 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Table, Model } from 'sequelize-typescript';
 
-export default (sequelize:Sequelize) => {
-  return sequelize.define("BeneficioUsuario", {
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    benefitId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  });
-};
+@Table({ tableName: 'BeneficioUsuario', timestamps: true })
+class BeneficioUsuario extends Model {
+  
+}
+
+export default BeneficioUsuario;
+

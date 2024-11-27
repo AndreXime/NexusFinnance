@@ -1,9 +1,15 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-export default (sequelize:Sequelize) => {
-  return sequelize.define("Empresa", {
-    nome: DataTypes.STRING,
-    CNPJ: DataTypes.STRING,
-    endereco: DataTypes.STRING,
-  });
-};
+@Table({ tableName: 'Empresa', timestamps: true })
+class Empresa extends Model{
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare nome: string
+  
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare CNPJ: string
+
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare endereco: string
+}
+
+export default Empresa;

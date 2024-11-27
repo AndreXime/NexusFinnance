@@ -12,13 +12,18 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData(event.target); // Cria um objeto FormData com os inputs
+    const payload = {
+      email: formData.get("email"),
+      senha: formData.get("password"), 
+    };
     try {
       const response = await fetch("http://localhost:3001/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ }), 
+        body: JSON.stringify( payload ), 
         credentials: "include",
       });
       const jsonData = await response.json();
@@ -38,10 +43,10 @@ return (
 <main className="container d-flex justify-content-center align-items-center">      
   <div className="card p-5" style={{ width: '70vh' }}>
         <h1 className="text-center mb-4">{isRegistering ? 'Criar Conta' : 'Entrar'}</h1>
-        <form onSubmit={handleSubmit}>
           {/* Formulário de Login ou Registro */}
           {isRegistering ? (
             <>
+          <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="form-label">Nome</label>
                 <input
@@ -79,15 +84,17 @@ return (
                   />
                 </div>
               <button type="submit" className="btn btn-warning w-100">Registrar</button>
+          </form>
             </>
           ) : (
             <>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="email" className="form-label">Email</label>
                 <input
                   type="email"
                   className="form-control"
-                  id="email"
+                  name="email"
                   required
                 />
               </div>
@@ -96,7 +103,7 @@ return (
                 <input
                   type="password"
                   className="form-control"
-                  id="password"
+                  name="password"
                   required
                 />
               </div>
@@ -111,9 +118,9 @@ return (
                 </label>
               </div>
               <button type="submit" className="btn btn-warning w-100">Entrar</button>
+            </form>
             </>
           )}
-        </form>
         <div className="mt-3 text-center">
           <button
             className="btn btn-link"

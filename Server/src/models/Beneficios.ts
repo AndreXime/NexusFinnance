@@ -1,18 +1,16 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-export default (sequelize:Sequelize) => {
-  return sequelize.define("Beneficios", {
-    nome: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    tipo: {
-      type: DataTypes.ENUM("Transporte", "Saude", "Alimentacao", "Outro"),
-      allowNull: false,
-    },
-    custo: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-  });
-};
+@Table({ tableName: 'Beneficios', timestamps: true })
+class Beneficios extends Model {
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare nome: string;
+
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare tipo: string; // Transporte", "Saude", "Alimentacao", "Outro
+
+  @Column({ type: DataType.DECIMAL, allowNull: false })
+  declare custo: number;
+
+}
+
+export default Beneficios;

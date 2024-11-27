@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import routes from "./routes.js"
-import { testConnection } from "./models/_Index.js";
+import { testConnection } from "./models/Index.js";
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(
   })
 );
 
-await testConnection(process.env.NODE_ENV || "Development");
+testConnection();
 
 app.use(cookieParser());
 app.use(express.json()); // Para entender requisições JSON

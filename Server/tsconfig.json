@@ -3,11 +3,14 @@
     "target": "ES2023",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
-    "strict": true, 
+    "incremental": true,
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "paths": {
-      "*": ["/node_modules/*", "/types/*"]  // Inclui o diretório de tipos
+      "*": ["/node_modules/@types", "/types/*"]  // Inclui o diretório de tipos
     }
   },
   "include": [

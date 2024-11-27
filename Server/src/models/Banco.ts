@@ -1,12 +1,19 @@
 // models/BankAccount.js
-import { DataTypes, Sequelize } from 'sequelize';
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-export default (sequelize:Sequelize) => {
-  return sequelize.define("BancoConta", {
-    name: DataTypes.STRING,
-    balance: DataTypes.FLOAT,
-    accountNumber: DataTypes.STRING,
-    bankName: DataTypes.STRING,
-  });
+@Table({ tableName: 'BancosConta', timestamps: true })
+class BancoConta extends Model {
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare nome: string;
 
-};
+  @Column({ type: DataType.DECIMAL, allowNull: false })
+  declare saldo: number;
+
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare numeroConta: string;
+
+  @Column({ type: DataType.STRING, allowNull: false })
+  declare nomeBanco: string;
+}
+
+export default BancoConta;

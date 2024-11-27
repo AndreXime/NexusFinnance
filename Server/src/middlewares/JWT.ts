@@ -15,7 +15,7 @@ export const generateToken = (userId:string):string => {
 };
 
 // Middleware para verificar o JWT
-export const verifyToken = (req: Request, res: Response, next: NextFunction):void=> {
+export const verifyToken = (req: Request, res: Response, next: NextFunction): void=> {
   const token = req.cookies.token;
   
   if (!token) {
@@ -29,6 +29,6 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction):voi
     req.userId = decoded.userId;
     next();
   } catch {
-    res.status(401).json({ message: "Token inválido." });
+    res.status(401).json({ response: "Token inválido." });
   }
 };
