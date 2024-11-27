@@ -3,7 +3,6 @@
     "target": "ES2023",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
-    "incremental": true,
     "strict": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
