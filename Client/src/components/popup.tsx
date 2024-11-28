@@ -12,8 +12,13 @@ const Popup: React.FC<PopupProps> = ({ isOpen, message, onClose }) => {
   return (
       <div className="popup">
         <div className="popup-content">
-          <p>{message}</p>
-          <button className='btn btn-primary' onClick={onClose}>Fechar</button>
+          <p>{message.split('\n').map((line, index) => (
+          <span key={index}>
+            {line}
+            <br />
+          </span>
+          ))}</p>
+        <button className='btn btn-primary' onClick={onClose}>Fechar</button>
         </div>
       </div>
   );

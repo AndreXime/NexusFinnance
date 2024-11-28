@@ -10,7 +10,7 @@ const LoginPage: React.FC = () => {
 
   const toggleForm = () => setIsRegistering(!isRegistering);
 
-  const handleSubmit = async (event) => {
+  const submitLogin = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target); // Cria um objeto FormData com os inputs
     const payload = {
@@ -27,9 +27,41 @@ const LoginPage: React.FC = () => {
         credentials: "include",
       });
       const jsonData = await response.json();
+      if (!response.ok) {
+        throw new Error(jsonData.errors);
+      }
       setPopupMessage(`API Response: ${jsonData.response}`);
     } catch (err) {
       setPopupMessage(`API Response: ${err.message}`);
+    } finally {
+      setPopupOpen(true);
+    }
+  };
+
+  const submitRegister = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target); // Cria um objeto FormData com os inputs
+    const payload = {
+      email: formData.get("email"),
+      nome: formData.get("nome"),
+      senha: formData.get("senha"),
+    };
+    try {
+      const response = await fetch("http://localhost:3001/api/registro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+        credentials: "include",
+      });
+      const jsonData = await response.json();
+      if (!response.ok) {
+        throw new Error(jsonData.errors.join('\n'));
+      }
+      setPopupMessage(`Sucesso: ${jsonData.response}`);
+    } catch (err) {
+      setPopupMessage(`Ocorreu um erro:\n ${err.message}`);
     } finally {
       setPopupOpen(true);
     }
@@ -46,13 +78,13 @@ return (
           {/* Formulário de Login ou Registro */}
           {isRegistering ? (
             <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={submitRegister}>
               <div className="mb-4">
                 <label htmlFor="name" className="form-label">Nome</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="name"
+                  name="nome"
                   required
                 />
               </div>
@@ -61,7 +93,7 @@ return (
                 <input
                   type="email"
                   className="form-control"
-                  id="email"
+                  name="email"
                   required
                 />
               </div>
@@ -70,7 +102,7 @@ return (
                 <input
                   type="password"
                   className="form-control"
-                  id="password"
+                  name="senha"
                   required
                 />
               </div>
@@ -79,7 +111,7 @@ return (
                   <input
                     type="password"
                     className="form-control"
-                    id="password_confirm"
+                    name="senhaConfirm"
                     required
                   />
                 </div>
@@ -88,7 +120,7 @@ return (
             </>
           ) : (
             <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitLogin}>
               <div className="mb-4">
                 <label htmlFor="email" className="form-label">Email</label>
                 <input
