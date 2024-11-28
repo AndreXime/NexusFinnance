@@ -1,9 +1,9 @@
-# NexusFinance HR
+# NexusFinance
 
 ---
 
 ## 🚀 **Objetivo**
-O NexusFinance HR é uma plataforma integrada que combina gestão financeira e de recursos humanos, centralizando processos como folha de pagamento, 
+O NexusFinance é uma plataforma integrada que combina gestão financeira e de recursos humanos, centralizando processos como folha de pagamento, 
 benefícios e relatórios financeiros. Sua unificação de dados promove eficiência no fluxo de trabalho e facilita decisões estratégicas com base em informações precisas.
 
 ---
