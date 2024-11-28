@@ -1,7 +1,7 @@
 // models/BankAccount.js
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType } from "sequelize-typescript";
 
-@Table({ tableName: 'BancosConta', timestamps: true })
+@Table({ tableName: "BancosConta", timestamps: true })
 class BancoConta extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   declare nome: string;

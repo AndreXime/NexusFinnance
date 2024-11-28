@@ -3,46 +3,47 @@ import Joi from "joi";
 
 type SchemaNomes = "register" | "login";
 
-export default function validateInput(schemaNome: SchemaNomes){
+export default function validateInput(schemaNome: SchemaNomes) {
   return (req: Request, res: Response, next: NextFunction): void => {
     const schema = schemas[schemaNome];
     const { error } = schema.validate(req.body, { abortEarly: false });
 
     if (error) {
-      const errorsAll = error.details.map(detail => detail.message);
-      res.status(400).json({ response: "Erro de validação:", errors: errorsAll });
+      const errorsAll = error.details.map((detail) => detail.message);
+      res.status(400).json({
+        message: "Erro de validação:",
+        errors: errorsAll,
+      });
       return;
     }
 
     next();
   };
-};
+}
 
 const schemas = {
   register: Joi.object({
     email: Joi.string().email().required().messages({
       "string.email": "O campo 'email' deve ser um e-mail válido.",
-      "any.required": "O campo 'email' é obrigatório."
+      "any.required": "O campo 'email' é obrigatório.",
     }),
     senha: Joi.string().min(6).required().messages({
       "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres.",
-      "any.required": "O campo 'senha' é obrigatório."
+      "any.required": "O campo 'senha' é obrigatório.",
     }),
     nome: Joi.string().min(6).required().messages({
       "string.min": "O campo 'nome' deve ter no mínimo 6 caracteres.",
-      "any.required": "O campo 'nome' é obrigatório."
+      "any.required": "O campo 'nome' é obrigatório.",
     }),
   }),
   login: Joi.object({
     email: Joi.string().email().required().messages({
       "string.email": "O campo 'email' deve ser um e-mail válido.",
-      "any.required": "O campo 'email' é obrigatório."
+      "any.required": "O campo 'email' é obrigatório.",
     }),
     senha: Joi.string().min(6).required().messages({
       "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres.",
-      "any.required": "O campo 'senha' é obrigatório."
+      "any.required": "O campo 'senha' é obrigatório.",
     }),
   }),
 };
-
-

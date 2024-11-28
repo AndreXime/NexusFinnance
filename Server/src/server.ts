@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import routes from "./routes.js"
+import routes from "./routes.js";
 import { testConnection } from "./models/Index.js";
 
 const app = express();
@@ -12,8 +12,8 @@ app.use(
     origin: "http://localhost:3000", // ou '*' para permitir todos os domínios (não recomendado em produção)
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
-    credentials: true
-  })
+    credentials: true,
+  }),
 );
 
 testConnection();

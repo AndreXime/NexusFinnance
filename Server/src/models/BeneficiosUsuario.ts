@@ -1,9 +1,6 @@
-import { Table, Model } from 'sequelize-typescript';
+import { Table, Model } from "sequelize-typescript";
 
-@Table({ tableName: 'BeneficioUsuario', timestamps: true })
-class BeneficioUsuario extends Model {
-  
-}
+@Table({ tableName: "BeneficioUsuario", timestamps: true })
+class BeneficioUsuario extends Model {}
 
 export default BeneficioUsuario;
-

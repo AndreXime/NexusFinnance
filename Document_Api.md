@@ -1,25 +1,32 @@
-# Documentação para a api
-### Rotas protegidas retornam se não client não autenticado
-   - 403 - response: "Acesso negado." (Sem token)
-   - 401 - response: "Token inválido." (Token passado invalido)
-### Rotas usam middleware de verificar o formarto no input
-   - 400 - errors: Array de string contendo os erros
+# Documentação da API 
+### @Rotas protegidas
+   - 401: ```{  "message": "Não autenticado" }``` (Sem token ou token inválido)
+   - 403: ```{  "message": "Acesso negado" }``` (Autenticado, mas sem permissão)
+
+### @Rotas podem usar middleware de formarto no input
+   - 400: ``` { "message": "Erros de validação", "errors": ["O campo 'XXXX' é obrigatório", ...] } ```
 
 ### GET -> /api 
-- ping
+- Descrição: Rota de ping para verificação do serviço.
+- Resposta: ```{  "message": "Pong" }```
 
 ### POST -> /api/login
-- Input: Email e senha
-- Devolve cookie autenticado 
-- **Not Authorize** se credenciais invalidas
+- Descrição: Login do cliente.
+- Input:```{ email: "Email", senha: "Senha" }```
+- Resposta:
+   - 200:  ```{  "message": "Logado com sucesso" } + Cookie```
+   - 401:  ```{  "message": "Credenciais inválidas" }```
 
 ### POST -> /api/registro
-- Input: Email, Senha e Nome
-- Devolve cookie autenticado
-- **Not Authorize** se credenciais já existem
-
+- Input: ```{ email: "Email", senha: "Senha", nome: "Nome" }```
+- Resposta:
+   - 201: ```{  "message": "Logado com sucesso"} + Cookie```
+   - 409: ```{  "message": "Usuário já existe" }```
+   
 ### GET protegido -> /api/logout
-- Limpar o cookie jwt do client
+- Descrição: Encerra a sessão do cliente.
+- Resposta:
+   - 200: ```{  "message": "Logout efetuado com sucesso" + Cookie limpo}```
 
 ### Default (Nenhum das rotas)
-- 404 - response: "Não encontrado"
+- 404: ```{  "message": "Não encontrado" }```
