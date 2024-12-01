@@ -1,15 +1,15 @@
-import "../styles/home.css";
+import '../styles/home.css';
 
 const HomePage = () => {
   return (
     <main>
-      <header className="text-bg-dark">
-        <h1 className="mb-3">Bem-vindo à NexusFinance HR</h1>
+      <header className='text-bg-dark'>
+        <h1 className='mb-3'>Bem-vindo à NexusFinance HR</h1>
         <h3>
           Simplificando a gestão para você focar no que realmente importa!
         </h3>
       </header>
-      <section id="sobre-nos" className="container text-bg-dark">
+      <section id='sobre-nos' className='container text-bg-dark'>
         <h2>Sobre nós</h2>
         <h3>Nosso objetivos</h3>
         <p>
@@ -21,7 +21,7 @@ const HomePage = () => {
           precisão e praticidade.
         </p>
 
-        <h3 className="mt-4">Por que escolher a NexusFinance HR?</h3>
+        <h3 className='mt-4'>Por que escolher a NexusFinance HR?</h3>
         <p>
           Nossa plataforma foi desenvolvida para proporcionar uma visão clara e
           completa do seu negócio, unindo as áreas financeira e de recursos
@@ -31,11 +31,11 @@ const HomePage = () => {
           cuidamos das complexidades operacionais.
         </p>
       </section>
-      <section id="funcionalidades" className="container text-bg-dark">
+      <section id='funcionalidades' className='container text-bg-dark'>
         <h2>Funcionalidades principais</h2>
-        <div className="row">
-          <div className="col-6">
-            <h3 className="text-center">Controle Financeiro e Contábil</h3>
+        <div className='row'>
+          <div className='col-6'>
+            <h3 className='text-center'>Controle Financeiro e Contábil</h3>
             <ul>
               <li>
                 <strong>Cadastro de Receitas e Despesas:</strong> Registre suas
@@ -58,8 +58,8 @@ const HomePage = () => {
               </li>
             </ul>
           </div>
-          <div className="col-6">
-            <h3 className="text-center">Gestão de Recursos Humanos</h3>
+          <div className='col-6'>
+            <h3 className='text-center'>Gestão de Recursos Humanos</h3>
             <ul>
               <li>
                 <strong>Folha de Pagamento:</strong> Automatize o cálculo de
@@ -82,6 +82,6 @@ const HomePage = () => {
       </section>
     </main>
   );
-}
+};
 
 export default HomePage;

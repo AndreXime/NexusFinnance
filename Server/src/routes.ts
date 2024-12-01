@@ -26,27 +26,23 @@ router.post("/login", validateInput("login"), async (req: Request, res: Response
   }
 });
 
-router.post(
-  "/registro",
-  validateInput("register"),
-  async (req: Request, res: Response) => {
-    const { email } = req.body;
-    try {
-      const token = generateToken(email);
+router.post("/registro", validateInput("register"), async (req: Request, res: Response) => {
+  const { email } = req.body;
+  try {
+    const token = generateToken(email);
 
-      res.cookie("token", token, {
-        httpOnly: true, // Impede o acesso ao cookie via JavaScript
-        secure: process.env.NODE_ENV === "production", // Só envia o cookie via HTTPS em produção
-        sameSite: "strict",
-        expires: new Date(Date.now() + 3600000),
-      });
+    res.cookie("token", token, {
+      httpOnly: true, // Impede o acesso ao cookie via JavaScript
+      secure: process.env.NODE_ENV === "production", // Só envia o cookie via HTTPS em produção
+      sameSite: "strict",
+      expires: new Date(Date.now() + 3600000),
+    });
 
-      res.status(200).json({ message: "Logado com sucesso" });
-    } catch {
-      res.status(401).json({ message: "Usuário já existe" });
-    }
-  },
-);
+    res.status(200).json({ message: "Logado com sucesso" });
+  } catch {
+    res.status(401).json({ message: "Usuário já existe" });
+  }
+});
 
 router.get("/logout", verifyToken, async (req: Request, res: Response) => {
   res.clearCookie("token", {
