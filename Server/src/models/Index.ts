@@ -48,10 +48,7 @@ Transacao.belongsTo(Usuario, { foreignKey: "usuarioId", as: "usuario" });
 
 // BancoConta -> Transacao (Um-para-Muitos)
 BancoConta.hasMany(Transacao, { foreignKey: "bancoContaId", as: "transacoes" });
-Transacao.belongsTo(BancoConta, {
-  foreignKey: "bancoContaId",
-  as: "bancoConta",
-});
+Transacao.belongsTo(BancoConta, { foreignKey: "bancoContaId", as: "bancoConta" });
 
 // Usuario -> Relatorio (Um-para-Muitos)
 Usuario.hasMany(Relatorio, { foreignKey: "usuarioId", as: "relatorios" });
@@ -71,7 +68,7 @@ export async function testConnection() {
     await sequelize.authenticate({ logging: false });
     console.info("Conexão com PostgreSQL estabelecida\n");
     if (env !== "production") {
-      await sequelize.sync({ force: true, logging: false });
+      //await sequelize.sync({ force: true, logging: false });
     }
   } catch (err) {
     console.error("Erro ao conectar ao PostgreSQL:\n", err);

@@ -1,0 +1,73 @@
+/* Estilos globais */
+.app {
+  display: flex;
+}
+
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20%;
+  background-color: #303030;
+  padding-top: 20px;
+  transition: width 0.3s ease;
+}
+
+.sidebar.closed {
+  width: 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  display: block;
+}
+
+.sidebar a:hover {
+  background-color: #ff8800;
+}
+
+.sidebar .close-btn {
+  display: none;
+}
+
+.content {
+  margin-left: 20%;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.content.shifted {
+  margin-left: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60%;
+  }
+  .content {
+    margin-left: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    z-index: 100;
+  }
+  .content {
+    margin-left: 0;
+  }
+
+  .sidebar.closed {
+    width: 0;
+  }
+
+  .sidebar .close-btn {
+    display: block;
+  }
+}

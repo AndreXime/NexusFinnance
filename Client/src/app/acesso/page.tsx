@@ -14,57 +14,51 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
     const formData = new FormData(event.target); // Cria um objeto FormData com os inputs
     const payload = {
-      email: formData.get('email'),
-      senha: formData.get('password'),
+      email: formData.get('email') || '',
+      senha: formData.get('senha') || '',
     };
-    try {
-      const response = await fetch('http://localhost:3001/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        credentials: 'include',
-      });
-      const jsonData = await response.json();
-      if (!response.ok) {
-        throw new Error(jsonData.errors);
-      }
-      setPopupMessage(`API Response: ${jsonData.response}`);
-    } catch (err) {
-      setPopupMessage(`API Response: ${err.message}`);
-    } finally {
-      setPopupOpen(true);
+    const response = await fetch('http://localhost:3001/api/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      credentials: 'include',
+    });
+    
+    const jsonData = await response.json();
+    if (!response.ok) {
+      setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
+    } else {
+      setPopupMessage(`Sucesso: ${jsonData.message}`);
     }
+    setPopupOpen(true);
   };
 
   const submitRegister = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target); // Cria um objeto FormData com os inputs
     const payload = {
-      email: formData.get('email'),
       nome: formData.get('nome'),
+      email: formData.get('email'),
       senha: formData.get('senha'),
+      cargo: formData.get('cargo'),
     };
-    try {
-      const response = await fetch('http://localhost:3001/api/registro', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        credentials: 'include',
-      });
-      const jsonData = await response.json();
-      if (!response.ok) {
-        throw new Error(jsonData.errors.join('\n'));
-      }
-      setPopupMessage(`Sucesso: ${jsonData.response}`);
-    } catch (err) {
-      setPopupMessage(`Ocorreu um erro:\n ${err.message}`);
-    } finally {
-      setPopupOpen(true);
+    const response = await fetch('http://localhost:3001/api/user/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      credentials: 'include',
+    });
+    const jsonData = await response.json();
+    if (!response.ok) {
+      setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
+    } else {
+      setPopupMessage(`Sucesso:\n ${jsonData.message}`);
     }
+    setPopupOpen(true);
   };
 
   const handleClosePopup = () => {
@@ -81,7 +75,7 @@ const LoginPage: React.FC = () => {
           <>
             <form onSubmit={submitRegister}>
               <div className='mb-4'>
-                <label htmlFor='name' className='form-label'>
+                <label htmlFor='nome' className='form-label'>
                   Nome
                 </label>
                 <input
@@ -101,6 +95,22 @@ const LoginPage: React.FC = () => {
                   name='email'
                   required
                 />
+              </div>
+              <div className='mb-4'>
+                <label htmlFor="cargo" className="form-label">
+                  Cargo
+                </label>
+                <select
+                  name="cargo"
+                  className="form-control"
+                  required
+                >
+                  <option value="" disabled defaultValue={""}>
+                    Selecione um cargo
+                  </option>
+                  <option value="Administrador">Administrador</option>
+                  <option value="Contador">Contador</option>
+                </select>
               </div>
               <div className='mb-4'>
                 <label htmlFor='password' className='form-label'>
@@ -144,13 +154,13 @@ const LoginPage: React.FC = () => {
                 />
               </div>
               <div className='mb-4'>
-                <label htmlFor='password' className='form-label'>
+                <label htmlFor='senha' className='form-label'>
                   Senha
                 </label>
                 <input
                   type='password'
                   className='form-control'
-                  name='password'
+                  name='senha'
                   required
                 />
               </div>

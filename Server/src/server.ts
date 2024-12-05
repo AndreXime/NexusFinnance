@@ -9,9 +9,9 @@ const app = express();
 app.set("x-powered-by", false);
 app.use(
   cors({
-    origin: "http://localhost:3000", // ou '*' para permitir todos os domínios (não recomendado em produção)
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   }),
 );

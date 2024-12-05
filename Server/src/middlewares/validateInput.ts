@@ -11,8 +11,7 @@ export default function validateInput(schemaNome: SchemaNomes) {
     if (error) {
       const errorsAll = error.details.map((detail) => detail.message);
       res.status(400).json({
-        message: "Erro de validação:",
-        errors: errorsAll,
+        message: errorsAll,
       });
       return;
     }
@@ -34,6 +33,10 @@ const schemas = {
     nome: Joi.string().min(6).required().messages({
       "string.min": "O campo 'nome' deve ter no mínimo 6 caracteres.",
       "any.required": "O campo 'nome' é obrigatório.",
+    }),
+    cargo: Joi.string().valid("Administrador", "Contador").required().messages({
+      "any.required": "O campo 'cargo' é obrigatório.",
+      "any.only": "O campo 'cargo' deve ser 'Administrador' ou 'Contador'.",
     }),
   }),
   login: Joi.object({

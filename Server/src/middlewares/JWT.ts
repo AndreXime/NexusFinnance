@@ -13,12 +13,16 @@ export const generateToken = (userId: string): string => {
   return token;
 };
 
-export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
-  const token = req.cookies.token;
+// Tenta pegar o token pelo Cookie ou Header
+export const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
   try {
-    if (!token) {
-      throw new Error();
-    }
+    let token = req.cookies.token;
+
+    if (!token)
+      token = req.headers['authorization']?.split(' ')[1];
+    
+    if(!token)
+      throw new Error;
 
     const decoded = jwt.verify(token, secretKey) as DecodedToken;
 
