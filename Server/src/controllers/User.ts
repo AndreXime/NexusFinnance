@@ -50,7 +50,7 @@ const find = async (req: Request, res: Response) => {
   try {
     const user = await findUser(req.userId!);
     if (req.query.exist) {
-      res.status(200).json({ message:"Encontrado"});
+      res.status(200).json({ message: "Encontrado" });
     } else {
       res.status(200).json({ message: user });
     }

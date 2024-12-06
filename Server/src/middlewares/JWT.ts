@@ -18,11 +18,9 @@ export const verifyAuth = (req: Request, res: Response, next: NextFunction): voi
   try {
     let token = req.cookies.token;
 
-    if (!token)
-      token = req.headers['authorization']?.split(' ')[1];
-    
-    if(!token)
-      throw new Error;
+    if (!token) token = req.headers["authorization"]?.split(" ")[1];
+
+    if (!token) throw new Error();
 
     const decoded = jwt.verify(token, secretKey) as DecodedToken;
 

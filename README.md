@@ -12,11 +12,12 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
 - **Back-End:** [Express.js](https://expressjs.com/)
 - **Banco de Dados:** Postgree
 - **Estilização:** Bootstrap, FontAwesome
+- **Outros:** Docker, Swagger
 ---
 
 ## **Documentação**
 
-- [Documentação da api](Document_Api.md)
+- Documentação da API com Swagger - http://localhost:3001/api-docs 
 - [Documentação dos models](Document_Models.md)
 
 ---

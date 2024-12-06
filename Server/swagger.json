@@ -1,0 +1,148 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentação da API",
+    "description": "Documentação de rotas apis do Nexus Finnance.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "Servidor Backend"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "Api relacionado ao usuario"
+    }
+  ],
+  
+  "paths": {
+    "/api/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Retorna o usuário autenticado",
+        "description": "Usa o token JWT para retornar o usuário",
+        "security": [ { "JWT": [] } ],
+        "responses": {
+          "200": {
+            "description": "Retorna o usuário autenticado",
+            "content": {
+              "application/json": {
+                "example": { "message": "Object User" }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Autentica um usuário",
+        "description": "Realiza login com email e senha.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "senha": {
+                    "type": "string"
+                  }
+                },
+                "required": ["email", "senha"]
+              },
+              "example": { "email": "email@email.com", "senha": "senha123" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Devolve token JWT autenticado"
+          },
+          "401": {
+            "description": "Credenciais inválidas"
+          }
+        }
+      }
+    },
+    "/api/user/registro": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Registra um novo usuário",
+        "description": "Cria uma nova conta com email, senha, cargo e nome.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "senha": {
+                    "type": "string"
+                  },
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cargo": {
+                    "type": "string"
+                  }
+                },
+                "required": ["email", "senha", "nome", "cargo"]
+              },
+              "example": { "email": "email@email.com", "senha": "senha123", "nome": "André", "cargo": "ADministrador" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário registrado com sucesso"
+          },
+          "409": {
+            "description": "Usuário já existe"
+          }
+        }
+      }
+    },
+    "/api/user/logout": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Faz logout do usuário",
+        "description": "Limpa cookie do Client",
+        "security": [ { "JWT": [] } ],
+        "responses": {
+          "200": {
+            "description": "Logout efetuado com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "type": "apiKey",
+        "in": "Cookie ou Header",
+        "name": "JWT Token"
+      }
+    }
+  }
+}
+
+
