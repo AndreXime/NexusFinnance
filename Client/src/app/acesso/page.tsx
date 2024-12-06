@@ -25,7 +25,7 @@ const LoginPage: React.FC = () => {
       body: JSON.stringify(payload),
       credentials: 'include',
     });
-    
+
     const jsonData = await response.json();
     if (!response.ok) {
       setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
@@ -61,16 +61,10 @@ const LoginPage: React.FC = () => {
     setPopupOpen(true);
   };
 
-  const handleClosePopup = () => {
-    setPopupOpen(false);
-  };
-
   return (
-    <main className='container d-flex justify-content-center align-items-center'>
+    <body className='d-flex justify-content-center align-items-center bg-dark my-5'>
       <div className='card p-5' style={{ width: '70vh' }}>
-        <h1 className='text-center mb-4'>
-          {isRegistering ? 'Criar Conta' : 'Entrar'}
-        </h1>
+        <h1 className='text-center mb-4'>{isRegistering ? 'Criar Conta' : 'Entrar'}</h1>
         {isRegistering ? (
           <>
             <form onSubmit={submitRegister}>
@@ -78,61 +72,37 @@ const LoginPage: React.FC = () => {
                 <label htmlFor='nome' className='form-label'>
                   Nome
                 </label>
-                <input
-                  type='text'
-                  className='form-control'
-                  name='nome'
-                  required
-                />
+                <input type='text' className='form-control' name='nome' required />
               </div>
               <div className='mb-4'>
                 <label htmlFor='email' className='form-label'>
                   Email
                 </label>
-                <input
-                  type='email'
-                  className='form-control'
-                  name='email'
-                  required
-                />
+                <input type='email' className='form-control' name='email' required />
               </div>
               <div className='mb-4'>
-                <label htmlFor="cargo" className="form-label">
+                <label htmlFor='cargo' className='form-label'>
                   Cargo
                 </label>
-                <select
-                  name="cargo"
-                  className="form-control"
-                  required
-                >
-                  <option value="" disabled defaultValue={""}>
+                <select name='cargo' className='form-control' required>
+                  <option value='' disabled defaultValue={''}>
                     Selecione um cargo
                   </option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Contador">Contador</option>
+                  <option value='Administrador'>Administrador</option>
+                  <option value='Contador'>Contador</option>
                 </select>
               </div>
               <div className='mb-4'>
                 <label htmlFor='password' className='form-label'>
                   Senha
                 </label>
-                <input
-                  type='password'
-                  className='form-control'
-                  name='senha'
-                  required
-                />
+                <input type='password' className='form-control' name='senha' required />
               </div>
               <div className='mb-4'>
                 <label htmlFor='password' className='form-label'>
                   Repita a senha
                 </label>
-                <input
-                  type='password'
-                  className='form-control'
-                  name='senhaConfirm'
-                  required
-                />
+                <input type='password' className='form-control' name='senhaConfirm' required />
               </div>
               <button type='submit' className='btn btn-warning w-100'>
                 Registrar
@@ -146,30 +116,16 @@ const LoginPage: React.FC = () => {
                 <label htmlFor='email' className='form-label'>
                   Email
                 </label>
-                <input
-                  type='email'
-                  className='form-control'
-                  name='email'
-                  required
-                />
+                <input type='email' className='form-control' name='email' required />
               </div>
               <div className='mb-4'>
                 <label htmlFor='senha' className='form-label'>
                   Senha
                 </label>
-                <input
-                  type='password'
-                  className='form-control'
-                  name='senha'
-                  required
-                />
+                <input type='password' className='form-control' name='senha' required />
               </div>
               <div className='mb-4 form-check'>
-                <input
-                  type='checkbox'
-                  className='form-check-input'
-                  id='rememberMe'
-                />
+                <input type='checkbox' className='form-check-input' id='rememberMe' />
                 <label className='form-check-label' htmlFor='rememberMe'>
                   Lembrar de mim
                 </label>
@@ -182,18 +138,18 @@ const LoginPage: React.FC = () => {
         )}
         <div className='mt-3 text-center'>
           <button className='btn btn-link' onClick={toggleForm}>
-            {isRegistering
-              ? 'Já tem uma conta? Faça login'
-              : 'Ainda não tem uma conta? Registre-se'}
+            {isRegistering ? 'Já tem uma conta? Faça login' : 'Ainda não tem uma conta? Registre-se'}
           </button>
         </div>
       </div>
       <Popup
         isOpen={popupOpen}
         message={popupMessage}
-        onClose={handleClosePopup}
+        onClose={() => {
+          setPopupOpen(false);
+        }}
       />
-    </main>
+    </body>
   );
 };
 export default LoginPage;

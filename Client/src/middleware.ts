@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
       const response = await fetch('http://localhost:3001/api/user?exist=true', {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token.value}`,  // Passa o token no cabeçalho Authorization
+          Authorization: `Bearer ${token.value}`, // Passa o token no cabeçalho Authorization
         },
         credentials: 'include',
       });
@@ -16,8 +16,7 @@ export async function middleware(req: NextRequest) {
       if (response.ok) {
         return NextResponse.next();
       }
-    } catch {
-    }  
+    } catch {}
   }
 
   url.pathname = '/acesso';
@@ -25,5 +24,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [ '/perfil' ],
+  matcher: ['/perfil'],
 };
