@@ -6,5 +6,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang='pt-BR'>{children}</html>;
+  return (
+  <html lang='pt-BR'>
+      {children}
+  </html>  
+  )
 }

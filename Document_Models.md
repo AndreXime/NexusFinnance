@@ -1,57 +1,51 @@
 ## Atributos dos models
 
-- **Todas as tabelas tem data de criação e data que foram atualizadas**
-- **Todas as tabelas tem Primary Key e suas respectivas foreign key**
-
 | Entidade        | Atributos                                           |
 |-----------------|-----------------------------------------------------|
-| **Usuário**     | nome, email, cargo, senha |
-| **Transação**   | tipo, descricao, valor, data, categoria |
-| **Relatório**   | data de ocorrida, Tipo |
-| **Pagamento**   | nomeFuncionario, salarioBruto, deducoes, beneficios, salarioLiquido, dataPagamento |
-| **Empresa**     | nome, CNPJ, endereco |
-| **Benefício**   | nome, tipo, custo |
-| **BancoConta**  | nome, saldo, numeroConta, nomeBanco |
+| **Empresa**     | ID, nome, CNPJ, endereco |
+| **Contador**    | ID, nome, email, senha, IDEmpresa |
+| **Funcionario** | ID, nome, email, cargo, dataEntrada, IDEmpresa |
+| **Pagamento**   | ID, salarioBruto, deducoes, salarioLiquido, dataPagamento, IDFuncionario |
+| **Benefício**   | ID, nome, tipo, custo |
+| **Banco**       | ID, nome, agencia, saldo, IDEmpresa |
+| **Transação**   | ID, tipo, valor, data, categoria, IDBanco |
+| **BeneficioPagamento** | IDBeneficio, IDPagamento |
 
 
 ## **Relacionamentos das Tabelas**
 
-### **1. Empresa -> BancoConta**  
+### **1. Empresa -> Contador**  
 - **Tipo:** `Um-para-Muitos`  
-- **Descrição:** Uma empresa pode ter várias contas bancárias.  
+- **Descrição:** Uma empresa pode ter vários contadores associados a ela, mas cada contador está associado a apenas uma empresa.  
 
 ---
 
-### **2. Usuario -> Beneficio (Tabela Intermediária: BeneficioUsuario)**  
+### **2. Empresa -> Funcionario**  
+- **Tipo:** `Um-para-Muitos`  
+- **Descrição:** Uma empresa pode ter vários funcionários, mas cada funcionário está associado a apenas uma empresa.
+
+---
+
+### **3. Empresa -> Banco**  
+- **Tipo:** `Um-para-Muitos`  
+- **Descrição:** Uma empresa pode ter várias contas bancárias, mas cada banco está associado a uma única empresa.
+
+---
+
+### **4. Pagamento -> Beneficio (Tabela Intermediária: BeneficioPagamento)**  
 - **Tipo:** `Muitos-para-Muitos`  
-- **Descrição:** Um usuário pode ter vários benefícios, e um benefício pode ser atribuído a vários usuários.  
+- **Descrição:** Um benefício pode ser associado a vários pagamentos, e cada pagamento pode ter vários benefícios associados
 
 ---
 
-### **3. Usuario -> Transacoes**  
+### **5. Banco -> Transacoes**  
 - **Tipo:** `Um-para-Muitos`  
-- **Descrição:** Um usuário pode realizar várias transações.  
+- **Descrição:** Cada banco pode registrar várias transações, mas cada transação ocorre em um único banco. 
 
 ---
 
-### **4. BancoConta -> Transacoes**  
+### **6. Funcionario -> Pagamento**  
 - **Tipo:** `Um-para-Muitos`  
-- **Descrição:** Uma conta bancária pode registrar várias transações.  
+- **Descrição:** Cada funcionário pode ter vários pagamentos, mas cada pagamento é feito a um único funcionário.  
 
 ---
-
-### **5. Usuario -> Relatorio**  
-- **Tipo:** `Um-para-Muitos`  
-- **Descrição:** Um usuário pode criar vários relatórios.  
-
----
-
-### **6. Usuario -> Pagamento**  
-- **Tipo:** `Um-para-Um`  
-- **Descrição:** Um usuário pode ter apenas um pagamento associado.  
-
----
-
-### **7. Empresa -> Relatorio**  
-- **Tipo:** `Um-para-Muitos`  
-- **Descrição:** Uma empresa pode gerar vários relatórios.  

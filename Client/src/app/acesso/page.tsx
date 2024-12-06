@@ -17,21 +17,25 @@ const LoginPage: React.FC = () => {
       email: formData.get('email') || '',
       senha: formData.get('senha') || '',
     };
-    const response = await fetch('http://localhost:3001/api/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-      credentials: 'include',
-    });
-
-    const jsonData = await response.json();
-    if (!response.ok) {
-      setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
-    } else {
-      setPopupMessage(`Sucesso: ${jsonData.message}`);
+    try {
+      const response = await fetch('http://localhost:3001/api/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        credentials: 'include',
+      });
+      const jsonData = await response.json();
+      if (!response.ok) {
+        setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
+      } else {
+        window.location.replace("/plataforma")
+      }
+    } catch (error) {
+      setPopupMessage(`Error no servidor:\n ${error.message}`);
     }
+    
     setPopupOpen(true);
   };
 
@@ -62,8 +66,8 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <body className='d-flex justify-content-center align-items-center bg-dark my-5'>
-      <div className='card p-5' style={{ width: '70vh' }}>
+    <body className='d-flex justify-content-center align-items-center bg-dark'>
+      <div className='card p-5 m-4' style={{ width: '60vh' }}>
         <h1 className='text-center mb-4'>{isRegistering ? 'Criar Conta' : 'Entrar'}</h1>
         {isRegistering ? (
           <>

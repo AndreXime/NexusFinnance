@@ -2,42 +2,76 @@
 import { useState } from 'react';
 import '../../styles/font-awesome/css/all.min.css';
 import '../..//styles/dashboard.css';
+import Config from '../../components/dashboard/Configuracoes';
+import Relatorio from '../../components/dashboard/Relatorios';
+import Inicio from '../../components/dashboard/Inicio';
+import Funcionarios from '../../components/dashboard/Funcionarios';
+import Fluxo from '../../components/dashboard/Fluxo';
 
 const PlataformaPage = () => {
-  const [isSidebarClosed, setIsSidebarClosed] = useState(false);
+  const [activeComponent, setActiveComponent] = useState('Inicio');
 
-  const toggleSidebar = () => {
-    setIsSidebarClosed((prevState) => !prevState);
+  const renderContent = () => {
+    switch (activeComponent) {
+      case 'Inicio':
+        return <Inicio />;
+      case 'Funcionarios':
+        return <Funcionarios />;
+      case 'Relatorios':
+        return <Relatorio />;
+      case 'Config':
+        return <Config />;
+      case 'Fluxo':
+        return <Fluxo />
+      default:
+        return <h1>Componente não encontrado</h1>;
+    }
   };
+
+  const logout = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/user/logout", {
+        method: 'POST',
+        credentials: 'include'
+      });
+      if (response.ok) {
+        window.location.replace("/");
+      } 
+    } catch {
+      
+    }
+  }
 
   return (
     <main>
-      <div className='app'>
-        <div className={`sidebar ${isSidebarClosed ? 'closed' : ''}`}>
-          <button className='btn btn-light close-btn' onClick={toggleSidebar}>
-            <i className='fas fa-times'></i>
-          </button>
-          <a href='#'>
-            <i className='fas fa-tachometer-alt'></i> Dashboard
+      <div style={{display:"flex"}}>
+        <div className={`text-white sidebar `}>
+          <h3 className='mx-3 mb-3 fw-bold'>
+            NexusFinnance
+          </h3>
+          <a onClick={() => setActiveComponent('Inicio')}>
+            <i className='fas fa-tachometer-alt'></i> &nbsp; Inicio
           </a>
-          <a href='#'>
-            <i className='fas fa-user'></i> Perfil
+          <a onClick={() => setActiveComponent('Funcionarios')}>
+            <i className='fas fa-user'></i> &nbsp; Funcionarios
           </a>
-          <a href='#'>
-            <i className='fas fa-cogs'></i> Configurações
+          <a onClick={() => setActiveComponent('Fluxo')}>
+            <i className='fas fa-cash-register'></i> &nbsp; Fluxo de caixa
           </a>
-          <a href='#'>
-            <i className='fas fa-chart-line'></i> Relatórios
+          <a onClick={() => setActiveComponent('Relatorios')}>
+            <i className='fas fa-chart-line'></i> &nbsp; Relatórios
           </a>
-          <a href='#'>
-            <i className='fas fa-sign-out-alt'></i> Sair
+          <a onClick={() => setActiveComponent('Config')}>
+            <i className='fas fa-cogs'></i> &nbsp; Configurações
+          </a>
+          <a onClick={() => logout()}>
+            <i className='fas fa-sign-out-alt'></i> &nbsp; Sair
           </a>
         </div>
 
-        <div className={`content ${isSidebarClosed ? 'shifted' : ''}`}>
-          <h1>Bem-vindo ao Dashboard</h1>
-          <p>Este é um exemplo de dashboard responsivo com navegação à esquerda usando Bootstrap e FontAwesome.</p>
-        </div>
+        <main className={`content`}>
+          {renderContent()}
+        </main>
       </div>
     </main>
   );

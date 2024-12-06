@@ -9,7 +9,7 @@ export const metadata = {
 export default function PlataformaLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='pt-BR'>
-      <body className='plataforma-layout'>
+      <body>
         {children}
         <Script src='vendor/bootstrap/bootstrap.bundle.min.js' strategy='beforeInteractive' />
       </body>
