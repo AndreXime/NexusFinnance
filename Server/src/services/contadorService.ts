@@ -1,4 +1,4 @@
-import { Usuario } from "../models/Index.js";
+import { Contador } from "../models/Index.js";
 
 interface userRegister {
   nome: string;
@@ -10,11 +10,11 @@ interface userRegister {
 export const registerUser = async (userData: userRegister) => {
   try {
     const { nome, email, senha, cargo } = userData;
-    const newUser = await Usuario.create({
+    const newUser = await Contador.create({
       nome,
       email,
       senha,
-      cargo,
+      cargo
     });
     return newUser.get("id");
   } catch {
@@ -29,11 +29,11 @@ interface userLogin {
 
 export const loginUser = async (userData: userLogin) => {
   const { email, senha } = userData;
-  const user = await Usuario.findOne({
+  const user = await Contador.findOne({
     where: {
       email: email,
-      senha: senha,
-    },
+      senha: senha
+    }
   });
   if (!user) throw new Error();
 
@@ -41,7 +41,7 @@ export const loginUser = async (userData: userLogin) => {
 };
 
 export const findUser = async (userId: string) => {
-  const user = await Usuario.findByPk(userId);
+  const user = await Contador.findByPk(userId);
   if (!user) {
     throw new Error();
   }

@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType, PrimaryKey, Default } from "sequelize-typescript";
 
-@Table({ tableName: "Usuario", timestamps: true })
-class Usuario extends Model {
+@Table({ tableName: "Contador", timestamps: true })
+class Contador extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID, allowNull: false })
@@ -14,10 +14,8 @@ class Usuario extends Model {
   declare email: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  declare cargo: string;
-
-  @Column({ type: DataType.STRING, allowNull: false })
   declare senha: string;
+  
 }
 
-export default Usuario;
+export default Contador;

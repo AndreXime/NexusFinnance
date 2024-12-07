@@ -1,8 +1,12 @@
-// models/BankAccount.js
-import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { Table, Column, Model, DataType, PrimaryKey, Default } from "sequelize-typescript";
 
-@Table({ tableName: "BancosConta", timestamps: true })
-class BancoConta extends Model {
+@Table({ tableName: "Banco", timestamps: true })
+class Banco extends Model {
+  @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column({ type: DataType.UUID, allowNull: false })
+  declare id: string;
+
   @Column({ type: DataType.STRING, allowNull: false })
   declare nome: string;
 
@@ -10,10 +14,8 @@ class BancoConta extends Model {
   declare saldo: number;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  declare numeroConta: string;
-
-  @Column({ type: DataType.STRING, allowNull: false })
-  declare nomeBanco: string;
+  declare agencia: string;
+  
 }
 
-export default BancoConta;
+export default Banco;

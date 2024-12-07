@@ -1,12 +1,11 @@
 import { Sequelize } from "sequelize-typescript";
-import Usuario from "./Usuario.js";
-import Beneficio from "./Beneficios.js";
+import Contador from "./Contador.js";
+import Credito from "./Credito.js";
 import Transacao from "./Transacoes.js";
-import BancoConta from "./Banco.js";
+import Banco from "./Banco.js";
 import Pagamento from "./Pagamento.js";
-import Relatorio from "./Relatorio.js";
-import BeneficioUsuario from "./BeneficiosUsuario.js";
 import Empresa from "./Empresa.js";
+import Funcionario from "./Funcionario.js";
 
 const databaseUrl =
   process.env.databaseUrl || "postgres://nexusfin:nexusadmin@localhost:5432/rootDatabase";
@@ -14,53 +13,72 @@ const databaseUrl =
 const sequelize = new Sequelize(databaseUrl, {
   logging: false,
   dialect: "postgres",
-  models: [
-    Usuario,
-    Transacao,
-    BancoConta,
-    Pagamento,
-    Relatorio,
-    Beneficio,
-    BeneficioUsuario,
-    Empresa,
-  ],
+  models: [Contador, Funcionario ,Transacao, Banco, Pagamento, Credito, Empresa]
 });
 
-// Empresa -> BancoConta (Um-para-Muitos)
-Empresa.hasMany(BancoConta, { foreignKey: "empresaId", as: "contasBancarias" });
-BancoConta.belongsTo(Empresa, { foreignKey: "empresaId", as: "empresa" });
+// Relacionamentos no sequelize precisa mencionar os 2 para a consulta ser mais facil
 
-// Usuario -> Beneficio (Muitos-para-Muitos) com tabela intermediária BeneficioUsuario
-Usuario.belongsToMany(Beneficio, {
-  through: BeneficioUsuario,
-  foreignKey: "usuarioId",
-  as: "beneficios",
+//Empresa -> Contador `Um-para-Muitos`
+Empresa.hasMany(Contador, {
+  foreignKey: "empresaId",
+  as: "contadores"
 });
-Beneficio.belongsToMany(Usuario, {
-  through: BeneficioUsuario,
-  foreignKey: "beneficioId",
-  as: "usuarios",
+Contador.belongsTo(Empresa, {
+  foreignKey: "empresaId",
+  as: "empresa"
 });
 
-// Usuario -> Transacao (Um-para-Muitos)
-Usuario.hasMany(Transacao, { foreignKey: "usuarioId", as: "transacoes" });
-Transacao.belongsTo(Usuario, { foreignKey: "usuarioId", as: "usuario" });
+//Empresa -> Funcionario `Um-para-Muitos`
+Empresa.hasMany(Funcionario, {
+  foreignKey: "empresaId",
+  as: "funcionarios"
+});
+Funcionario.belongsTo(Empresa, {
+  foreignKey: "empresaId",
+  as: "empresa"
+});
 
-// BancoConta -> Transacao (Um-para-Muitos)
-BancoConta.hasMany(Transacao, { foreignKey: "bancoContaId", as: "transacoes" });
-Transacao.belongsTo(BancoConta, { foreignKey: "bancoContaId", as: "bancoConta" });
+// Empresa -> Banco `Um-para-Muitos`
+Empresa.hasMany(Banco, {
+  foreignKey: "empresaId",
+  as: "bancos"
+});
+Banco.belongsTo(Empresa, {
+  foreignKey: "empresaId",
+  as: "empresa"
+});
 
-// Usuario -> Relatorio (Um-para-Muitos)
-Usuario.hasMany(Relatorio, { foreignKey: "usuarioId", as: "relatorios" });
-Relatorio.belongsTo(Usuario, { foreignKey: "usuarioId", as: "usuario" });
+// Pagamento -> Credito `Muitos-para-Muitos`
+Pagamento.belongsToMany(Credito, {
+  through: "CreditoPagamento",
+  foreignKey: "pagamentoId",
+  as: "creditos"
+});
+Credito.belongsToMany(Pagamento, {
+  through: "CreditoPagamento",
+  foreignKey: "creditoId",
+  as: "pagamentos"
+});
 
-// Usuario -> Pagamento (Um-para-Um)
-Usuario.hasOne(Pagamento, { foreignKey: "usuarioId", as: "pagamento" });
-Pagamento.belongsTo(Usuario, { foreignKey: "usuarioId", as: "usuario" });
+// Banco -> Transacoes `Um-para-Muitos`
+Banco.hasMany(Transacao, {
+  foreignKey: "bancoId",
+  as: "transacoes"
+});
+Transacao.belongsTo(Banco, {
+  foreignKey: "bancoId",
+  as: "banco"
+});
 
-// Empresa -> Relatorio (Um-para-Muitos)
-Empresa.hasMany(Relatorio, { foreignKey: "empresaId", as: "relatorios" });
-Relatorio.belongsTo(Empresa, { foreignKey: "empresaId", as: "empresa" });
+// Funcionario -> Pagamento `Um-para-Muitos`
+Funcionario.hasMany(Pagamento, {
+  foreignKey: "funcionarioId",
+  as: "pagamentos"
+});
+Pagamento.belongsTo(Funcionario, {
+  foreignKey: "funcionarioId",
+  as: "funcionario"
+});
 
 export async function testConnection() {
   const env = process.env.NODE_ENV || "Development";
@@ -68,19 +86,10 @@ export async function testConnection() {
     await sequelize.authenticate({ logging: false });
     console.info("Conexão com PostgreSQL estabelecida\n");
     if (env !== "production") {
-      //await sequelize.sync({ force: true, logging: false });
+      await sequelize.sync({ force: true, logging: false });
     }
   } catch (err) {
     console.error("Erro ao conectar ao PostgreSQL:\n", err);
   }
 }
-export {
-  Usuario,
-  Transacao,
-  BancoConta,
-  Relatorio,
-  Pagamento,
-  Beneficio,
-  BeneficioUsuario,
-  Empresa,
-};
+export { Contador, Transacao, Banco, Pagamento, Credito, Empresa, Funcionario };

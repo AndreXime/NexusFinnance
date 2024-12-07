@@ -17,8 +17,8 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
 
 ## **Documentação**
 
-- Documentação da API com Swagger - http://localhost:3001/api-docs 
-- [Documentação dos models](Document_Models.md)
+- Acesse a Documentação da API via Swagger: http://localhost:3001/api-docs.
+- Explore a Documentação do Banco de Dados: disponível em [Markdown](Document_Models.md) ou [Excalidraw](https://excalidraw.com/#json=SXL2DYYg3XJZqci8iPgW5,c2MKKrUWt64Jjsctayvu2A)
 
 ---
 

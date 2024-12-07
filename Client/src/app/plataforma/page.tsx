@@ -69,7 +69,7 @@ const PlataformaPage = () => {
           </a>
         </div>
 
-        <main className={`content`}>
+        <main className={`content p-5`}>
           {renderContent()}
         </main>
       </div>

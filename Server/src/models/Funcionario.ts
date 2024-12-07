@@ -1,7 +1,8 @@
 import { Table, Column, Model, DataType, PrimaryKey, Default } from "sequelize-typescript";
+import Empresa from "./Empresa.js";
 
-@Table({ tableName: "Empresa", timestamps: true })
-class Empresa extends Model {
+@Table({ tableName: "Funcionario", timestamps: true })
+class Funcionario extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID, allowNull: false })
@@ -11,10 +12,14 @@ class Empresa extends Model {
   declare nome: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  declare CNPJ: string;
+  declare email: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  declare endereco: string;
+  declare cargo: string;
+
+  @Column({ type: DataType.DATE, allowNull: false })
+  declare dataEntrada: Date;
+
 }
 
-export default Empresa;
+export default Funcionario;

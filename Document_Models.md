@@ -3,13 +3,13 @@
 | Entidade        | Atributos                                           |
 |-----------------|-----------------------------------------------------|
 | **Empresa**     | ID, nome, CNPJ, endereco |
+| **Banco**       | ID, nome, agencia, saldo, IDEmpresa |
 | **Contador**    | ID, nome, email, senha, IDEmpresa |
 | **Funcionario** | ID, nome, email, cargo, dataEntrada, IDEmpresa |
-| **Pagamento**   | ID, salarioBruto, deducoes, salarioLiquido, dataPagamento, IDFuncionario |
-| **Benefício**   | ID, nome, tipo, custo |
-| **Banco**       | ID, nome, agencia, saldo, IDEmpresa |
-| **Transação**   | ID, tipo, valor, data, categoria, IDBanco |
-| **BeneficioPagamento** | IDBeneficio, IDPagamento |
+| **Transação**   | ID, tipo, valor, descricao, data, categoria, IDBanco |
+| **Pagamento**   | ID, salarioBruto, salarioLiquido, dataPagamento, IDFuncionario, IDBanco |
+| **Credito**     | ID, nome, tipo, custo, IDBanco |
+| **CreditoPagamento** | IDCredito, IDPagamento |
 
 
 ## **Relacionamentos das Tabelas**
@@ -32,7 +32,7 @@
 
 ---
 
-### **4. Pagamento -> Beneficio (Tabela Intermediária: BeneficioPagamento)**  
+### **4. Pagamento -> Credito (Tabela Intermediária: CreditoPagamento)**  
 - **Tipo:** `Muitos-para-Muitos`  
 - **Descrição:** Um benefício pode ser associado a vários pagamentos, e cada pagamento pode ter vários benefícios associados
 
@@ -47,5 +47,11 @@
 ### **6. Funcionario -> Pagamento**  
 - **Tipo:** `Um-para-Muitos`  
 - **Descrição:** Cada funcionário pode ter vários pagamentos, mas cada pagamento é feito a um único funcionário.  
+
+---
+
+### **7. Banco -> Credito**  
+- **Tipo:** `Um-para-Muitos`  
+- **Descrição:** Um banco pode ter vários tipos de credito associados, mas cada credito está associado a apenas um banco.  
 
 ---

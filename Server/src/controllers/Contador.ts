@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { generateToken } from "../middlewares/JWT.js";
-import { registerUser, loginUser, findUser } from "../services/userService.js";
+import { registerUser, loginUser, findUser } from "../services/contadorService.js";
 
 /*
   Os controllers deve-se usar try catch pois quando por exemplo 
@@ -17,7 +17,7 @@ const register = async (req: Request, res: Response) => {
       httpOnly: true, // Impede o acesso ao cookie via JavaScript
       secure: process.env.NODE_ENV === "production", // Só envia o cookie via HTTPS em produção
       sameSite: "strict",
-      expires: new Date(Date.now() + 3600000),
+      expires: new Date(Date.now() + 3600000)
     });
 
     res.status(200).json({ message: "Logado com sucesso" });
@@ -33,10 +33,10 @@ const login = async (req: Request, res: Response) => {
     const token = generateToken(userId);
 
     res.cookie("token", token, {
-      httpOnly: true, // Impede o acesso ao cookie via JavaScript
-      secure: process.env.NODE_ENV === "production", // Só envia o cookie via HTTPS em produção
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      expires: new Date(Date.now() + 3600000),
+      expires: new Date(Date.now() + 3600000)
     });
 
     res.status(200).json({ message: "Logado com sucesso" });
@@ -45,15 +45,10 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-// Pode ser usado para saber se o token é valido no frontend por meio do parametro exist
 const find = async (req: Request, res: Response) => {
   try {
     const user = await findUser(req.userId!);
-    if (req.query.exist) {
-      res.status(200).json({ message: "Encontrado" });
-    } else {
-      res.status(200).json({ message: user });
-    }
+    res.status(200).json({ message: user });
   } catch {
     res.status(400).json({ message: "Usuario não encontrado" });
   }
@@ -63,7 +58,7 @@ const logout = async (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "strict"
   });
 
   res.status(200).json({ message: "Logout efetuado com sucesso" });
