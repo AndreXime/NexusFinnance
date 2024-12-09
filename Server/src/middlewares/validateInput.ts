@@ -20,33 +20,37 @@ export default function validateInput(schemaNome: SchemaNomes) {
   };
 }
 
+const commonMessages = {
+  "string.base": "O campo {#label} deve ser um texto.",
+  "string.email": "O campo 'email' deve ser um e-mail válido.",
+  "string.min": "O campo '{#label}' deve ter no mínimo {#limit} caracteres.",
+  "any.required": "O campo '{#label}' é obrigatório.",
+  "string.empty": "O campo '{#label}' não pode estar vazio.",
+};
+
+
 const schemas = {
   register: Joi.object({
     email: Joi.string().email().required().messages({
-      "string.email": "O campo 'email' deve ser um e-mail válido.",
-      "any.required": "O campo 'email' é obrigatório."
+      ...commonMessages
     }),
     senha: Joi.string().min(6).required().messages({
-      "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres.",
-      "any.required": "O campo 'senha' é obrigatório."
+      ...commonMessages,
+      "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres."
     }),
     nome: Joi.string().min(6).required().messages({
-      "string.min": "O campo 'nome' deve ter no mínimo 6 caracteres.",
-      "any.required": "O campo 'nome' é obrigatório."
-    }),
-    cargo: Joi.string().valid("Administrador", "Contador").required().messages({
-      "any.required": "O campo 'cargo' é obrigatório.",
-      "any.only": "O campo 'cargo' deve ser 'Administrador' ou 'Contador'."
+      ...commonMessages,
+      "string.min": "O campo 'nome' deve ter no mínimo 6 caracteres."
     })
-  }),
+  }).messages({ "any.default": "Por favor, verifique os valores fornecidos." })
+  ,
   login: Joi.object({
     email: Joi.string().email().required().messages({
-      "string.email": "O campo 'email' deve ser um e-mail válido.",
-      "any.required": "O campo 'email' é obrigatório."
+       ...commonMessages,
     }),
     senha: Joi.string().min(6).required().messages({
-      "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres.",
-      "any.required": "O campo 'senha' é obrigatório."
+      ...commonMessages,
+      "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres."
     })
-  })
+  }).messages({ "any.default": "Por favor, verifique os valores fornecidos." })
 };

@@ -5,8 +5,7 @@ import '../../styles/font-awesome/css/all.min.css';
 
 const LoginPage: React.FC = () => {
   const [isRegistering, setIsRegistering] = useState(false);
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
+  const [popup, setPopup] = useState('');
 
   const toggleForm = () => setIsRegistering(!isRegistering);
 
@@ -18,7 +17,7 @@ const LoginPage: React.FC = () => {
       senha: formData.get('senha') || '',
     };
     try {
-      const response = await fetch('http://localhost:3001/api/user/login', {
+      const response = await fetch('http://localhost:3001/api/contador/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,15 +27,14 @@ const LoginPage: React.FC = () => {
       });
       const jsonData = await response.json();
       if (!response.ok) {
-        setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
+        setPopup(`Ocorreu um erro:,${jsonData.message}`);
       } else {
         window.location.replace("/plataforma")
       }
     } catch (error) {
-      setPopupMessage(`Error no servidor:\n ${error.message}`);
+      setPopup(`Erro no servidor:,${error.message}`);
     }
     
-    setPopupOpen(true);
   };
 
   const submitRegister = async (event) => {
@@ -46,9 +44,8 @@ const LoginPage: React.FC = () => {
       nome: formData.get('nome'),
       email: formData.get('email'),
       senha: formData.get('senha'),
-      cargo: formData.get('cargo'),
     };
-    const response = await fetch('http://localhost:3001/api/user/register', {
+    const response = await fetch('http://localhost:3001/api/contador/registrar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,11 +55,10 @@ const LoginPage: React.FC = () => {
     });
     const jsonData = await response.json();
     if (!response.ok) {
-      setPopupMessage(`Ocorreu um erro:\n ${jsonData.message}`);
+      setPopup(`Ocorreu um erro:,${jsonData.message}`);
     } else {
-      setPopupMessage(`Sucesso:\n ${jsonData.message}`);
+      setPopup(`Sucesso:,${jsonData.message}`);
     }
-    setPopupOpen(true);
   };
 
   return (
@@ -83,18 +79,6 @@ const LoginPage: React.FC = () => {
                   Email
                 </label>
                 <input type='email' className='form-control' name='email' required />
-              </div>
-              <div className='mb-4'>
-                <label htmlFor='cargo' className='form-label'>
-                  Cargo
-                </label>
-                <select name='cargo' className='form-control' required>
-                  <option value='' disabled defaultValue={''}>
-                    Selecione um cargo
-                  </option>
-                  <option value='Administrador'>Administrador</option>
-                  <option value='Contador'>Contador</option>
-                </select>
               </div>
               <div className='mb-4'>
                 <label htmlFor='password' className='form-label'>
@@ -147,10 +131,9 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
       <Popup
-        isOpen={popupOpen}
-        message={popupMessage}
+        message={popup}
         onClose={() => {
-          setPopupOpen(false);
+          setPopup('');
         }}
       />
     </body>

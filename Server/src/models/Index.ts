@@ -13,7 +13,7 @@ const databaseUrl =
 const sequelize = new Sequelize(databaseUrl, {
   logging: false,
   dialect: "postgres",
-  models: [Contador, Funcionario ,Transacao, Banco, Pagamento, Credito, Empresa]
+  models: [Contador, Funcionario, Transacao, Banco, Pagamento, Credito, Empresa]
 });
 
 // Relacionamentos no sequelize precisa mencionar os 2 para a consulta ser mais facil

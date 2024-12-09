@@ -15,7 +15,6 @@ class Banco extends Model {
 
   @Column({ type: DataType.STRING, allowNull: false })
   declare agencia: string;
-  
 }
 
 export default Banco;

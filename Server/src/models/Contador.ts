@@ -15,7 +15,6 @@ class Contador extends Model {
 
   @Column({ type: DataType.STRING, allowNull: false })
   declare senha: string;
-  
 }
 
 export default Contador;

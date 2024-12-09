@@ -1,5 +1,4 @@
 import { Table, Column, Model, DataType, PrimaryKey, Default } from "sequelize-typescript";
-import Empresa from "./Empresa.js";
 
 @Table({ tableName: "Funcionario", timestamps: true })
 class Funcionario extends Model {
@@ -19,7 +18,6 @@ class Funcionario extends Model {
 
   @Column({ type: DataType.DATE, allowNull: false })
   declare dataEntrada: Date;
-
 }
 
 export default Funcionario;
