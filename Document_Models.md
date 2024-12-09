@@ -44,14 +44,20 @@
 
 ---
 
-### **6. Funcionario -> Pagamento**  
+### **6. Banco -> Credito**  
+- **Tipo:** `Um-para-Muitos`  
+- **Descrição:** Um banco pode ter vários tipos de credito associados, mas cada credito está associado a apenas um banco.  
+
+---
+
+### **7. Funcionario -> Pagamento**  
 - **Tipo:** `Um-para-Muitos`  
 - **Descrição:** Cada funcionário pode ter vários pagamentos, mas cada pagamento é feito a um único funcionário.  
 
 ---
 
-### **7. Banco -> Credito**  
+### **8. Banco -> Pagamento**  
 - **Tipo:** `Um-para-Muitos`  
-- **Descrição:** Um banco pode ter vários tipos de credito associados, mas cada credito está associado a apenas um banco.  
+- **Descrição:** Um banco pode ter registrar pagamentos, mas cada pagamento é registrado por um banco.  
 
 ---

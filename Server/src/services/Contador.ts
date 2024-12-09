@@ -4,17 +4,14 @@ interface userRegister {
   nome: string;
   email: string;
   senha: string;
-  cargo: string;
 }
 
-export const registerUser = async (userData: userRegister) => {
+export const registerUser = async ({nome,email,senha}: userRegister) => {
   try {
-    const { nome, email, senha, cargo } = userData;
     const newUser = await Contador.create({
       nome,
       email,
       senha,
-      cargo
     });
     return newUser.get("id");
   } catch {
@@ -22,13 +19,12 @@ export const registerUser = async (userData: userRegister) => {
   }
 };
 
-interface userLogin {
-  email: string;
-  senha: string;
+interface loginSchema{
+  email: string,
+  senha: string
 }
 
-export const loginUser = async (userData: userLogin) => {
-  const { email, senha } = userData;
+export const loginUser = async ({email, senha}: loginSchema) => {
   const user = await Contador.findOne({
     where: {
       email: email,

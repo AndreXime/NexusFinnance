@@ -1,7 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 
-type SchemaNomes = "register" | "login";
+type SchemaNomes =
+  | "Registrar"
+  | "Login"
+  | "Banco"
+  | "Empresa"
+  | "Funcionario"
+  | "Pagamento"
+  | "Transacao"
+  | "Credito";
 
 export default function validateInput(schemaNome: SchemaNomes) {
   return (req: Request, res: Response, next: NextFunction): void => {
@@ -20,37 +28,72 @@ export default function validateInput(schemaNome: SchemaNomes) {
   };
 }
 
-const commonMessages = {
+const messagensComuns = {
   "string.base": "O campo {#label} deve ser um texto.",
   "string.email": "O campo 'email' deve ser um e-mail válido.",
   "string.min": "O campo '{#label}' deve ter no mínimo {#limit} caracteres.",
   "any.required": "O campo '{#label}' é obrigatório.",
-  "string.empty": "O campo '{#label}' não pode estar vazio.",
+  "string.empty": "O campo '{#label}' não pode estar vazio."
 };
 
+// String comuns são Obrigatorias e tem messagens comuns
+const stringComum = (customMessages = {}) =>
+  Joi.string()
+    .required()
+    .messages({ ...messagensComuns, ...customMessages });
+
+const numeroComum = (customMessages = {}) =>
+  Joi.number()
+    .required()
+    .messages({ ...messagensComuns, ...customMessages });
 
 const schemas = {
-  register: Joi.object({
-    email: Joi.string().email().required().messages({
-      ...commonMessages
-    }),
-    senha: Joi.string().min(6).required().messages({
-      ...commonMessages,
-      "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres."
-    }),
-    nome: Joi.string().min(6).required().messages({
-      ...commonMessages,
-      "string.min": "O campo 'nome' deve ter no mínimo 6 caracteres."
-    })
-  }).messages({ "any.default": "Por favor, verifique os valores fornecidos." })
-  ,
-  login: Joi.object({
-    email: Joi.string().email().required().messages({
-       ...commonMessages,
-    }),
-    senha: Joi.string().min(6).required().messages({
-      ...commonMessages,
-      "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres."
-    })
-  }).messages({ "any.default": "Por favor, verifique os valores fornecidos." })
+  Registrar: Joi.object({
+    email: stringComum({ "string.email": "O campo 'email' deve ser um e-mail válido." }).email(),
+    senha: stringComum({ "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres." }).min(6),
+    nome: stringComum({ "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres." }).min(6)
+  }),
+  Login: Joi.object({
+    email: stringComum({ "string.email": "O campo 'email' deve ser um e-mail válido." }).email(),
+    senha: stringComum({ "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres." }).min(6)
+  }),
+  Banco: Joi.object({
+    nome: stringComum(),
+    agencia: stringComum(),
+    saldo: numeroComum(),
+    IDEmpresa: stringComum()
+  }),
+  Empresa: Joi.object({
+    nome: stringComum(),
+    CNPJ: stringComum(),
+    endereco: stringComum()
+  }),
+  Funcionario: Joi.object({
+    nome: stringComum(),
+    email: stringComum({ "string.email": "O campo 'email' deve ser um e-mail válido." }).email(),
+    cargo: stringComum(),
+    dataEntrada: stringComum(),
+    IDEmpresa: stringComum()
+  }),
+  Pagamento: Joi.object({
+    salarioBruto: numeroComum(),
+    salarioLiquido: numeroComum(),
+    dataPagamento: stringComum(),
+    IDFuncionario: stringComum(),
+    IDBanco: stringComum()
+  }),
+  Credito: Joi.object({
+    nome: stringComum(),
+    tipo: stringComum(),
+    custo: numeroComum(),
+    IDBanco: stringComum()
+  }),
+  Transacao: Joi.object({
+    tipo: stringComum(),
+    valor: numeroComum(),
+    descricao: stringComum(),
+    data: stringComum(),
+    categoria: stringComum(),
+    IDBanco: stringComum()
+  })
 };

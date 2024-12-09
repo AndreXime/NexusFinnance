@@ -48,6 +48,36 @@ Banco.belongsTo(Empresa, {
   as: "empresa"
 });
 
+// Banco -> Transacoes `Um-para-Muitos`
+Banco.hasMany(Transacao, {
+  foreignKey: "bancoId",
+  as: "transacoes"
+});
+Transacao.belongsTo(Banco, {
+  foreignKey: "bancoId",
+  as: "banco"
+});
+
+// Banco -> Pagamento `Um-para-Muitos`  
+Banco.hasMany(Pagamento, {
+  foreignKey: "bancoId",
+  as: "pagamentos"
+});
+Pagamento.belongsTo(Banco, {
+  foreignKey: "bancoId",
+  as: "banco"
+});
+
+//Banco -> Credito `Um-para-Muitos`
+Banco.hasMany(Credito, {
+  foreignKey: "bancoId",
+  as: "creditos"
+});
+Credito.belongsTo(Banco, {
+  foreignKey: "bancoId",
+  as: "banco"
+});
+
 // Pagamento -> Credito `Muitos-para-Muitos`
 Pagamento.belongsToMany(Credito, {
   through: "CreditoPagamento",
@@ -60,15 +90,6 @@ Credito.belongsToMany(Pagamento, {
   as: "pagamentos"
 });
 
-// Banco -> Transacoes `Um-para-Muitos`
-Banco.hasMany(Transacao, {
-  foreignKey: "bancoId",
-  as: "transacoes"
-});
-Transacao.belongsTo(Banco, {
-  foreignKey: "bancoId",
-  as: "banco"
-});
 
 // Funcionario -> Pagamento `Um-para-Muitos`
 Funcionario.hasMany(Pagamento, {
@@ -79,6 +100,7 @@ Pagamento.belongsTo(Funcionario, {
   foreignKey: "funcionarioId",
   as: "funcionario"
 });
+
 
 export async function testConnection() {
   const env = process.env.NODE_ENV || "Development";

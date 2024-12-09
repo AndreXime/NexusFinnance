@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import swaggerUi from "swagger-ui-express";
 import routes from "./routes.js";
 import { testConnection } from "./models/Index.js";
+import middlewareTempo from "./middlewares/tempoRequisicao.js";
 
 const app = express();
 
@@ -23,7 +24,11 @@ app.use(
   })
 );
 
+// Inicia e testa a conexao com o banco de dados
 testConnection();
+
+// Mede o tempo de que o servidor demora em cada requisição
+app.use(middlewareTempo);
 
 app.use(cookieParser());
 app.use(express.json()); // Para entender requisições JSON

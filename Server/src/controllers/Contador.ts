@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { generateToken } from "../middlewares/JWT.js";
-import { registerUser, loginUser, findUser } from "../services/contadorService.js";
+import { registerUser, loginUser, findUser } from "../services/Contador.js";
 
 /*
   Os controllers deve-se usar try catch pois quando por exemplo 
@@ -8,10 +8,9 @@ import { registerUser, loginUser, findUser } from "../services/contadorService.j
 */
 
 const register = async (req: Request, res: Response) => {
-  const { nome, email, senha, cargo } = req.body;
   try {
-    const userId = await registerUser({ nome, email, senha, cargo });
-    const token = generateToken(userId);
+    const userId = await registerUser( req.body );
+    const token = generateToken( userId );
 
     res.cookie("token", token, {
       httpOnly: true, // Impede o acesso ao cookie via JavaScript
@@ -27,9 +26,8 @@ const register = async (req: Request, res: Response) => {
 };
 
 const login = async (req: Request, res: Response) => {
-  const { email, senha } = req.body;
   try {
-    const userId = await loginUser({ email, senha });
+    const userId = await loginUser( req.body );
     const token = generateToken(userId);
 
     res.cookie("token", token, {
