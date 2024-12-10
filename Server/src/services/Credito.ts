@@ -1,10 +1,10 @@
 import Credito from "../models/Credito.js";
 
-interface CreditoSchema{
-  nome: string ,
-  tipo: string ,
-  custo: number ,
-  IDBanco: string
+interface CreditoSchema {
+  nome: string;
+  tipo: string;
+  custo: number;
+  IDBanco: string;
 }
 
 export const createCredito = async (criarCredito: CreditoSchema) => {

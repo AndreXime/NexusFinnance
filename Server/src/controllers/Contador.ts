@@ -9,8 +9,8 @@ import { registerUser, loginUser, findUser } from "../services/Contador.js";
 
 const register = async (req: Request, res: Response) => {
   try {
-    const userId = await registerUser( req.body );
-    const token = generateToken( userId );
+    const userId = await registerUser(req.body);
+    const token = generateToken(userId);
 
     res.cookie("token", token, {
       httpOnly: true, // Impede o acesso ao cookie via JavaScript
@@ -27,7 +27,7 @@ const register = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   try {
-    const userId = await loginUser( req.body );
+    const userId = await loginUser(req.body);
     const token = generateToken(userId);
 
     res.cookie("token", token, {

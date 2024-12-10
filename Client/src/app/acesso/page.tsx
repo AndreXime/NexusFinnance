@@ -29,12 +29,11 @@ const LoginPage: React.FC = () => {
       if (!response.ok) {
         setPopup(`Ocorreu um erro:,${jsonData.message}`);
       } else {
-        window.location.replace("/plataforma")
+        window.location.replace('/plataforma');
       }
     } catch (error) {
       setPopup(`Erro no servidor:,${error.message}`);
     }
-    
   };
 
   const submitRegister = async (event) => {

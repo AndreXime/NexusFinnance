@@ -1,6 +1,6 @@
 header {
-  height: 70vh; 
-  display: flex; 
+  height: 70vh;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -9,64 +9,65 @@ header {
 }
 header h1 {
   font-size: 250%;
-  color:#FFA500;
+  color: #ffa500;
 }
-section{
+section {
   height: 60vh;
   margin-bottom: 15vh;
 }
-section h2{
+section h2 {
   text-align: center;
   font-size: 220%;
   margin-bottom: 25px;
-  color:#FFA500;
+  color: #ffa500;
 }
-p, li{
+p,
+li {
   line-height: 2;
 }
 
-.btn-outline-custom:hover  {
-  border-color: #FFA500;
-  color: #FFA500;
+.btn-outline-custom:hover {
+  border-color: #ffa500;
+  color: #ffa500;
   font-size: 110%;
 }
 
-.btn-outline-custom{
-  background-color: #FFA500;
+.btn-outline-custom {
+  background-color: #ffa500;
   color: white;
   font-size: 110%;
 }
 
-.destaque{
-  color:#FFA500;
+.destaque {
+  color: #ffa500;
 }
 
 .accordion-button {
-    background-color: #333;
-    color: #eaeaea;
-    border-color: #444;
-    transition: background-color 0.2s;
+  background-color: #333;
+  color: #eaeaea;
+  border-color: #444;
+  transition: background-color 0.2s;
 }
 
 .accordion-button:hover,
 .accordion-button:focus {
-    background-color: #555;
-    color: #fff;
-    border-color: #666;
+  background-color: #555;
+  color: #fff;
+  border-color: #666;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #444;
-    color: #fff;
-    border-color: #555;
+  background-color: #444;
+  color: #fff;
+  border-color: #555;
 }
 
 .accordion-item {
-    background-color: #212121;
-    border: 1px solid #333;
+  background-color: #212121;
+  border: 1px solid #333;
 }
 
 .accordion-body {
-    background-color: #1e1e1e;
-    color: #ddd;
+  background-color: #1e1e1e;
+  color: #ddd;
 }

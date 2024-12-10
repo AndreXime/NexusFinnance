@@ -7,15 +7,17 @@ interface BancoSchema {
   IDEmpresa: string;
 }
 
-export const createBanco = async ({nome,agencia,saldo,IDEmpresa}: BancoSchema) => {
+export const createBanco = async ({ nome, agencia, saldo, IDEmpresa }: BancoSchema) => {
   try {
     const BancoCreate = Banco.create({
-      nome, agencia, saldo,
+      nome,
+      agencia,
+      saldo,
       empresaId: IDEmpresa
     });
     return BancoCreate;
   } catch {
-    throw new Error;
+    throw new Error();
   }
 };
 
@@ -24,6 +26,6 @@ export const findBanco = async (IDBanco: string) => {
     const BancoFind = Banco.findByPk(IDBanco);
     return BancoFind;
   } catch {
-    throw new Error;
+    throw new Error();
   }
 };

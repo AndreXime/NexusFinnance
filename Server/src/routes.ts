@@ -17,10 +17,10 @@ const router = Router();
 // que o sistema funciona por exemplo nao daria para fazer um relatorio
 // se uma transacao ou pagamento fosse apagado
 
-router.post("/contador/login", validateInput("Login"), Contador.login);
-router.post("/contador/registrar", validateInput("Registrar"), Contador.register);
-router.get("/contador", verifyAuth, Contador.find);
-router.post("/contador/logout", verifyAuth, Contador.logout);
+router.post("/user/login", validateInput("Login"), Contador.login);
+router.post("/user/registrar", validateInput("Registrar"), Contador.register);
+router.get("/user", verifyAuth, Contador.find);
+router.post("/user/logout", verifyAuth, Contador.logout);
 
 router.get("/empresa", verifyAuth, Empresa.find);
 router.post("/empresa", verifyAuth, validateInput("Empresa"), Empresa.create);

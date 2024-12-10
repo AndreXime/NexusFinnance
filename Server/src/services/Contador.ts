@@ -6,12 +6,12 @@ interface userRegister {
   senha: string;
 }
 
-export const registerUser = async ({nome,email,senha}: userRegister) => {
+export const registerUser = async ({ nome, email, senha }: userRegister) => {
   try {
     const newUser = await Contador.create({
       nome,
       email,
-      senha,
+      senha
     });
     return newUser.get("id");
   } catch {
@@ -19,12 +19,12 @@ export const registerUser = async ({nome,email,senha}: userRegister) => {
   }
 };
 
-interface loginSchema{
-  email: string,
-  senha: string
+interface loginSchema {
+  email: string;
+  senha: string;
 }
 
-export const loginUser = async ({email, senha}: loginSchema) => {
+export const loginUser = async ({ email, senha }: loginSchema) => {
   const user = await Contador.findOne({
     where: {
       email: email,
@@ -37,7 +37,9 @@ export const loginUser = async ({email, senha}: loginSchema) => {
 };
 
 export const findUser = async (userId: string) => {
-  const user = await Contador.findByPk(userId);
+  const user = await Contador.findByPk(userId,{
+    attributes: ['nome', 'email','updatedAt']
+  });
   if (!user) {
     throw new Error();
   }

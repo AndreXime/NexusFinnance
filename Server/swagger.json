@@ -1,36 +1,41 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Documentação da API",
-    "description": "Documentação de rotas apis do Nexus Finnance.",
-    "version": "1.0.0"
+    "title": "API para NexusFinnance",
+    "description": "Atenção nas rotas com cadeado do lado pois é preciso de um token JWT",
+    "version": "0.9.0"
   },
   "servers": [
     {
-      "url": "http://localhost:3001",
-      "description": "Servidor Backend"
+      "url": "http://localhost:3001/api"
     }
   ],
   "tags": [
-    {
-      "name": "User",
-      "description": "Api relacionado ao usuario"
-    }
+    { "name": "Usuario", "description": "Rotas para os usuarios como autenticação" },
+    { "name": "Empresa", "description": "Rotas para as Empresas"},
+    { "name": "Banco", "description": "Rotas aos Bancos de uma empresa"},
+    { "name": "Funcionario", "description": "Rotas aos Funcionarios de uma empresa"},
+    { "name": "Pagamento", "description": "Rotas aos Pagamentos um funcionarios e que um banco registra"},
+    { "name": "Credito", "description": "Rotas aos Creditos que podem estar em um pagamentos que pertencem a um banco"},
+    { "name": "Transações", "description": "Rotas das Transações que um banco registra"}
   ],
   
   "paths": {
-    "/api/user": {
+    "/user": {
       "get": {
-        "tags": ["User"],
-        "summary": "Retorna o usuário autenticado",
-        "description": "Usa o token JWT para retornar o usuário",
+        "tags": ["Usuario"],
+        "summary": "Retorna o proprio usuário usando o token JWT",
         "security": [ { "JWT": [] } ],
         "responses": {
           "200": {
             "description": "Retorna o usuário autenticado",
             "content": {
               "application/json": {
-                "example": { "message": "Object User" }
+                "example": { "message": {
+                  "nome": "André",
+                  "email": "email@email.com",
+                  "updatedAt": "31/01/2021"
+                }}
               }
             }
           },
@@ -40,11 +45,10 @@
         }
       }
     },
-    "/api/user/login": {
+    "/user/login": {
       "post": {
-        "tags": ["User"],
-        "summary": "Autentica um usuário",
-        "description": "Realiza login com email e senha.",
+        "tags": ["Usuario"],
+        "summary": "Autentica um usuário usando email e senha",
         "requestBody": {
           "required": true,
           "content": {
@@ -75,11 +79,10 @@
         }
       }
     },
-    "/api/user/registro": {
+    "/user/registro": {
       "post": {
-        "tags": ["User"],
-        "summary": "Registra um novo usuário",
-        "description": "Cria uma nova conta com email, senha, cargo e nome.",
+        "tags": ["Usuario"],
+        "summary": "Registra um novo usuário usando nome, email e senha.",
         "requestBody": {
           "required": true,
           "content": {
@@ -95,20 +98,17 @@
                   },
                   "nome": {
                     "type": "string"
-                  },
-                  "cargo": {
-                    "type": "string"
                   }
                 },
-                "required": ["email", "senha", "nome", "cargo"]
+                "required": ["email", "senha", "nome"]
               },
-              "example": { "email": "email@email.com", "senha": "senha123", "nome": "André", "cargo": "ADministrador" }
+              "example": { "nome": "André", "email": "email@email.com", "senha": "senha123" }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Usuário registrado com sucesso"
+            "description": "Devolve token JWT autenticado"
           },
           "409": {
             "description": "Usuário já existe"
@@ -116,15 +116,367 @@
         }
       }
     },
-    "/api/user/logout": {
+    "/user/logout": {
       "get": {
-        "tags": ["User"],
-        "summary": "Faz logout do usuário",
-        "description": "Limpa cookie do Client",
+        "tags": ["Usuario"],
+        "summary": "Faz logout do usuário limpando o cookie do cliente",
         "security": [ { "JWT": [] } ],
         "responses": {
           "200": {
-            "description": "Logout efetuado com sucesso"
+            "description": "Logout efetuado com sucesso + Limpar cookies"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/empresa": {
+      "get": {
+        "tags": ["Empresa"],
+        "summary": "Buscar uma empresa",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Empresas retornadas com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Empresa"],
+        "summary": "Criar empresa",
+        "security": [{"JWT": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cpnj": {
+                    "type": "string"
+                  },
+                  "endereco": {
+                    "type": "string"
+                  }
+                },
+                "required": ["email", "senha", "nome"]
+              },
+              "example": { "nome": "Nexus", "cpnj": "123456789-0001", "endereco": "Avenida paulista N°2000" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Empresa criada com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/empresa/conectar": {
+      "post": {
+        "tags": ["Empresa"],
+        "summary": "Conecta empresa existente ao usuario",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Conexão com a empresa realizada com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/funcionario": {
+      "get": {
+        "tags": ["Funcionario"],
+        "summary": "Buscar funcionários de uma empresa",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Funcionários retornados com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Funcionario"],
+        "summary": "Cria um novo funcionário",
+        "security": [{"JWT": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "cargo": {
+                    "type": "string"
+                  },
+                  "dataEntrada": {
+                    "type": "string"
+                  }
+                },
+                "required": ["nome", "email", "cargo", "dataEntrada"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Funcionário criado com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Funcionario"],
+        "summary": "Deleta um funcionário de uma empresa mas mantem na lista de pagamentos",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Funcionário deletado com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/pagamento": {
+      "get": {
+        "tags": ["Pagamento"],
+        "summary": "Buscar um pagamento",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Pagamentos retornados com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Pagamento"],
+        "summary": "Criar um novo pagamento",
+        "security": [{"JWT": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "salarioBruto": {
+                    "type": "number"
+                  },
+                  "salarioLiquido": {
+                    "type": "number"
+                  },
+                  "dataPagamento": {
+                    "type": "string"
+                  },
+                  "IDFuncionario": {
+                    "type": "string"
+                  },
+                  "IDBanco": {
+                    "type": "string"
+                  }
+                },
+                "required": ["salarioBruto", "salarioLiquido", "dataPagamento", "IDFuncionario", "IDBanco"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pagamento registrado com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/transacao": {
+      "get": {
+        "tags": ["Transações"],
+        "summary": "Buscar um pagamento",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Transacoes retornados com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Transações"],
+        "summary": "Criar uma nova transacao",
+        "security": [{"JWT": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tipo": {
+                    "type": "number"
+                  },
+                  "valor": {
+                    "type": "number"
+                  },
+                  "descricao": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "string"
+                  },
+                  "categoria": {
+                    "type": "string"
+                  },
+                  "IDBanco": {
+                    "type": "string"
+                  }
+                },
+                "required": ["tipo", "valor", "descricao", "data", "categoria", "IDBanco"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pagamento registrado com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/banco": {
+      "get": {
+        "tags": ["Banco"],
+        "summary": "Busca um banco",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Empresas retornadas com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Banco"],
+        "summary": "Criar um novo banco",
+        "security": [{"JWT": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "agencia": {
+                    "type": "string"
+                  },
+                  "saldo": {
+                    "type": "number"
+                  },
+                  "IDEmpresa": {
+                    "type": "string"
+                  }
+                },
+                "required": ["nome", "agencia", "saldo", "IDEmpresa"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Empresa criada com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/credito": {
+      "get": {
+        "tags": ["Credito"],
+        "summary": "Buscar os creditos de um banco",
+        "security": [{"JWT": []}],
+        "responses": {
+          "200": {
+            "description": "Credito retornadas com sucesso"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Credito"],
+        "summary": "Criar um tipo de credito para um banco",
+        "security": [{"JWT": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "tipo": {
+                    "type": "string"
+                  },
+                  "custo": {
+                    "type": "number"
+                  },
+                  "IDBanco": {
+                    "type": "string"
+                  }
+                },
+                "required": ["nome", "tipo", "custo", "IDBanco"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Empresa criada com sucesso"
           },
           "401": {
             "description": "Não autenticado"
@@ -133,13 +485,12 @@
       }
     }
   },
-
   "components": {
     "securitySchemes": {
       "JWT": {
-        "type": "apiKey",
-        "in": "Cookie ou Header",
-        "name": "JWT Token"
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

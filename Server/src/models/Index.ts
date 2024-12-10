@@ -58,7 +58,7 @@ Transacao.belongsTo(Banco, {
   as: "banco"
 });
 
-// Banco -> Pagamento `Um-para-Muitos`  
+// Banco -> Pagamento `Um-para-Muitos`
 Banco.hasMany(Pagamento, {
   foreignKey: "bancoId",
   as: "pagamentos"
@@ -90,7 +90,6 @@ Credito.belongsToMany(Pagamento, {
   as: "pagamentos"
 });
 
-
 // Funcionario -> Pagamento `Um-para-Muitos`
 Funcionario.hasMany(Pagamento, {
   foreignKey: "funcionarioId",
@@ -100,7 +99,6 @@ Pagamento.belongsTo(Funcionario, {
   foreignKey: "funcionarioId",
   as: "funcionario"
 });
-
 
 export async function testConnection() {
   const env = process.env.NODE_ENV || "Development";

@@ -22,7 +22,7 @@ const PlataformaPage = () => {
       case 'Config':
         return <Config />;
       case 'Fluxo':
-        return <Fluxo />
+        return <Fluxo />;
       default:
         return <h1>Componente não encontrado</h1>;
     }
@@ -30,25 +30,21 @@ const PlataformaPage = () => {
 
   const logout = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/user/logout", {
+      const response = await fetch('http://localhost:3001/api/user/logout', {
         method: 'POST',
-        credentials: 'include'
+        credentials: 'include',
       });
       if (response.ok) {
-        window.location.replace("/");
-      } 
-    } catch {
-      
-    }
-  }
+        window.location.replace('/');
+      }
+    } catch {}
+  };
 
   return (
     <main>
-      <div style={{display:"flex"}}>
+      <div style={{ display: 'flex' }}>
         <div className={`text-white sidebar `}>
-          <h3 className='mx-3 mb-3 fw-bold'>
-            NexusFinnance
-          </h3>
+          <h3 className='mx-3 mb-3 fw-bold'>NexusFinnance</h3>
           <a onClick={() => setActiveComponent('Inicio')}>
             <i className='fas fa-tachometer-alt'></i> &nbsp; Inicio
           </a>
@@ -69,9 +65,7 @@ const PlataformaPage = () => {
           </a>
         </div>
 
-        <main className={`content p-5`}>
-          {renderContent()}
-        </main>
+        <main className={`content p-5`}>{renderContent()}</main>
       </div>
     </main>
   );
