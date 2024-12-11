@@ -2,7 +2,7 @@ import '../styles/bootstrap/bootstrap.min.css';
 
 export const metadata = {
   title: 'NexusFinnace',
-  description: 'Bem-vindo ao meu site com Next.js 13+',
+  description: 'Bem-vindo ao Nexus Finnance',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

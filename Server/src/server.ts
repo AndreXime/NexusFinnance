@@ -8,13 +8,12 @@ import middlewareTempo from "./middlewares/tempoRequisicao.js";
 
 const app = express();
 
-// Gambiarra pra conseguir pegar o json para o Swagger
+// Metodo para conseguir obter o json para o Swagger
 import { createRequire } from "module";
 const swaggerDocument = createRequire(import.meta.url)("../swagger.json");
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.set("x-powered-by", false);
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -24,17 +23,15 @@ app.use(
   })
 );
 
-// Inicia e testa a conexao com o banco de dados
-testConnection();
-
-// Mede o tempo de que o servidor demora em cada requisição
-app.use(middlewareTempo);
-
-app.use(cookieParser());
+app.set("x-powered-by", false); // Desativa assinatura do express nas requisiçoes
+app.use(middlewareTempo); // Mede o tempo de que o servidor demora em cada requisição
+app.use(cookieParser()); // Para pode usar cookies entre o client e o server
 app.use(express.json()); // Para entender requisições JSON
 app.use(express.urlencoded({ extended: true })); // Para entender dados de formulários
 
-app.use("/api", routes);
+testConnection(); // Inicia e testa a conexao com o banco de dados
+
+app.use("/api", routes); // Rotas gerais
 
 // Inicializando servidor
 const port = 3001;

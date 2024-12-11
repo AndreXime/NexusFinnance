@@ -37,8 +37,8 @@ export const loginUser = async ({ email, senha }: loginSchema) => {
 };
 
 export const findUser = async (userId: string) => {
-  const user = await Contador.findByPk(userId,{
-    attributes: ['nome', 'email','updatedAt']
+  const user = await Contador.findByPk(userId, {
+    attributes: ["nome", "email", "updatedAt"]
   });
   if (!user) {
     throw new Error();

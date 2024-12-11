@@ -505,11 +505,12 @@
   },
   "components": {
     "securitySchemes": {
-      "JWT": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+      "Autorização": {
+        "type": "apiKey",
+        "in": "header ou cookie",
+        "name": "JWT"
       }
+
     }
   }
 }

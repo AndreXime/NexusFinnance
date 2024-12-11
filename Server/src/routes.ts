@@ -13,9 +13,12 @@ import { verifyAuth } from "./middlewares/JWT.js";
 
 const router = Router();
 
-// Alguns tabelas nao podem ser deletados pois iria impactar no jeito
-// que o sistema funciona por exemplo nao daria para fazer um relatorio
-// se uma transacao ou pagamento fosse apagado
+/* 
+  Algumas tabelas não podem ser excluídas, pois isso afetaria o
+  funcionamento do sistema bancário, causando falta de informações para o banco.
+
+  Consulte o swagger para saber mais sobre as rotas
+*/
 
 router.post("/user/login", validateInput("Login"), Contador.login);
 router.post("/user/registrar", validateInput("Registrar"), Contador.register);

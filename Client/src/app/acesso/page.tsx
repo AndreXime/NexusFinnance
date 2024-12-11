@@ -16,7 +16,7 @@ const LoginPage: React.FC = () => {
       senha: formData.get('senha') || '',
     };
     try {
-      const response = await fetch('http://localhost:3001/api/user/login', {
+      const response = await fetch('/api/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const LoginPage: React.FC = () => {
       email: formData.get('email'),
       senha: formData.get('senha'),
     };
-    const response = await fetch('http://localhost:3001/api/user/registrar', {
+    const response = await fetch('/api/user/registrar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
