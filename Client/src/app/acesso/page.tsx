@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import Popup from '../../components/popup';
-import '../../styles/font-awesome/css/all.min.css';
 
 const LoginPage: React.FC = () => {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -17,7 +16,7 @@ const LoginPage: React.FC = () => {
       senha: formData.get('senha') || '',
     };
     try {
-      const response = await fetch('http://localhost:3001/api/contador/login', {
+      const response = await fetch('http://localhost:3001/api/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +43,7 @@ const LoginPage: React.FC = () => {
       email: formData.get('email'),
       senha: formData.get('senha'),
     };
-    const response = await fetch('http://localhost:3001/api/contador/registrar', {
+    const response = await fetch('http://localhost:3001/api/user/registrar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,6 +56,7 @@ const LoginPage: React.FC = () => {
       setPopup(`Ocorreu um erro:,${jsonData.message}`);
     } else {
       setPopup(`Sucesso:,${jsonData.message}`);
+      window.location.replace('/plataforma');
     }
   };
 

@@ -12,30 +12,38 @@
   ],
   "tags": [
     { "name": "Usuario", "description": "Rotas para os usuarios como autenticação" },
-    { "name": "Empresa", "description": "Rotas para as Empresas"},
-    { "name": "Banco", "description": "Rotas aos Bancos de uma empresa"},
-    { "name": "Funcionario", "description": "Rotas aos Funcionarios de uma empresa"},
-    { "name": "Pagamento", "description": "Rotas aos Pagamentos um funcionarios e que um banco registra"},
-    { "name": "Credito", "description": "Rotas aos Creditos que podem estar em um pagamentos que pertencem a um banco"},
-    { "name": "Transações", "description": "Rotas das Transações que um banco registra"}
+    { "name": "Empresa", "description": "Rotas para as Empresas" },
+    { "name": "Banco", "description": "Rotas aos Bancos de uma empresa" },
+    { "name": "Funcionario", "description": "Rotas aos Funcionarios de uma empresa" },
+    {
+      "name": "Pagamento",
+      "description": "Rotas aos Pagamentos um funcionarios e que um banco registra"
+    },
+    {
+      "name": "Credito",
+      "description": "Rotas aos Creditos que podem estar em um pagamentos que pertencem a um banco"
+    },
+    { "name": "Transações", "description": "Rotas das Transações que um banco registra" }
   ],
-  
+
   "paths": {
     "/user": {
       "get": {
         "tags": ["Usuario"],
         "summary": "Retorna o proprio usuário usando o token JWT",
-        "security": [ { "JWT": [] } ],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Retorna o usuário autenticado",
             "content": {
               "application/json": {
-                "example": { "message": {
-                  "nome": "André",
-                  "email": "email@email.com",
-                  "updatedAt": "31/01/2021"
-                }}
+                "example": {
+                  "message": {
+                    "nome": "André",
+                    "email": "email@email.com",
+                    "updatedAt": "31/01/2021"
+                  }
+                }
               }
             }
           },
@@ -120,7 +128,7 @@
       "get": {
         "tags": ["Usuario"],
         "summary": "Faz logout do usuário limpando o cookie do cliente",
-        "security": [ { "JWT": [] } ],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Logout efetuado com sucesso + Limpar cookies"
@@ -135,7 +143,7 @@
       "get": {
         "tags": ["Empresa"],
         "summary": "Buscar uma empresa",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Empresas retornadas com sucesso"
@@ -148,7 +156,7 @@
       "post": {
         "tags": ["Empresa"],
         "summary": "Criar empresa",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -168,7 +176,11 @@
                 },
                 "required": ["email", "senha", "nome"]
               },
-              "example": { "nome": "Nexus", "cpnj": "123456789-0001", "endereco": "Avenida paulista N°2000" }
+              "example": {
+                "nome": "Nexus",
+                "cpnj": "123456789-0001",
+                "endereco": "Avenida paulista N°2000"
+              }
             }
           }
         },
@@ -186,7 +198,7 @@
       "post": {
         "tags": ["Empresa"],
         "summary": "Conecta empresa existente ao usuario",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Conexão com a empresa realizada com sucesso"
@@ -201,7 +213,7 @@
       "get": {
         "tags": ["Funcionario"],
         "summary": "Buscar funcionários de uma empresa",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Funcionários retornados com sucesso"
@@ -214,7 +226,7 @@
       "post": {
         "tags": ["Funcionario"],
         "summary": "Cria um novo funcionário",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -252,7 +264,7 @@
       "delete": {
         "tags": ["Funcionario"],
         "summary": "Deleta um funcionário de uma empresa mas mantem na lista de pagamentos",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Funcionário deletado com sucesso"
@@ -267,7 +279,7 @@
       "get": {
         "tags": ["Pagamento"],
         "summary": "Buscar um pagamento",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Pagamentos retornados com sucesso"
@@ -280,7 +292,7 @@
       "post": {
         "tags": ["Pagamento"],
         "summary": "Criar um novo pagamento",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -304,7 +316,13 @@
                     "type": "string"
                   }
                 },
-                "required": ["salarioBruto", "salarioLiquido", "dataPagamento", "IDFuncionario", "IDBanco"]
+                "required": [
+                  "salarioBruto",
+                  "salarioLiquido",
+                  "dataPagamento",
+                  "IDFuncionario",
+                  "IDBanco"
+                ]
               }
             }
           }
@@ -323,7 +341,7 @@
       "get": {
         "tags": ["Transações"],
         "summary": "Buscar um pagamento",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Transacoes retornados com sucesso"
@@ -336,7 +354,7 @@
       "post": {
         "tags": ["Transações"],
         "summary": "Criar uma nova transacao",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -382,7 +400,7 @@
       "get": {
         "tags": ["Banco"],
         "summary": "Busca um banco",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Empresas retornadas com sucesso"
@@ -395,7 +413,7 @@
       "post": {
         "tags": ["Banco"],
         "summary": "Criar um novo banco",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -435,7 +453,7 @@
       "get": {
         "tags": ["Credito"],
         "summary": "Buscar os creditos de um banco",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "responses": {
           "200": {
             "description": "Credito retornadas com sucesso"
@@ -448,7 +466,7 @@
       "post": {
         "tags": ["Credito"],
         "summary": "Criar um tipo de credito para um banco",
-        "security": [{"JWT": []}],
+        "security": [{ "JWT": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -495,5 +513,3 @@
     }
   }
 }
-
-

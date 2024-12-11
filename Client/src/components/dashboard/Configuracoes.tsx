@@ -28,14 +28,14 @@ const Config: React.FC = () => {
         <>
           <h2 className='mb-4'>Dados do Perfil</h2>
           <div className='container'>
-            <div className='row g-3'>
-              <div className='col-md-6'>
+            <div>
+              <div>
                 <strong>Nome:</strong> {Perfil.nome}
               </div>
-              <div className='col-md-6'>
+              <div>
                 <strong>Email:</strong> {Perfil.email}
               </div>
-              <div className='col-md-6'>
+              <div>
                 <strong>Atualizado em:</strong> {new Date(Perfil.updatedAt).toLocaleDateString()}
               </div>
             </div>

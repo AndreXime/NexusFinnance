@@ -1,12 +1,13 @@
 'use client';
 import { useState } from 'react';
-import '../../styles/font-awesome/css/all.min.css';
 import '../..//styles/dashboard.css';
 import Config from '../../components/dashboard/Configuracoes';
 import Relatorio from '../../components/dashboard/Relatorios';
 import Inicio from '../../components/dashboard/Inicio';
 import Funcionarios from '../../components/dashboard/Funcionarios';
 import Fluxo from '../../components/dashboard/Fluxo';
+
+import { FaTachometerAlt, FaUser, FaCashRegister, FaChartLine, FaCogs, FaSignOutAlt } from 'react-icons/fa';
 
 const PlataformaPage = () => {
   const [activeComponent, setActiveComponent] = useState('Inicio');
@@ -46,26 +47,26 @@ const PlataformaPage = () => {
         <div className={`text-white sidebar `}>
           <h3 className='mx-3 mb-3 fw-bold'>NexusFinnance</h3>
           <a onClick={() => setActiveComponent('Inicio')}>
-            <i className='fas fa-tachometer-alt'></i> &nbsp; Inicio
+            <FaTachometerAlt /> &nbsp; Inicio
           </a>
           <a onClick={() => setActiveComponent('Funcionarios')}>
-            <i className='fas fa-user'></i> &nbsp; Funcionarios
+            <FaUser /> &nbsp; Funcionarios
           </a>
           <a onClick={() => setActiveComponent('Fluxo')}>
-            <i className='fas fa-cash-register'></i> &nbsp; Fluxo de caixa
+            <FaCashRegister /> &nbsp; Fluxo de caixa
           </a>
           <a onClick={() => setActiveComponent('Relatorios')}>
-            <i className='fas fa-chart-line'></i> &nbsp; Relatórios
+            <FaChartLine /> &nbsp; Relatórios
           </a>
           <a onClick={() => setActiveComponent('Config')}>
-            <i className='fas fa-cogs'></i> &nbsp; Configurações
+            <FaCogs /> &nbsp; Configurações
           </a>
           <a onClick={() => logout()}>
-            <i className='fas fa-sign-out-alt'></i> &nbsp; Sair
+            <FaSignOutAlt /> &nbsp; Sair
           </a>
         </div>
 
-        <main className={`content p-5`}>{renderContent()}</main>
+        <main className={`content p-5 pt-4`}>{renderContent()}</main>
       </div>
     </main>
   );

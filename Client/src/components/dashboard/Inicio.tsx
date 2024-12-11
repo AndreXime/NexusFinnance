@@ -1,8 +1,34 @@
+'use client';
+import ChartComponent from './chart';
+
 const Inicio: React.FC = (Empresa) => {
+  const data = {
+    labels: ['Funcionarios', 'Transacoes', 'Outros'],
+    datasets: [
+      {
+        label: 'Distribuição de Vendas',
+        data: [10, 30, 40], // Porcentagens para cada categoria
+        backgroundColor: ['#c11fc0', '#1f6fc1', '#1fc120'],
+        borderColor: ['#c11fc0', '#1f6fc1', '#1fc120'],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <>
       {Empresa ? (
-        <h1>Resumo rapido da sua empresa</h1>
+        <>
+          <h2>Resumo rapido da sua empresa</h2>
+          <div className='Grafico row g-5'>
+            <div className='col-6'>
+              <ChartComponent data={data} chartTitle='Distribuição de gastos da empresa' />
+            </div>
+            <div className='col-6'>
+              <ChartComponent data={data} chartTitle='Distribuição de gastos da empresa' />
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <h1>Cadastre sua empresa</h1>
