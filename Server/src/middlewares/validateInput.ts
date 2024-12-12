@@ -55,7 +55,7 @@ const schemas = {
   }),
   Login: Joi.object({
     email: stringComum({ "string.email": "O campo 'email' deve ser um e-mail válido." }).email(),
-    senha: stringComum({ "string.min": "O campo 'senha' deve ter no mínimo 6 caracteres." }).min(6)
+    senha: stringComum()
   }),
   Banco: Joi.object({
     nome: stringComum(),

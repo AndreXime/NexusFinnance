@@ -1,4 +1,4 @@
-import Funcionario from "../models/Funcionario.js";
+import Funcionario from "../../models/Funcionario.js";
 
 export const createFuncionario = async () => {
   try {

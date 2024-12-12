@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCredito, findCredito } from "../services/Credito.js";
+import { createCredito, findCredito } from "./CreditoService.js";
 
 const create = async (req: Request, res: Response) => {
   try {

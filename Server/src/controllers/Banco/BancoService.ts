@@ -1,4 +1,4 @@
-import Banco from "../models/Banco.js";
+import Banco from "../../models/Banco.js";
 
 interface BancoSchema {
   nome: string;

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createBanco, findBanco } from "../services/Banco.js";
+import { createBanco, findBanco } from "./BancoService.js";
 
 const create = async (req: Request, res: Response) => {
   try {

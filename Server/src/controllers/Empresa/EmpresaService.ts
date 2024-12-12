@@ -1,6 +1,6 @@
-import Pagamento from "../models/Pagamento.js";
+import Empresa from "../../models/Empresa.js";
 
-export const createPagamento = async () => {
+export const createEmpresa = async () => {
   try {
     return;
   } catch {
@@ -8,7 +8,7 @@ export const createPagamento = async () => {
   }
 };
 
-export const findPagamento = async () => {
+export const findEmpresa = async () => {
   try {
     return;
   } catch {

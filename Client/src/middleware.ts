@@ -5,7 +5,7 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get('token');
   if (token) {
     try {
-      const response = await fetch('http://localhost:3001/api/user?exist=true', {
+      const response = await fetch('http://localhost:3001/api/user', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token.value}`, // Passa o token no cabeçalho Authorization

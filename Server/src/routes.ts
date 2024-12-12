@@ -1,12 +1,12 @@
 import { Router, Response, Request } from "express";
 
-import Contador from "./controllers/Contador.js";
-import Empresa from "./controllers/Empresa.js";
-import Funcionario from "./controllers/Funcionario.js";
-import Pagamento from "./controllers/Pagamento.js";
-import Credito from "./controllers/Credito.js";
-import Banco from "./controllers/Banco.js";
-import Transacao from "./controllers/Transacao.js";
+import Contador from "./controllers/Contador/Contador.js";
+import Empresa from "./controllers/Empresa/Empresa.js";
+import Funcionario from "./controllers/Funcionario/Funcionario.js";
+import Pagamento from "./controllers/Pagamento/Pagamento.js";
+import Credito from "./controllers/Credito/Credito.js";
+import Banco from "./controllers/Banco/Banco.js";
+import Transacao from "./controllers/Transacao/Transacao.js";
 
 import validateInput from "./middlewares/validateInput.js";
 import { verifyAuth } from "./middlewares/JWT.js";

@@ -1,4 +1,4 @@
-import { Contador } from "../models/Index.js";
+import { Contador } from "../../models/databaseModels.js";
 
 interface userRegister {
   nome: string;

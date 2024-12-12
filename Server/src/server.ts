@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import swaggerUi from "swagger-ui-express";
 import routes from "./routes.js";
-import { testConnection } from "./models/Index.js";
+import { testConnection } from "./models/databaseModels.js";
 import middlewareTempo from "./middlewares/tempoRequisicao.js";
 
 const app = express();

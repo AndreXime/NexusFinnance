@@ -1,4 +1,4 @@
-import Credito from "../models/Credito.js";
+import Credito from "../../models/Credito.js";
 
 interface CreditoSchema {
   nome: string;

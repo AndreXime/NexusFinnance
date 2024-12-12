@@ -24,8 +24,8 @@ const LoginPage: React.FC = () => {
         body: JSON.stringify(payload),
         credentials: 'include',
       });
-      const jsonData = await response.json();
       if (!response.ok) {
+        const jsonData = await response.json();
         setPopup(`Ocorreu um erro:,${jsonData.message}`);
       } else {
         window.location.replace('/plataforma');
@@ -39,9 +39,9 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
     const formData = new FormData(event.target); // Cria um objeto FormData com os inputs
     const payload = {
-      nome: formData.get('nome'),
-      email: formData.get('email'),
-      senha: formData.get('senha'),
+      nome: formData.get('nome') || '',
+      email: formData.get('email') || '',
+      senha: formData.get('senha') || '',
     };
     const response = await fetch('/api/user/registrar', {
       method: 'POST',
@@ -51,11 +51,10 @@ const LoginPage: React.FC = () => {
       body: JSON.stringify(payload),
       credentials: 'include',
     });
-    const jsonData = await response.json();
     if (!response.ok) {
+      const jsonData = await response.json();
       setPopup(`Ocorreu um erro:,${jsonData.message}`);
     } else {
-      setPopup(`Sucesso:,${jsonData.message}`);
       window.location.replace('/plataforma');
     }
   };
