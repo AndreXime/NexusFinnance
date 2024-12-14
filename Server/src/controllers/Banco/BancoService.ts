@@ -1,31 +1,30 @@
-import Banco from "../../models/Banco.js";
+import { CreationAttributes } from "sequelize";
+import { Banco, Empresa } from "../../models/databaseModels.js";
 
-interface BancoSchema {
-  nome: string;
-  agencia: string;
-  saldo: number;
-  IDEmpresa: string;
-}
-
-export const createBanco = async ({ nome, agencia, saldo, IDEmpresa }: BancoSchema) => {
+export const createBanco = async (criarBanco: CreationAttributes<Banco>) => {
   try {
-    const BancoCreate = Banco.create({
-      nome,
-      agencia,
-      saldo,
-      empresaId: IDEmpresa
-    });
-    return BancoCreate;
-  } catch {
-    throw new Error();
+    const empresaExiste = await Empresa.findByPk(criarBanco.empresaId);
+    if (!empresaExiste) throw 1;
+
+    await Banco.create(criarBanco);
+
+    return;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Esse banco já existe");
+    } else {
+      throw new Error(`Essa empresa não existe`);
+    }
   }
 };
 
 export const findBanco = async (IDBanco: string) => {
   try {
-    const BancoFind = Banco.findByPk(IDBanco);
+    if (IDBanco.length < 36) throw new Error();
+
+    const BancoFind = await Banco.findByPk(IDBanco);
     return BancoFind;
   } catch {
-    throw new Error();
+    throw new Error("Esse banco não existe");
   }
 };

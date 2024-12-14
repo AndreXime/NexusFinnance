@@ -13,6 +13,12 @@ export const generateToken = (userId: string): string => {
   return token;
 };
 
+declare module "express" {
+  interface Request {
+    userId?: string; // Adiciona a request `userId`
+  }
+}
+
 // Tenta pegar o token pelo Cookie ou Header
 export const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
   try {

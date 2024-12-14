@@ -33,10 +33,5 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
 ### **Gestão de Recursos Humanos**
 - **Folha de Pagamento**
   - Cálculo automático de salários, descontos e benefícios.
-- **Benefícios**
-  - Controle e cálculo de custo de benefícios (vale-transporte, plano de saúde, etc.).
-
-## 👥 **Gestão de Usuários e Permissões**
-- **Administrador:** Controle total do sistema.
-- **Financeiro:** Acesso ao fluxo de caixa e relatórios financeiros.
-- **RH:** Gerenciamento de folha de pagamento, benefícios e documentos.
+- **Creditos**
+  - Controle e cálculo de custo de benefícios e deduções.

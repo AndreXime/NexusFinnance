@@ -1,15 +1,18 @@
-import Pagamento from "../../models/Pagamento.js";
+import { CreationAttributes } from "sequelize";
+import { Pagamento } from "../../models/databaseModels.js";
 
-export const createPagamento = async () => {
+export const createPagamento = async (criarPagamento: CreationAttributes<Pagamento>) => {
   try {
+    Pagamento.create(criarPagamento);
     return;
   } catch {
     throw new Error("Email já cadastrado");
   }
 };
 
-export const findPagamento = async () => {
+export const findPagamento = async (IDPagamento: string) => {
   try {
+    Pagamento.findByPk(IDPagamento);
     return;
   } catch {
     throw new Error("Email já cadastrado");

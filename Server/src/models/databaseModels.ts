@@ -6,14 +6,14 @@ import Banco from "./Banco.js";
 import Pagamento from "./Pagamento.js";
 import Empresa from "./Empresa.js";
 import Funcionario from "./Funcionario.js";
+import CreditoPagamento from "./CreditoPagamento.js";
 
-const databaseUrl =
-  process.env.databaseUrl || "postgres://nexusfin:nexusadmin@localhost:5432/rootDatabase";
+const databaseUrl = process.env.databaseUrl || "postgres://nexusfin:nexusadmin@localhost:5432/rootDatabase";
 
 const sequelize = new Sequelize(databaseUrl, {
   logging: false,
   dialect: "postgres",
-  models: [Contador, Funcionario, Transacao, Banco, Pagamento, Credito, Empresa]
+  models: [Contador, Funcionario, Transacao, Banco, Pagamento, Credito, Empresa, CreditoPagamento]
 });
 
 // Relacionamentos no sequelize precisa mencionar os 2 para a consulta ser mais facil
@@ -80,12 +80,12 @@ Credito.belongsTo(Banco, {
 
 // Pagamento -> Credito `Muitos-para-Muitos`
 Pagamento.belongsToMany(Credito, {
-  through: "CreditoPagamento",
+  through: CreditoPagamento,
   foreignKey: "pagamentoId",
   as: "creditos"
 });
 Credito.belongsToMany(Pagamento, {
-  through: "CreditoPagamento",
+  through: CreditoPagamento,
   foreignKey: "creditoId",
   as: "pagamentos"
 });
@@ -104,12 +104,12 @@ export async function testConnection() {
   const env = process.env.NODE_ENV || "Development";
   try {
     await sequelize.authenticate({ logging: false });
-    console.info("Conexão com PostgreSQL estabelecida\n");
     if (env !== "production") {
       await sequelize.sync({ force: true, logging: false });
     }
+    console.info("Conexão com PostgreSQL estabelecida\n");
   } catch (err) {
     console.error("Erro ao conectar ao PostgreSQL:\n", err);
   }
 }
-export { Contador, Transacao, Banco, Pagamento, Credito, Empresa, Funcionario };
+export { Contador, Transacao, Banco, Pagamento, Credito, Empresa, Funcionario, CreditoPagamento };

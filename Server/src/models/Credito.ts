@@ -1,11 +1,12 @@
 import { Table, Column, Model, DataType, Default, PrimaryKey } from "sequelize-typescript";
+import { CreationOptional, InferAttributes, InferCreationAttributes } from "sequelize";
 
 @Table({ tableName: "Credito", timestamps: true })
-class Credito extends Model {
+class Credito extends Model<InferAttributes<Credito>, InferCreationAttributes<Credito>> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID, allowNull: false })
-  declare id: string;
+  declare id: CreationOptional<string>;
 
   @Column({ type: DataType.STRING, allowNull: false })
   declare nome: string;
@@ -15,6 +16,9 @@ class Credito extends Model {
 
   @Column({ type: DataType.DECIMAL, allowNull: false })
   declare custo: number;
+
+  @Column({ type: DataType.UUID, allowNull: false })
+  declare bancoId: string;
 }
 
 export default Credito;

@@ -1,15 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 
-type SchemaNomes =
-  | "Registrar"
-  | "Login"
-  | "Banco"
-  | "Empresa"
-  | "Funcionario"
-  | "Pagamento"
-  | "Transacao"
-  | "Credito";
+type SchemaNomes = "Registrar" | "Login" | "Banco" | "Empresa" | "Funcionario" | "Pagamento" | "Transacao" | "Credito";
 
 export default function validateInput(schemaNome: SchemaNomes) {
   return (req: Request, res: Response, next: NextFunction): void => {

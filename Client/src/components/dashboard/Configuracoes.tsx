@@ -15,8 +15,10 @@ const Config: React.FC = () => {
         method: 'GET',
         credentials: 'include',
       });
-      const rJson = await response.json();
-      setPerfil(rJson.message);
+      if (!response.ok) {
+        const rJson = await response.json();
+        setPerfil(rJson.message);
+      }
     };
     fetchdata();
   });

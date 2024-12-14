@@ -1,18 +1,22 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import swaggerUi from "swagger-ui-express";
 import routes from "./routes.js";
 import { testConnection } from "./models/databaseModels.js";
 import middlewareTempo from "./middlewares/tempoRequisicao.js";
 
 const app = express();
 
-// Metodo para conseguir obter o json para o Swagger
-import { createRequire } from "module";
-const swaggerDocument = createRequire(import.meta.url)("../swagger.json");
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+if (process.env.NODE_ENV !== "production") {
+  /* @ts-expect-error: Não vai existir e nem precisar desse arquivo na produção */
+  import("../swaggerSetup.cjs")
+    .then((swaggerSetup) => {
+      swaggerSetup.default(app);
+    })
+    .catch((err) => {
+      console.error("Erro no swagger:", err);
+    });
+}
 
 app.use(
   cors({

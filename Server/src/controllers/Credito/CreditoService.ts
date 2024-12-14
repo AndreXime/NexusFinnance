@@ -1,26 +1,28 @@
-import Credito from "../../models/Credito.js";
+import { CreationAttributes } from "sequelize";
+import { Credito, Banco, Pagamento } from "../../models/databaseModels.js";
 
-interface CreditoSchema {
-  nome: string;
-  tipo: string;
-  custo: number;
-  IDBanco: string;
-}
-
-export const createCredito = async (criarCredito: CreditoSchema) => {
+export const createCredito = async (criarCredito: CreationAttributes<Credito>, pagamentoId: string) => {
   try {
-    const CreditoCreate = Credito.create({ criarCredito });
-    return CreditoCreate;
-  } catch {
-    throw new Error("Email já cadastrado");
+    const bancoExiste = await Banco.findByPk(criarCredito.bancoId);
+    if (!bancoExiste) throw Error("Id de banco não existe");
+
+    const pagamentoExiste = await Pagamento.findByPk(pagamentoId);
+    if (!pagamentoExiste) throw new Error("Id de pagamento não existe");
+
+    await Credito.create(criarCredito);
+    return;
+  } catch (error) {
+    throw new Error(error.message);
   }
 };
 
-export const findCredito = async (IDCredito: string) => {
+export const findCredito = async (creditoId: string) => {
   try {
-    const CreditoFind = Credito.findByPk(IDCredito);
+    if (creditoId.length < 36) throw new Error();
+
+    const CreditoFind = Credito.findByPk(creditoId);
     return CreditoFind;
   } catch {
-    throw new Error("Email já cadastrado");
+    throw new Error("Esse credito não existe");
   }
 };

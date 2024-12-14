@@ -1,47 +1,32 @@
+import { CreationAttributes } from "sequelize";
 import { Contador } from "../../models/databaseModels.js";
 
-interface userRegister {
-  nome: string;
-  email: string;
-  senha: string;
-}
-
-export const registerUser = async ({ nome, email, senha }: userRegister) => {
+export const registerUser = async (criarUsuario: CreationAttributes<Contador>) => {
   try {
-    const newUser = await Contador.create({
-      nome,
-      email,
-      senha
-    });
-    return newUser.get("id");
+    const newUser = await Contador.create(criarUsuario);
+    return newUser.id;
   } catch {
     throw new Error("Email já cadastrado");
   }
 };
 
-interface loginSchema {
-  email: string;
-  senha: string;
-}
-
-export const loginUser = async ({ email, senha }: loginSchema) => {
+export const loginUser = async (email: string, senha: string) => {
   const user = await Contador.findOne({
     where: {
       email: email,
       senha: senha
     }
   });
-  if (!user) throw new Error();
+  if (!user) throw new Error("Usuario não existe");
 
-  return user.get("id"); // Retorna objeto com apenas { id: valor }
+  return user.id;
 };
 
-export const findUser = async (userId: string) => {
-  const user = await Contador.findByPk(userId, {
+export const findUser = async (id: string) => {
+  const user = await Contador.findByPk(id, {
     attributes: ["nome", "email", "updatedAt"]
   });
-  if (!user) {
-    throw new Error();
-  }
+  if (!user) throw new Error("Usuario não existe");
+
   return user;
 };
