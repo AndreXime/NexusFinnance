@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node dist/server.js",
-    "preparar": "npm i && npm run format && npm run lint && npm run build",
+    "preparar": "npm run format && npm run lint && npm run build",
     "build": "rm -rf ./dist && npx tsc",
     "format": "prettier --write ./src",
     "lint": "eslint ./src"
