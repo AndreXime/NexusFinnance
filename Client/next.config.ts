@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',  // Permite redirecionar qualquer caminho dentro de /api
-        destination: 'http://localhost:3001/api/:path*', // Destino real
+        destination: `${process.env.URL_Server||"http://localhost:3001/api/"}:path*`, // Destino real
       },
     ];
   },

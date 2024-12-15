@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== "production") {
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.URL_Client || "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
@@ -38,7 +38,7 @@ testConnection(); // Inicia e testa a conexao com o banco de dados
 app.use("/api", routes); // Rotas gerais
 
 // Inicializando servidor
-const port = 3001;
+const port = Number(process.env.PORT) || 4000;
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server está em http://localhost:${port}/api\n`);
 });
