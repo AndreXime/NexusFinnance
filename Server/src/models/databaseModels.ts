@@ -104,9 +104,7 @@ export async function testConnection() {
   const env = process.env.NODE_ENV || "Development";
   try {
     await sequelize.authenticate({ logging: false });
-    if (env !== "production") {
-      await sequelize.sync({ force: true, logging: false });
-    }
+    await sequelize.sync({ logging: false });
     console.info("Conexão com PostgreSQL estabelecida\n");
   } catch (err) {
     console.error("Erro ao conectar ao PostgreSQL:\n", err);
