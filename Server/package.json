@@ -9,10 +9,9 @@
   },
   "scripts": {
     "start": "node dist/server.js",
-    "preparar": "npm run format && npm run lint && npm run build",
-    "build": "rm -rf ./dist && npx tsc",
-    "format": "prettier --write ./src",
-    "lint": "eslint ./src"
+    "preparar": "npm run check && npm run build",
+    "build": "rm -rf ./dist && tsc",
+    "check": "prettier --write ./src && eslint ./src"
   },
   "keywords": [],
   "author": "",

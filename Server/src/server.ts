@@ -13,9 +13,7 @@ if (process.env.NODE_ENV !== "production") {
     .then((swaggerSetup) => {
       swaggerSetup.default(app);
     })
-    .catch((err) => {
-      console.error("Erro no swagger:", err);
-    });
+    .catch((err) => { console.error(err); });
 }
 
 app.use(
@@ -37,12 +35,8 @@ testConnection(); // Inicia e testa a conexao com o banco de dados
 
 app.use("/api", routes); // Rotas gerais
 
-if (false) {
-  // Inicializando servidor
-  const port = Number(process.env.PORT) || 4000;
-  app.listen(port, "0.0.0.0", () => {
-    console.log(`Server está em http://localhost:${port}/api\n`);
-  });
-}
-
-export default app;
+// Inicializando servidor
+const port = Number(process.env.PORT) || 4000;
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server está em http://localhost:${port}/api\n`);
+});
