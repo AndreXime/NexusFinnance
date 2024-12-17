@@ -37,8 +37,12 @@ testConnection(); // Inicia e testa a conexao com o banco de dados
 
 app.use("/api", routes); // Rotas gerais
 
-// Inicializando servidor
-const port = Number(process.env.PORT) || 4000;
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Server está em http://localhost:${port}/api\n`);
-});
+if (false) {
+  // Inicializando servidor
+  const port = Number(process.env.PORT) || 4000;
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`Server está em http://localhost:${port}/api\n`);
+  });
+}
+
+export default app;
