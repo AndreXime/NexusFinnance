@@ -27,20 +27,20 @@ router.post("/user/logout", verifyAuth, Contador.logout);
 
 router.get("/empresa", verifyAuth, Empresa.find);
 router.post("/empresa", verifyAuth, validateInput("Empresa"), Empresa.create);
-router.post("/empresa/conectar", verifyAuth, Empresa.connect);
+router.post("/empresa/conectar", validateInput("UUID"), verifyAuth, Empresa.connect);
+
+router.get("/banco", verifyAuth, Banco.find);
+router.post("/banco", verifyAuth, validateInput("Banco"), Banco.create);
 
 router.get("/funcionario", verifyAuth, Funcionario.find);
 router.post("/funcionario", verifyAuth, validateInput("Funcionario"), Funcionario.create);
-router.delete("/funcionario", verifyAuth, Funcionario.deletar);
+router.delete("/funcionario", verifyAuth, validateInput("UUID"), Funcionario.deletar);
 
 router.get("/pagamento", verifyAuth, Pagamento.find);
 router.post("/pagamento", verifyAuth, validateInput("Pagamento"), Pagamento.create);
 
 router.get("/credito", verifyAuth, Credito.find);
 router.post("/credito", verifyAuth, validateInput("Credito"), Credito.create);
-
-router.get("/banco", verifyAuth, Banco.find);
-router.post("/banco", verifyAuth, validateInput("Banco"), Banco.create);
 
 router.get("/transacao", verifyAuth, Transacao.find);
 router.post("/transacao", verifyAuth, validateInput("Transacao"), Transacao.create);

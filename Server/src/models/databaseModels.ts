@@ -14,9 +14,10 @@ const sequelize = new Sequelize(databaseUrl, {
   logging: false,
   dialect: "postgres",
   pool: {
-    max: 5, min: 0,
+    max: 5,
+    min: 0,
     acquire: 30000, // Tempo máximo para uma conexão ser adquirida antes de lançar um erro
-    idle: 10000,    // Tempo máximo que uma conexão pode ficar ociosa antes de ser liberada
+    idle: 10000 // Tempo máximo que uma conexão pode ficar ociosa antes de ser liberada
   },
   models: [Contador, Funcionario, Transacao, Banco, Pagamento, Credito, Empresa, CreditoPagamento]
 });
@@ -67,10 +68,8 @@ export async function testConnection() {
   try {
     await sequelize.authenticate({ logging: false });
     console.info("Conexão com PostgreSQL estabelecida\n");
-    if (process.env.DB_SYNC === 'true'){
-      await sequelize.sync({ logging: false });
-      console.info("Modelos sincronizados com o banco de dados\n");
-    }
+    await sequelize.sync({ logging: false });
+    console.info("Modelos sincronizados com o banco de dados\n");
   } catch (err) {
     console.error("Erro ao conectar ao PostgreSQL:\n", err);
   }

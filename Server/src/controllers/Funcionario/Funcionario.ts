@@ -3,7 +3,7 @@ import { createFuncionario, findFuncionario, removeFuncionario } from "./Funcion
 
 const create = async (req: Request, res: Response) => {
   try {
-    createFuncionario(req.body);
+    await createFuncionario(req.body);
     res.status(200).json({ message: "Logado com sucesso" });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
@@ -12,8 +12,8 @@ const create = async (req: Request, res: Response) => {
 
 const find = async (req: Request, res: Response) => {
   try {
-    findFuncionario(req.body.id);
-    res.status(200).json({ message: "Logado com sucesso" });
+    const funcionario = await findFuncionario(req.body.IDFuncionario);
+    res.status(200).json({ message: funcionario });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
   }
@@ -21,8 +21,8 @@ const find = async (req: Request, res: Response) => {
 
 const deletar = async (req: Request, res: Response) => {
   try {
-    removeFuncionario(req.body.id);
-    res.status(200).json({ message: "Logado com sucesso" });
+    await removeFuncionario(req.body.IDFuncionario);
+    res.status(200).json({ message: "Removido com sucesso" });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
   }

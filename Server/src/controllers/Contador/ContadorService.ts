@@ -4,6 +4,7 @@ import { Contador } from "../../models/databaseModels.js";
 export const registerUser = async (criarUsuario: CreationAttributes<Contador>) => {
   try {
     const newUser = await Contador.create(criarUsuario);
+
     return newUser.id;
   } catch {
     throw new Error("Email já cadastrado");

@@ -10,21 +10,15 @@ export const createBanco = async (criarBanco: CreationAttributes<Banco>) => {
 
     return;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error("Esse banco já existe");
-    } else {
-      throw new Error(`Essa empresa não existe`);
-    }
+    if (error instanceof Error) throw new Error("Esse banco já existe");
+
+    throw new Error(`Essa empresa não existe`);
   }
 };
 
 export const findBanco = async (IDBanco: string) => {
-  try {
-    if (IDBanco.length < 36) throw new Error();
+  const BancoFind = await Banco.findByPk(IDBanco);
+  if (!BancoFind) throw new Error("Esse banco não existe");
 
-    const BancoFind = await Banco.findByPk(IDBanco);
-    return BancoFind;
-  } catch {
-    throw new Error("Esse banco não existe");
-  }
+  return BancoFind;
 };

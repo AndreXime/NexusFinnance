@@ -1,29 +1,33 @@
 import { CreationAttributes } from "sequelize";
-import { Funcionario } from "../../models/databaseModels.js";
+import { Funcionario, Empresa } from "../../models/databaseModels.js";
 
 export const createFuncionario = async (criarFuncionario: CreationAttributes<Funcionario>) => {
   try {
-    Funcionario.create(criarFuncionario);
+    const empresaEncontrada = await Empresa.findByPk(criarFuncionario.empresaId);
+    if (!empresaEncontrada) throw 1;
+
+    await Funcionario.create(criarFuncionario);
     return;
-  } catch {
-    throw new Error("Email já cadastrado");
+  } catch (error) {
+    if (error instanceof Error) throw new Error("Esse funcionario já existe");
+
+    throw new Error(`Essa empresa não existe`);
   }
 };
 
 export const findFuncionario = async (IDFuncionario: string) => {
-  try {
-    Funcionario.findByPk(IDFuncionario);
-    return;
-  } catch {
-    throw new Error("Email já cadastrado");
-  }
+  const funcionarioEncontrada = await Funcionario.findByPk(IDFuncionario);
+  if (!funcionarioEncontrada) throw new Error("Funcionario não existe");
+
+  return funcionarioEncontrada;
 };
 
 export const removeFuncionario = async (IDFuncionario: string) => {
-  try {
-    Funcionario.findByPk(IDFuncionario);
-    return;
-  } catch {
-    throw new Error("Email já cadastrado");
-  }
+  const funcionario = await Funcionario.findByPk(IDFuncionario);
+  if (!funcionario) throw new Error("Funcionario não existe");
+
+  funcionario.empresaId = "Removido";
+  await funcionario.save();
+
+  return;
 };

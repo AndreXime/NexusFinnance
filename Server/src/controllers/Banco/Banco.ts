@@ -12,8 +12,7 @@ const create = async (req: Request, res: Response) => {
 
 const find = async (req: Request, res: Response) => {
   try {
-    const { IDBanco } = req.body;
-    const Banco = await findBanco(IDBanco);
+    const Banco = await findBanco(req.body.IDBanco);
     res.status(200).json({ message: Banco });
   } catch {
     res.status(401).json({ message: "Esse banco não existe" });

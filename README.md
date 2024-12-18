@@ -28,9 +28,7 @@ sudo docker compose up
 ```
 ### Online
 Você também pode acessar a versão online do projeto:
-
-- Client: https://nexusfinnance.vercel.app/
-- Server API: https://nexusfinnance.onrender.com/api/
+https://nexusfinnance.vercel.app/
 
 ---
 

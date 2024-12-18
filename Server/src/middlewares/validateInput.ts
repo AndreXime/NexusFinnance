@@ -1,10 +1,41 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 
-type SchemaNomes = "Registrar" | "Login" | "Banco" | "Empresa" | "Funcionario" | "Pagamento" | "Transacao" | "Credito";
+type SchemaNomes =
+  | "Registrar"
+  | "Login"
+  | "Banco"
+  | "Empresa"
+  | "Funcionario"
+  | "Pagamento"
+  | "Transacao"
+  | "Credito"
+  | "UUID";
+
+const regexUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export default function validateInput(schemaNome: SchemaNomes) {
   return (req: Request, res: Response, next: NextFunction): void => {
+    if (schemaNome == "UUID") {
+      const { uuid, ...extraFields } = req.body;
+
+      if (Object.keys(extraFields).length > 0) {
+        res.status(400).json({
+          message: ["Apenas o campo 'uuid' é permitido."]
+        });
+        return;
+      }
+
+      if (!uuid || !regexUUID.test(uuid)) {
+        res.status(400).json({
+          message: ["O campo 'uuid' é obrigatório e deve ser um UUID válido."]
+        });
+        return;
+      }
+
+      next();
+      return;
+    }
     const schema = schemas[schemaNome];
     const { error } = schema.validate(req.body, { abortEarly: false });
 

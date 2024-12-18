@@ -4,7 +4,8 @@ import { createCredito, findCredito } from "./CreditoService.js";
 // Req.body já está sanatizada com somente campos necessarios
 const create = async (req: Request, res: Response) => {
   try {
-    await createCredito(req.body, req.body.pagamentoId);
+    const { pagamentoId, ...body } = req.body;
+    await createCredito(body, pagamentoId);
     res.status(200).json({ message: "Criado com sucesso" });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
@@ -13,8 +14,7 @@ const create = async (req: Request, res: Response) => {
 
 const find = async (req: Request, res: Response) => {
   try {
-    const { creditoId } = req.body;
-    const credito = await findCredito(creditoId);
+    const credito = await findCredito(req.body.creditoId);
     res.status(200).json({ message: credito });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });

@@ -2,11 +2,6 @@ import { Response, Request } from "express";
 import { generateToken } from "../../middlewares/JWT.js";
 import { registerUser, loginUser, findUser } from "./ContadorService.js";
 
-/*
-  Os controllers deve-se usar try catch pois quando por exemplo 
-  no service nao encontra o user faz se um throw Error
-*/
-
 const register = async (req: Request, res: Response) => {
   try {
     const userId = await registerUser(req.body);

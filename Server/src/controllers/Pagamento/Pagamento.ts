@@ -3,8 +3,8 @@ import { createPagamento, findPagamento } from "./PagamentoService.js";
 
 const create = async (req: Request, res: Response) => {
   try {
-    createPagamento(req.body);
-    res.status(200).json({ message: "Logado com sucesso" });
+    await createPagamento(req.body);
+    res.status(200).json({ message: "Funcionario criado com sucesso" });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
   }
@@ -12,8 +12,8 @@ const create = async (req: Request, res: Response) => {
 
 const find = async (req: Request, res: Response) => {
   try {
-    findPagamento(req.body);
-    res.status(200).json({ message: "Logado com sucesso" });
+    const funcionario = await findPagamento(req.body.IDPagamento);
+    res.status(200).json({ message: funcionario });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
   }

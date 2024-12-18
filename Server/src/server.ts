@@ -13,7 +13,9 @@ if (process.env.NODE_ENV !== "production") {
     .then((swaggerSetup) => {
       swaggerSetup.default(app);
     })
-    .catch((err) => { console.error(err); });
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 app.use(
