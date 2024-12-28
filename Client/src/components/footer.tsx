@@ -1,11 +1,22 @@
+import { IconBrandFacebook, IconBrandInstagram, IconBrandTwitter } from "@tabler/icons-react";
+
 const Footer: React.FC = () => {
   return (
-    <footer className='mt-4'>
-      <ul className='nav justify-content-center p-3 text-bg-dark'>
-        <li className='nav-item'>
-          <span className='text-bg-dark nav-link px-2'>&copy; 2022 Nexus Finnance, Inc</span>
-        </li>
-      </ul>
+    <footer className="footer bg-neutral text-neutral-content items-center p-8 px-8">
+      <aside className="grid-flow-col items-center font-bold">
+        <p>Copyright © {new Date().getFullYear()} - Nexus Finnance - Todos os direitos reservados</p>
+      </aside>
+      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <a>
+          <IconBrandFacebook />
+        </a>
+        <a>
+          <IconBrandInstagram />
+        </a>
+        <a>
+          <IconBrandTwitter />
+        </a>
+      </nav>
     </footer>
   );
 };

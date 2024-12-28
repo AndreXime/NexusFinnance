@@ -1,28 +1,28 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  const token = req.cookies.get('token');
+  const token = req.cookies.get("token");
   if (token) {
     try {
-      const response = await fetch('http://localhost:3001/api/user', {
-        method: 'GET',
+      const response = await fetch("http://localhost:4000/api/user", {
+        method: "GET",
         headers: {
-          Authorization: `Bearer ${token.value}`, // Passa o token no cabeçalho Authorization
+          Authorization: `Bearer ${token.value}` // Passa o token no cabeçalho Authorization
         },
-        credentials: 'include',
+        credentials: "include"
       });
 
       if (response.ok) {
-        return NextResponse.next();
       }
     } catch {}
   }
+  return NextResponse.next();
 
-  url.pathname = '/acesso';
+  url.pathname = "/acesso";
   return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: ['/plataforma'],
+  matcher: ["/plataforma"]
 };

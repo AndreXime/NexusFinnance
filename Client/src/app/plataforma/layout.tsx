@@ -1,18 +1,14 @@
-import Script from 'next/script';
-import '../../styles/bootstrap/bootstrap.min.css';
+import "../../styles/global.css";
 
 export const metadata = {
-  title: 'NexusFinnace | Dashboard',
-  description: 'Bem-vindo ao meu site com Next.js 13+',
+  title: "NexusFinnace | Dashboard",
+  description: "Bem-vindo ao meu site com Next.js 13+"
 };
 
 export default function PlataformaLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='pt-BR'>
-      <body>
-        {children}
-        <Script src='vendor/bootstrap/bootstrap.bundle.min.js' strategy='beforeInteractive' />
-      </body>
+    <html lang="pt-BR">
+      <body>{children}</body>
     </html>
   );
 }

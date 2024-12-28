@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ESNext",
+    "module": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "noEmit": true,
     "incremental": true,
-    "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -21,13 +25,16 @@
       {
         "name": "next"
       }
-    ]
+    ],
   },
   "include": [
+    "tailwind.config.js", 
+    "postcss.config.js",
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/**/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

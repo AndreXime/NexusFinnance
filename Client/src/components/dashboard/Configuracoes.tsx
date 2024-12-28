@@ -1,50 +1,27 @@
-import { useEffect, useState } from 'react';
-
-interface Perfil {
-  nome: string;
-  email: string;
-  updatedAt: string;
-}
+import { useUser } from "../../context/userContext";
 
 const Config: React.FC = () => {
-  const [Perfil, setPerfil] = useState<Perfil | null>(null);
-
-  useEffect(() => {
-    const fetchdata = async () => {
-      const response = await fetch('http://localhost:3001/api/user', {
-        method: 'GET',
-        credentials: 'include',
-      });
-      if (!response.ok) {
-        const rJson = await response.json();
-        setPerfil(rJson.message);
-      }
-    };
-    fetchdata();
-  });
+  const { userData } = useUser();
 
   return (
     <>
-      <h1 className='mb-4'>Configurações e Perfil</h1>
-      {Perfil ? (
+      <h1 className="mb-4">Configurações e Perfil</h1>
+      {userData ? (
         <>
-          <h2 className='mb-4'>Dados do Perfil</h2>
-          <div className='container'>
+          <h2 className="mb-4">Dados do Perfil</h2>
+          <div className="container">
             <div>
               <div>
-                <strong>Nome:</strong> {Perfil.nome}
+                <strong>Nome:</strong> {userData.nome}
               </div>
               <div>
-                <strong>Email:</strong> {Perfil.email}
-              </div>
-              <div>
-                <strong>Atualizado em:</strong> {new Date(Perfil.updatedAt).toLocaleDateString()}
+                <strong>Email:</strong> {userData.email}
               </div>
             </div>
           </div>
         </>
       ) : (
-        <div className='alert alert-warning' role='alert'>
+        <div className="alert alert-warning" role="alert">
           Aguarde...
         </div>
       )}

@@ -68,7 +68,7 @@ export async function testConnection() {
   try {
     await sequelize.authenticate({ logging: false });
     console.info("Conexão com PostgreSQL estabelecida\n");
-    await sequelize.sync({ logging: false });
+    await sequelize.sync({ force:true , logging: false });
     console.info("Modelos sincronizados com o banco de dados\n");
   } catch (err) {
     console.error("Erro ao conectar ao PostgreSQL:\n", err);

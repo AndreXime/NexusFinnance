@@ -1,28 +1,22 @@
-import '../styles/popup.css';
+"use client";
+import { IconX, IconCheck } from "@tabler/icons-react";
 
 interface PopupProps {
-  message: string; // Mensagem exibida no popup
-  onClose: () => void; // Função chamada ao fechar o popup
+  title: string;
+  message: string;
+  status: boolean;
 }
 
-const Popup: React.FC<PopupProps> = ({ message, onClose }) => {
-  if (!message) return null;
+const Popup: React.FC<PopupProps> = ({ title, message, status = true }) => {
+  if (!message || !title) return null;
 
   return (
-    <div className='popup'>
-      <div className='popup-content'>
-        <p>
-          {message.split(',').map((line, index) => (
-            <span key={index}>
-              {line}
-              <br />
-            </span>
-          ))}
-        </p>
-        <button className='btn btn-primary' onClick={onClose}>
-          Fechar
-        </button>
-      </div>
+    <div>
+      {status ? <IconCheck /> : <IconX />}
+      {title}
+      {message.split(",").map((line, index) => (
+        <p key={index}>{line}</p>
+      ))}
     </div>
   );
 };

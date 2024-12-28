@@ -1,13 +1,13 @@
 import { CreationAttributes } from "sequelize";
-import { Contador } from "../../models/databaseModels.js";
+import { Contador, Empresa } from "../../models/databaseModels.js";
 
 export const registerUser = async (criarUsuario: CreationAttributes<Contador>) => {
   try {
     const newUser = await Contador.create(criarUsuario);
 
     return newUser.id;
-  } catch {
-    throw new Error("Email já cadastrado");
+  } catch(error) {
+    throw new Error(error.message);
   }
 };
 
@@ -21,6 +21,22 @@ export const loginUser = async (email: string, senha: string) => {
   if (!user) throw new Error("Usuario não existe");
 
   return user.id;
+};
+
+export const setEmpresaUser = async (id: string, empresaId: string) => {
+
+  const [user, empresa] = await Promise.all([
+      Contador.findByPk(id),
+      Empresa.findByPk(empresaId),
+  ]);
+
+  if (!user) throw new Error("Usuario não existe");
+  if (!empresa) throw new Error("Empresa não existe");
+
+  user.empresaId = empresaId;
+  user.save();
+
+  return user;
 };
 
 export const findUser = async (id: string) => {

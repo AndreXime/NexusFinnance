@@ -17,7 +17,7 @@ class Contador extends Model<InferAttributes<Contador>, InferCreationAttributes<
   @Column({ type: DataType.STRING, allowNull: false })
   declare senha: string;
 
-  @Column({ type: DataType.UUID, allowNull: false })
+  @Column({ type: DataType.UUID, allowNull: true })
   declare empresaId: CreationOptional<string>;
 }
 

@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { generateToken } from "../../middlewares/JWT.js";
-import { registerUser, loginUser, findUser } from "./ContadorService.js";
+import { registerUser, loginUser, findUser, setEmpresaUser } from "./ContadorService.js";
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -48,6 +48,16 @@ const find = async (req: Request, res: Response) => {
   }
 };
 
+const setEmpresa = async (req: Request, res: Response) => {
+  try {
+    const { empresaId } = req.body;
+    await setEmpresaUser(req.userId!, empresaId);
+    res.status(200).json({ message: "Usuario conectado com sucesso" });
+  } catch (error) {
+    res.status(400).json({ message: error.message || "Erro desconhecido" });
+  }
+};
+
 const logout = async (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
@@ -58,4 +68,4 @@ const logout = async (req: Request, res: Response) => {
   res.status(200).json({ message: "Logout efetuado com sucesso" });
 };
 
-export default { register, login, logout, find };
+export default { register, login, logout, find, setEmpresa };

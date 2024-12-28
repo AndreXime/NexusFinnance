@@ -15,11 +15,16 @@ export const createFuncionario = async (criarFuncionario: CreationAttributes<Fun
   }
 };
 
-export const findFuncionario = async (IDFuncionario: string) => {
-  const funcionarioEncontrada = await Funcionario.findByPk(IDFuncionario);
-  if (!funcionarioEncontrada) throw new Error("Funcionario não existe");
-
-  return funcionarioEncontrada;
+export const findFuncionarios = async (empresaId: string) => {
+  const funcionariosEncontrados = await Funcionario.findAll({
+      where: { empresaId: empresaId },
+      attributes: ["id", "nome", "email", "cargo", "dataEntrada"] 
+  });
+  
+  if (funcionariosEncontrados.length === 0)
+      throw new Error("Nenhum funcionário encontrado");
+  
+  return funcionariosEncontrados;
 };
 
 export const removeFuncionario = async (IDFuncionario: string) => {

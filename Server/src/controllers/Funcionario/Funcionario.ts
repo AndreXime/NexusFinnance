@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createFuncionario, findFuncionario, removeFuncionario } from "./FuncionarioService.js";
+import { createFuncionario, findFuncionarios, removeFuncionario } from "./FuncionarioService.js";
 
 const create = async (req: Request, res: Response) => {
   try {
@@ -12,7 +12,7 @@ const create = async (req: Request, res: Response) => {
 
 const find = async (req: Request, res: Response) => {
   try {
-    const funcionario = await findFuncionario(req.body.IDFuncionario);
+    const funcionario = await findFuncionarios(req.body.IDFuncionario);
     res.status(200).json({ message: funcionario });
   } catch (error) {
     res.status(401).json({ message: error.message || "Erro desconhecido" });
