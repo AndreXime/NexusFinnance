@@ -5,11 +5,12 @@ import { IconMenu2, IconRocket } from "@tabler/icons-react";
 const Navbar: React.FC = () => {
   const mudarTema = (tema: string) => {
     document.documentElement.setAttribute("data-theme", tema);
+    localStorage.setItem("theme", tema);
   }
 
 return (
 <nav className="fixed z-10 top-0 right-0 left-0">
-  <div className="navbar bg-neutral text-neutral-content px-5">
+  <div className="navbar bg-neutral text-neutral-content md:px-9">
     <div className="navbar-start">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +34,7 @@ return (
           </li>  
         </ul>
       </div>
-      <a className="btn btn-ghost text-xl">Nexus Finnance</a>
+      <a className="btn hidden btn-ghost text-xl md:inline-flex">Nexus Finnance</a>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
@@ -55,7 +56,7 @@ return (
       </ul>
     </div>
     <div className="navbar-end">
-      <Link href={"/acesso"} className="btn btn-secondary  sm:btn-md"><IconRocket/> Acessar agora</Link>
+      <Link href={"/acesso"} className="btn btn-secondary"><IconRocket/> Acessar agora</Link>
     </div>
   </div>
 </nav>

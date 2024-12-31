@@ -1,3 +1,4 @@
+import ThemeManager from "@/components/ThemeManager";
 import "../styles/global.css";
 
 export const metadata = {
@@ -7,8 +8,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-br" data-theme="coffee">
-      <body>{children}</body>
+    <html lang="pt-br">
+      <body>
+        <ThemeManager />
+        {children}
+      </body>
     </html>
   );
 }

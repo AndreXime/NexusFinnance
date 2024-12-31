@@ -1,3 +1,4 @@
+"use client"
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Link from "next/link";
@@ -6,12 +7,12 @@ import { IconArrowRight } from "@tabler/icons-react"
 const HomePage = () => {
   return (
     <>
-      <main>
+      <main className="overflow-x-hidden">
         <Navbar />
         <header className="hero min-h-screen">
           <div className="hero-content text-center">
             <div>
-              <h1 className="text-5xl font-bold">Bem-vindo à NexusFinance</h1>
+              <h1 className="text-5xl font-bold text-secondary brightness-200">Bem-vindo à NexusFinance</h1>
               <h3 className="text-2xl font-bold my-6">
                 Simplificando a gestão para você focar no que realmente importa!
               </h3>
@@ -22,16 +23,16 @@ const HomePage = () => {
           </div>
         </header>
 
-        <section className="m-20 mb-30 scroll-mt-[90px]" id="sobre">
-          <h1 className="text-3xl mb-10 font-bold text-center">Sobre nós</h1>
+        <section className="m-5 mb-20 md:m-20 scroll-mt-[90px]" id="sobre">
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Sobre nós</h1>
           <h3 className="text-2xl mb-4 font-bold">Por que escolher a Nexus Finnance?</h3>
-          <p className="text-lg mb-3">
+          <p className="text-base md:text-lg mb-3">
             Na NexusFinance HR, nossa missão é transformar a gestão financeira e de recursos humanos da sua
             empresa, oferecendo uma plataforma integrada e eficiente. Combinamos a gestão financeira com a
             administração de pessoal, focando em facilitar processos como folha de pagamento, controle de
             benefícios e geração de relatórios, sempre com precisão e praticidade.
           </p>
-          <p className="text-lg">
+          <p className="text-base md:text-lg">
             Nossa plataforma foi desenvolvida para proporcionar uma visão clara e completa do seu negócio,
             unindo as áreas financeira e de recursos humanos em um único sistema. Isso significa mais
             agilidade, menos erros e uma gestão muito mais eficiente. Queremos que sua empresa tenha a
@@ -40,23 +41,22 @@ const HomePage = () => {
           </p>
         </section>
 
-        <section className="m-20 scroll-mt-[90px]" id="funcionalidades">
-          <h1 className="text-3xl mb-10 font-bold text-center">Funcionalidades principais</h1>
-          <div className="flex items-center justify-center">
-            <div className="flex space-x-8">
-              <ul className="p-4 shadow rounded-lg">
-                <li className="border-b py-2">
-                  <h3 className="text-3xl"> Controle Financeiro e Contábil</h3>
+        <section className="m-5 mb-20 md:m-20  scroll-mt-[90px]" id="funcionalidades">
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Funcionalidades principais</h1>
+          <div className="flex flex-col md:flex-row gap-4">
+              <ul className="p-4 shadow rounded-lg flex-1">
+                <li className="py-2">
+                  <h3 className="text-2xl font-bold text-primary"> Controle Financeiro e Contábil</h3>
                 </li>
-                <li className="border-b py-2">
+                <li className="py-2">
                   <strong>Cadastro de Receitas e Despesas:</strong> Com total flexibilidade, categorize
                   transações e crie lançamentos recorrentes.
                 </li>
-                <li className="border-b py-2">
+                <li className="py-2">
                   <strong>Fluxo de Caixa:</strong> Acompanhe a saúde financeira da sua empresa com relatórios
                   detalhados de entradas e saídas.
                 </li>
-                <li className="border-b py-2">
+                <li className="py-2">
                   <strong>Contas Bancárias e Conciliação:</strong> Controle de múltiplas contas bancárias com
                   integração direta aos extratos bancários.
                 </li>
@@ -65,29 +65,28 @@ const HomePage = () => {
                   Patrimonial e previsão de fluxo de caixa.
                 </li>
               </ul>
-              <ul className="p-4 shadow rounded-lg">
-                <li className="border-b py-2">
-                  <h3 className="text-3xl">Gestão de Recursos Humanos</h3>
+              <ul className="p-4 shadow rounded-lg flex-1">
+                <li className="py-2">
+                  <h3 className="text-2xl font-bold text-primary">Gestão de Recursos Humanos</h3>
                 </li>
-                <li className="border-b py-2">
+                <li className="py-2">
                   <strong>Folha de Pagamento:</strong>
                   Automatize o cálculo de salários, considerando horas extras, comissões e descontos.
                 </li>
-                <li className="border-b py-2">
+                <li className="py-2">
                   <strong>Benefícios:</strong> Controle de todos os benefícios oferecidos aos seus
                   colaboradores.
                 </li>
-                <li className="border-b py-2">
+                <li className="py-2">
                   <strong>Documentos Legais:</strong> Organize todos os documentos trabalhistas com alertas
                   para renovação de contratos.
                 </li>
               </ul>
-            </div>
           </div>
         </section>
 
-        <section className="m-20 scroll-mt-[90px]" id="faq">
-          <h1 className="text-3xl mb-10 font-bold text-center">Perguntas Comuns</h1>
+        <section className="m-5 mb-20 md:m-20 scroll-mt-[90px]" id="faq">
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Perguntas Comuns</h1>
           <div>
             <div className="collapse collapse-plus">
               <input type="radio" name="my-accordion-1"/>
@@ -174,9 +173,9 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="m-20 scroll-mt-[90px]" id="planos">
-          <h1 className="text-3xl mb-10 font-bold text-center">Nossos planos de assinaturas</h1>
-          <div className="flex items-center justify-center">
+        <section className="m-5 mb-20 md:m-20 scroll-mt-[90px]" id="planos">
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Nossos planos de assinaturas</h1>
+          <div className="flex flex-col md:flex-row gap-4">
             <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
               <figure className="px-10 pt-10">
                 <img
@@ -186,14 +185,14 @@ const HomePage = () => {
                   className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Individual</h2>
-                <p>Para individuos com menos de 5 funcionarios</p>
+                <h2 className="card-title text-accent">Individual</h2>
+                <p>Ideal para profissionais autônomos ou equipes com até 4 colaboradores.</p>
                 <div className="card-actions">
                   <button className="btn btn-success mt-5">Assine agora</button>
                 </div>
               </div>
             </div>
-            <div className="card bg-base-100 w-96 mx-10 shadow-xl border border-dashed">
+            <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
               <figure className="px-10 pt-10">
                 <img
                   src="/pequeno.svg"
@@ -201,8 +200,8 @@ const HomePage = () => {
                   className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Startup</h2>
-                <p>Para pequenos negócios que tem entre 5 a 100 funcionarios</p>
+                <h2 className="card-title text-secondary">Startup</h2>
+                <p>Perfeito para pequenos negócios com equipes entre 5 e 50 colaboradores.</p>
                 <div className="card-actions">
                   <button className="btn btn-success mt-5">Assine agora</button>
                 </div>
@@ -217,8 +216,8 @@ const HomePage = () => {
                   className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Enterprise</h2>
-                <p>Para grandes empresas com mais de 100 funcionarios</p>
+                <h2 className="card-title text-primary">Enterprise</h2>
+                <p>Solução personalizada para grandes empresas com mais de 50 colaboradores.</p>
                 <div className="card-actions">
                   <button className="btn btn-success mt-5">Assine agora</button>
                 </div>
