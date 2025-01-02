@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react"
+import { IconArrowRight } from "@tabler/icons-react";
+import Image from "next/image";
 
 const HomePage = () => {
   return (
@@ -17,7 +18,8 @@ const HomePage = () => {
                 Simplificando a gestão para você focar no que realmente importa!
               </h3>
               <Link href={"/demonstracao"} className="btn btn-info">
-                <IconArrowRight/>Veja uma demonstração
+                <IconArrowRight />
+                Veja uma demonstração
               </Link>
             </div>
           </div>
@@ -42,54 +44,58 @@ const HomePage = () => {
         </section>
 
         <section className="m-5 mb-20 md:m-20  scroll-mt-[90px]" id="funcionalidades">
-          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Funcionalidades principais</h1>
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">
+            Funcionalidades principais
+          </h1>
           <div className="flex flex-col md:flex-row gap-4">
-              <ul className="p-4 shadow rounded-lg flex-1">
-                <li className="py-2">
-                  <h3 className="text-2xl font-bold text-primary"> Controle Financeiro e Contábil</h3>
-                </li>
-                <li className="py-2">
-                  <strong>Cadastro de Receitas e Despesas:</strong> Com total flexibilidade, categorize
-                  transações e crie lançamentos recorrentes.
-                </li>
-                <li className="py-2">
-                  <strong>Fluxo de Caixa:</strong> Acompanhe a saúde financeira da sua empresa com relatórios
-                  detalhados de entradas e saídas.
-                </li>
-                <li className="py-2">
-                  <strong>Contas Bancárias e Conciliação:</strong> Controle de múltiplas contas bancárias com
-                  integração direta aos extratos bancários.
-                </li>
-                <li className="py-2">
-                  <strong>Relatórios Contábeis:</strong> Geração de relatórios completos, como DRE, Balanço
-                  Patrimonial e previsão de fluxo de caixa.
-                </li>
-              </ul>
-              <ul className="p-4 shadow rounded-lg flex-1">
-                <li className="py-2">
-                  <h3 className="text-2xl font-bold text-primary">Gestão de Recursos Humanos</h3>
-                </li>
-                <li className="py-2">
-                  <strong>Folha de Pagamento:</strong>
-                  Automatize o cálculo de salários, considerando horas extras, comissões e descontos.
-                </li>
-                <li className="py-2">
-                  <strong>Benefícios:</strong> Controle de todos os benefícios oferecidos aos seus
-                  colaboradores.
-                </li>
-                <li className="py-2">
-                  <strong>Documentos Legais:</strong> Organize todos os documentos trabalhistas com alertas
-                  para renovação de contratos.
-                </li>
-              </ul>
+            <ul className="p-4 shadow rounded-lg flex-1">
+              <li className="py-2">
+                <h3 className="text-2xl font-bold text-primary"> Controle Financeiro e Contábil</h3>
+              </li>
+              <li className="py-2">
+                <strong>Cadastro de Receitas e Despesas:</strong> Com total flexibilidade, categorize
+                transações e crie lançamentos recorrentes.
+              </li>
+              <li className="py-2">
+                <strong>Fluxo de Caixa:</strong> Acompanhe a saúde financeira da sua empresa com relatórios
+                detalhados de entradas e saídas.
+              </li>
+              <li className="py-2">
+                <strong>Contas Bancárias e Conciliação:</strong> Controle de múltiplas contas bancárias com
+                integração direta aos extratos bancários.
+              </li>
+              <li className="py-2">
+                <strong>Relatórios Contábeis:</strong> Geração de relatórios completos, como DRE, Balanço
+                Patrimonial e previsão de fluxo de caixa.
+              </li>
+            </ul>
+            <ul className="p-4 shadow rounded-lg flex-1">
+              <li className="py-2">
+                <h3 className="text-2xl font-bold text-primary">Gestão de Recursos Humanos</h3>
+              </li>
+              <li className="py-2">
+                <strong>Folha de Pagamento:</strong>
+                Automatize o cálculo de salários, considerando horas extras, comissões e descontos.
+              </li>
+              <li className="py-2">
+                <strong>Benefícios:</strong> Controle de todos os benefícios oferecidos aos seus
+                colaboradores.
+              </li>
+              <li className="py-2">
+                <strong>Documentos Legais:</strong> Organize todos os documentos trabalhistas com alertas para
+                renovação de contratos.
+              </li>
+            </ul>
           </div>
         </section>
 
         <section className="m-5 mb-20 md:m-20 scroll-mt-[90px]" id="faq">
-          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Perguntas Comuns</h1>
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">
+            Perguntas Comuns
+          </h1>
           <div>
             <div className="collapse collapse-plus">
-              <input type="radio" name="my-accordion-1"/>
+              <input type="radio" name="my-accordion-1" />
               <div className="collapse-title text-xl font-medium">O que é a NexusFinance?</div>
               <div className="collapse-content">
                 <p>
@@ -125,8 +131,8 @@ const HomePage = () => {
                     conciliação bancária e geração de relatórios contábeis.
                   </li>
                   <li>
-                    <strong>Gestão de Recursos Humanos:</strong> Automação de folha de pagamento, controle
-                    de benefícios, organização de documentos trabalhistas e alertas para vencimentos.
+                    <strong>Gestão de Recursos Humanos:</strong> Automação de folha de pagamento, controle de
+                    benefícios, organização de documentos trabalhistas e alertas para vencimentos.
                   </li>
                 </ul>
               </div>
@@ -174,15 +180,13 @@ const HomePage = () => {
         </section>
 
         <section className="m-5 mb-20 md:m-20 scroll-mt-[90px]" id="planos">
-          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">Nossos planos de assinaturas</h1>
+          <h1 className="text-3xl mb-10 font-bold text-center text-secondary brightness-200">
+            Nossos planos de assinaturas
+          </h1>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
               <figure className="px-10 pt-10">
-                <img
-                  src="/gratuito.svg"
-                  height={100}
-                  alt="Foto de um individuo"
-                  className="rounded-xl" />
+                <Image src="/gratuito.svg" height={100} alt="Foto de um individuo" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title text-accent">Individual</h2>
@@ -194,10 +198,7 @@ const HomePage = () => {
             </div>
             <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
               <figure className="px-10 pt-10">
-                <img
-                  src="/pequeno.svg"
-                  alt="Foto de um time pequeno"
-                  className="rounded-xl" />
+                <Image src="/pequeno.svg" alt="Foto de um time pequeno" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title text-secondary">Startup</h2>
@@ -209,11 +210,12 @@ const HomePage = () => {
             </div>
             <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
               <figure className="px-10 pt-10">
-                <img
+                <Image
                   src="/enterprise.svg"
                   height={100}
                   alt="Foto de um time empresarial"
-                  className="rounded-xl" />
+                  className="rounded-xl"
+                />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title text-primary">Enterprise</h2>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Popup from "../../components/popup";
+import { IconBrandGoogle, IconBrandInstagram } from "@tabler/icons-react";
 
 const LoginPage: React.FC = () => {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -46,6 +47,10 @@ const LoginPage: React.FC = () => {
       email: formData.get("email") || "",
       senha: formData.get("senha") || ""
     };
+    if (!(formData.get("senhaConfirm") === payload.senha)) {
+      setPopup({ title: "Ocorreu um erro:", message: `As senhas não coencidem` });
+      return;
+    }
     try {
       const response = await fetch("/api/user/registrar", {
         method: "POST",
@@ -70,76 +75,95 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <main className="d-flex justify-content-center align-items-center bg-dark">
-      <div className="card p-5 m-4" style={{ width: "60vh" }}>
-        <h1 className="text-center mb-4">{isRegistering ? "Criar Conta" : "Entrar"}</h1>
-        {isRegistering ? (
-          <>
-            <form onSubmit={submitRegister}>
-              <div className="mb-4">
-                <label htmlFor="nome" className="form-label">
-                  Nome
+    <>
+      <main className="flex flex-col justify-center items-center h-[85vh] md:h-screen">
+        <h3 className="text-2xl font-extrabold text-center mb-[30px] text-primary">Nexus Finnance</h3>
+        <div className="border border-neutral brightness-110 p-10 shadow-md rounded-lg">
+          <h1 className="text-center text-2xl mb-4 font-extrabold">
+            {isRegistering ? "Criar Conta" : "Entrar"}
+          </h1>
+          {isRegistering ? (
+            <>
+              <form onSubmit={submitRegister}>
+                <label className="input input-bordered flex items-center gap-2 my-5">
+                  <p className="select-none">Nome</p>
+                  <input type="text" className="grow" name="nome" required />
                 </label>
-                <input type="text" className="form-control" name="nome" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="form-label">
-                  Email
+
+                <label className="input input-bordered flex items-center gap-2">
+                  <p className="select-none">Email</p>
+                  <input type="email" className="grow" name="email" required />
                 </label>
-                <input type="email" className="form-control" name="email" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="password" className="form-label">
-                  Senha
+
+                <label className="input input-bordered flex items-center gap-2 my-5">
+                  <p className="select-none">Senha</p>
+                  <input type="password" className="grow" name="senha" required />
                 </label>
-                <input type="password" className="form-control" name="senha" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="password" className="form-label">
-                  Repita a senha
+
+                <label className="input input-bordered flex items-center gap-2 mb-5">
+                  <p className="select-none">Senha novamente</p>
+                  <input type="password" className="grow" name="senhaConfirm" required />
                 </label>
-                <input type="password" className="form-control" name="senhaConfirm" required />
-              </div>
-              <button type="submit" className="btn btn-warning w-100">
-                Registrar
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <form onSubmit={submitLogin}>
-              <div className="mb-4">
-                <label htmlFor="email" className="form-label">
-                  Email
+
+                <label className="label cursor-pointer mb-5">
+                  <span className="label-text">Concordo com os termos e políticas</span>
+                  <input type="checkbox" name="lembrar" className="toggle" />
                 </label>
-                <input type="email" className="form-control" name="email" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="senha" className="form-label">
-                  Senha
+
+                <label className="label flex justify-center items-center">
+                  <button type="submit" className="btn btn-warning">
+                    Registrar
+                  </button>
                 </label>
-                <input type="password" className="form-control" name="senha" required />
-              </div>
-              <div className="mb-4 form-check">
-                <input type="checkbox" className="form-check-input" id="rememberMe" />
-                <label className="form-check-label" htmlFor="rememberMe">
-                  Lembrar de mim
+              </form>
+            </>
+          ) : (
+            <>
+              <form onSubmit={submitLogin}>
+                <label className="input input-bordered flex items-center gap-2">
+                  <p className="select-none">Email</p>
+                  <input type="email" className="form-control" name="email" required />
                 </label>
-              </div>
-              <button type="submit" className="btn btn-warning w-100">
-                Entrar
-              </button>
-            </form>
-          </>
-        )}
-        <div className="mt-3 text-center">
-          <button className="btn btn-link" onClick={toggleForm}>
-            {isRegistering ? "Já tem uma conta? Faça login" : "Ainda não tem uma conta? Registre-se"}
-          </button>
+
+                <label className="input input-bordered flex items-center gap-2 my-5">
+                  <p className="select-none">Senha</p>
+                  <input type="password" className="form-control" name="senha" required />
+                </label>
+
+                <label className="label cursor-pointer mb-5">
+                  <span className="label-text">Lembrar de mim</span>
+                  <input type="checkbox" name="lembrar" className="toggle" />
+                </label>
+
+                <label className="label flex justify-center items-center">
+                  <button type="submit" className="btn btn-warning w-100">
+                    Entrar
+                  </button>
+                </label>
+
+                <label className="label flex flex-col">
+                  Ou entre com:
+                  <div className="pt-4">
+                    <button type="submit" className="mr-5">
+                      <IconBrandGoogle size={35} />
+                    </button>
+                    <button type="submit" className="">
+                      <IconBrandInstagram size={35} />
+                    </button>
+                  </div>
+                </label>
+              </form>
+            </>
+          )}
+          <div className="mt-3 text-center">
+            <Popup message={popup.message} title={popup.title} status={false} />
+            <button className="btn btn-link" onClick={toggleForm}>
+              {isRegistering ? "Já tem uma conta? Faça login" : "Ainda não tem uma conta? Registre-se"}
+            </button>
+          </div>
         </div>
-      </div>
-      <Popup message={popup.message} title={popup.title} status={false} />
-    </main>
+      </main>
+    </>
   );
 };
 export default LoginPage;
