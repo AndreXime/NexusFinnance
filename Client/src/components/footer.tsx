@@ -1,4 +1,4 @@
-import { IconBrandFacebook, IconBrandInstagram, IconBrandTwitter } from "@tabler/icons-react";
+import { FaGoogle, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
@@ -8,13 +8,13 @@ const Footer: React.FC = () => {
       </aside>
       <nav className="grid-flow-col gap-4 md:place-self-center justify-self-center md:justify-self-end">
         <a>
-          <IconBrandFacebook />
+          <FaGoogle />
         </a>
         <a>
-          <IconBrandInstagram />
+          <FaInstagram />
         </a>
         <a>
-          <IconBrandTwitter />
+          <FaTwitter />
         </a>
       </nav>
     </footer>

@@ -28,7 +28,7 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
       <img src="https://img.shields.io/badge/Next.js-%23000000.svg?style=flat&logo=next.js&logoColor=white" alt="Next.js">
       <img src="https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
       <img src="https://img.shields.io/badge/DaisyUI-%23711FDC.svg?style=flat&logo=daisyui&logoColor=white" alt="DaisyUI">
-      <img src="https://img.shields.io/badge/Tabler%20Icons-%230089CE.svg?style=flat&logo=iconify&logoColor=white" alt="Tabler Icons">
+      <img src="https://img.shields.io/badge/React%20Icons-%230089CE.svg?style=flat&logo=iconify&logoColor=white" alt="React Icons">
       <img src="https://img.shields.io/badge/Recharts-%235A29E4.svg?style=flat&logo=soundcharts&logoColor=white" alt="Recharts">
     </td>
   </tr>

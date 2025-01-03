@@ -2,7 +2,7 @@
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 
 const HomePage = () => {
@@ -18,7 +18,7 @@ const HomePage = () => {
                 Simplificando a gestão para você focar no que realmente importa!
               </h3>
               <Link href={"/demonstracao"} className="btn btn-info">
-                <IconArrowRight />
+                <FaArrowRight size={17} />
                 Veja uma demonstração
               </Link>
             </div>
@@ -184,9 +184,15 @@ const HomePage = () => {
             Nossos planos de assinaturas
           </h1>
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
+            <div className="card bg-base-100 w-80 shadow-xl border border-solid">
               <figure className="px-10 pt-10">
-                <Image src="/gratuito.svg" height={100} alt="Foto de um individuo" className="rounded-xl" />
+                <Image
+                  src="/gratuito.svg"
+                  height={100}
+                  width={300}
+                  alt="Foto de um individuo"
+                  className="rounded-xl"
+                />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title text-accent">Individual</h2>
@@ -196,9 +202,15 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
+            <div className="card bg-base-100 w-80 shadow-xl border border-solid">
               <figure className="px-10 pt-10">
-                <Image src="/pequeno.svg" alt="Foto de um time pequeno" className="rounded-xl" />
+                <Image
+                  src="/pequeno.svg"
+                  height={100}
+                  width={300}
+                  alt="Foto de um time pequeno"
+                  className="rounded-xl"
+                />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title text-secondary">Startup</h2>
@@ -208,11 +220,12 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="card bg-base-100 w-96 shadow-xl border border-dashed">
+            <div className="card bg-base-100 w-80 shadow-xl border border-solid">
               <figure className="px-10 pt-10">
                 <Image
                   src="/enterprise.svg"
                   height={100}
+                  width={300}
                   alt="Foto de um time empresarial"
                   className="rounded-xl"
                 />

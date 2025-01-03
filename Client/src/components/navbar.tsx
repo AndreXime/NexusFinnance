@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { IconMenu2, IconRocket } from "@tabler/icons-react";
+import { FaBars } from "react-icons/fa"
+import { FaRocket as Rocket} from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const mudarTema = (tema: string) => {
@@ -14,7 +15,7 @@ const Navbar: React.FC = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <IconMenu2 />
+              <FaBars />
             </div>
             <ul
               tabIndex={0}
@@ -138,12 +139,12 @@ const Navbar: React.FC = () => {
         </div>
         <div className="navbar-end">
           <Link href={"/acesso"} className="btn btn-secondary">
-            <IconRocket /> Acessar agora
+            <Rocket size={16} /> Acessar agora
           </Link>
         </div>
       </div>
     </nav>
-  );
+  );  
 };
 
 export default Navbar;
