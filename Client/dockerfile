@@ -1,5 +1,7 @@
 FROM node:22-alpine AS builder
 
+ARG URL_Server
+ENV URL_Server=${URL_Server}
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci

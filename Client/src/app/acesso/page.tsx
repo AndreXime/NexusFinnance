@@ -47,10 +47,6 @@ const LoginPage: React.FC = () => {
       email: formData.get("email") || "",
       senha: formData.get("senha") || ""
     };
-    if (!(formData.get("senhaConfirm") === payload.senha)) {
-      setPopup({ title: "Ocorreu um erro:", message: `As senhas não coencidem` });
-      return;
-    }
     try {
       const response = await fetch("/api/user/registrar", {
         method: "POST",

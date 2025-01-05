@@ -7,8 +7,8 @@ import middlewareTempo from "./middlewares/tempoRequisicao.js";
 
 const app = express();
 
-if (process.env.NODE_ENV !== "production") {
-  /* @ts-expect-error: Não vai existir e nem precisar desse arquivo na produção */
+if (!process.env.NODE_ENV){
+  /* @ts-expect-error: Não vai existir swagger na produção */
   import("../swaggerSetup.cjs")
     .then((swaggerSetup) => {
       swaggerSetup.default(app);
@@ -18,14 +18,16 @@ if (process.env.NODE_ENV !== "production") {
     });
 }
 
-app.use(
-  cors({
-    origin: process.env.URL_Client || "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
-  })
-);
+if (process.env.NODE_ENV){
+  app.use(
+    cors({
+      origin: process.env.URL_Client,
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true
+    })
+  );
+}
 
 app.set("x-powered-by", false); // Desativa assinatura do express nas requisiçoes
 app.use(middlewareTempo); // Mede o tempo de que o servidor demora em cada requisição
@@ -40,5 +42,9 @@ app.use("/api", routes); // Rotas gerais
 // Inicializando servidor
 const port = Number(process.env.PORT) || 4000;
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server está em http://localhost:${port}/api\n`);
+  if (process.env.NODE_ENV) {
+    console.log(`Server está na porta ${port}/api/`);
+  } else {
+    console.log("Server está em http://localhost:4000/api/\nDocumentação Swagger em http://localhost:4000/api-docs\n");
+  } 
 });

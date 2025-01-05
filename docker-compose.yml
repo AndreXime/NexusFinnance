@@ -17,16 +17,20 @@ services:
     depends_on:
       - database
     ports:
-    - "3001:3001"
+    - "4000:4000"
     environment:
       NODE_ENV: production
       databaseUrl: postgres://nexusfin:nexusadmin@database:5432/rootDatabase
       JWT_KEY: 8tNv5J6A7g5UplF0omFn
+      URL_Client: "http://client:4000"
+      PORT: 4000
 
   client:
     build:
       context: ./Client
       dockerfile: Dockerfile
+      args:
+        URL_Server: "http://server:4000"
     ports:
     - "3000:3000"
     environment:

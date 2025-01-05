@@ -64,6 +64,7 @@ git clone https://github.com/AndreXime/NexusFinnance.git
 cd NexusFinnance
 sudo docker compose up
 ```
+Depois disso visite http://localhost:3000
 **Personalização**: Você pode personalizar as variáveis de ambiente no arquivo docker-compose.yml. Mas isso não é obrigatório, pois já vem configurado com valores padrão.
 
 
