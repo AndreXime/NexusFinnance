@@ -9,7 +9,7 @@ const register = async (req: Request, res: Response) => {
 
     res.cookie("token", token, {
       httpOnly: true, // Impede o acesso ao cookie via JavaScript
-      secure: process.env.NODE_ENV === "production", // Só envia o cookie via HTTPS em produção
+      secure: false, // Só envia o cookie via HTTPS em produção
       sameSite: "strict",
       expires: new Date(Date.now() + 3600000)
     });
@@ -28,7 +28,7 @@ const login = async (req: Request, res: Response) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
       sameSite: "strict",
       expires: new Date(Date.now() + 3600000)
     });

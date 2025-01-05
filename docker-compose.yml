@@ -22,19 +22,21 @@ services:
       NODE_ENV: production
       databaseUrl: postgres://nexusfin:nexusadmin@database:5432/rootDatabase
       JWT_KEY: 8tNv5J6A7g5UplF0omFn
-      URL_Client: "http://client:4000"
+      URL_Client: http://client:3000
       PORT: 4000
+      SYNC: true
 
   client:
     build:
       context: ./Client
       dockerfile: Dockerfile
       args:
-        URL_Server: "http://server:4000"
+        URL_Server: http://server:4000
     ports:
     - "3000:3000"
     environment:
       NODE_ENV: production
+      PORT: 3000
     
 volumes:
   pgdata:
