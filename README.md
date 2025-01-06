@@ -1,19 +1,21 @@
-# NexusFinance
-
-
-<details>
-  <summary><span style="font-size: 120%;">Indice</span></summary>
-
-  - [Objetivo](#objetivo)
-  - [Tecnologia Utilizadas](#tecnologias-utilizadas)
-  - [Como usar](#como-usar)
-  - [Funcionalidades](#funcionalidades-principais)
-
-</details>
+# NexusFinnance
 
 ## **Objetivo**
-O NexusFinance é uma plataforma integrada que combina gestão financeira e de recursos humanos, centralizando processos como folha de pagamento, 
-benefícios e relatórios financeiros. Sua unificação de dados promove eficiência no fluxo de trabalho e facilita decisões estratégicas com base em informações precisas.
+O NexusFinance é uma plataforma criada para tornar a gestão financeira e de recursos humanos mais simples e eficiente. Com ela, você pode centralizar processos importantes, como folha de pagamento, administração de benefícios e geração de relatórios financeiros, tudo em um único lugar.  
+Ao unificar os dados de forma organizada, o NexusFinance ajuda a reduzir retrabalhos, otimizar o fluxo de trabalho da sua equipe e economizar tempo em tarefas operacionais. É uma solução pensada para empresas que buscam profissionalizar sua gestão e oferecer mais praticidade no dia a dia.
+
+## **Funcionalidades Principais**
+### **Controle Financeiro e Contábil e Recursos Humanos**
+- **Cadastro de Receitas e Despesas:** Categorize transações e crie lançamentos recorrentes.
+- **Fluxo de Caixa:** Acompanhe a saúde financeira da sua empresa com relatórios detalhados de entradas e saídas.
+- **Contas Bancárias e Conciliação:** Controle de múltiplas contas bancárias com integração direta aos extratos bancários.
+- **Relatórios Contábeis:** Geração de relatórios completos, como DRE, Balanço Patrimonial e previsão de fluxo de caixa.
+
+### **Gestão de Recursos Humanos**
+- **Folha de Pagamento**: Automatize o cálculo de salários, considerando horas extras, comissões e descontos.
+- **Benefícios:** Controle de todos os benefícios oferecidos aos seus colaboradores.
+- **Documentos Legais:** Organize todos os documentos trabalhistas com alertas para renovação de contratos.
+
 
 ## **Tecnologias Utilizadas**
 
@@ -47,15 +49,17 @@ benefícios e relatórios financeiros. Sua unificação de dados promove eficiê
       <img src="https://img.shields.io/badge/Docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white" alt="Docker">
       <img src="https://img.shields.io/badge/Prettier-%23F7B93E.svg?style=flat&logo=prettier&logoColor=white" alt="Prettier">
       <img src="https://img.shields.io/badge/ESLint-%234B32C3.svg?style=flat&logo=eslint&logoColor=white" alt="ESLint">
+      <img src="https://img.shields.io/badge/Swagger-%23Clojure.svg?style=flat&logo=swagger&logoColor=white" alt="Swagger">
     </td>
   </tr>
 </table>
 
 
+
 ## **Como usar**
 ### Usar Online
 
-Você pode acessar e usar o projeto diretamente no link: [NexusFinance Online](https://nexusfinnance.vercel.app)
+Você pode acessar e usar o projeto diretamente neste [link](https://nexusfinnance.vercel.app)
 
 ### Usar Localmente com Docker
 Para rodar o projeto localmente utilizando Docker, siga os passos abaixo:
@@ -67,15 +71,3 @@ sudo docker compose up
 Depois disso visite http://localhost:3000  
 
 **Personalização**: Você pode personalizar [as variáveis de ambiente](Environment.md) no arquivo docker-compose.yml. Mas isso não é obrigatório, pois já vem configurado com valores padrão.
-
-
-
-## **Funcionalidades Principais**
-
-### **Controle Financeiro e Contábil e Recursos Humanos**
-- **Cadastro de Receitas e Despesas**
-- **Fluxo de Caixa**
-- **Contas Bancárias**
-- **Relatórios Contábeis**
-- **Folha de Pagamento de funcionarios**
-- **Creditos**
