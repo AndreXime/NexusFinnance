@@ -1,4 +1,4 @@
-import { CreationAttributes } from "sequelize";
+import type { CreationAttributes } from "sequelize";
 import { Credito, Banco, Pagamento, CreditoPagamento } from "../../models/databaseModels.js";
 
 export const createCredito = async (criarCredito: CreationAttributes<Credito>, pagamentoId: string) => {

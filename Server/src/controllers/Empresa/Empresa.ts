@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { createEmpresa, findEmpresa, connectEmpresa } from "./EmpresaService.js";
 
 const create = async (req: Request, res: Response) => {

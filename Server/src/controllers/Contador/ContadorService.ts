@@ -1,4 +1,4 @@
-import { CreationAttributes } from "sequelize";
+import type { CreationAttributes } from "sequelize";
 import { Contador, Empresa } from "../../models/databaseModels.js";
 
 export const registerUser = async (criarUsuario: CreationAttributes<Contador>) => {

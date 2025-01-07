@@ -1,10 +1,10 @@
 import express from "express";
-import cors from "cors";
 import cookieParser from "cookie-parser";
 import routes from "./routes.js";
 import { testConnection } from "./models/databaseModels.js";
 import middlewareTempo from "./middlewares/tempoRequisicao.js";
-
+import middlewareCors from "./middlewares/CORS.js" 
+  
 const app = express();
 
 if (!process.env.NODE_ENV){
@@ -18,15 +18,9 @@ if (!process.env.NODE_ENV){
     });
 }
 
-if (process.env.NODE_ENV){
-  app.use(
-    cors({
-      origin: process.env.URL_Client,
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      credentials: true
-    })
-  );
+if (process.env.NODE_ENV) {
+  // Usa URL_Client para aceitar somente origem da requesição ser do client
+  app.use(middlewareCors);
 }
 
 app.set("x-powered-by", false); // Desativa assinatura do express nas requisiçoes

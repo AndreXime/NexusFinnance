@@ -1,4 +1,4 @@
-import { Response, Request } from "express";
+import type { Response, Request } from "express";
 import { generateToken } from "../../middlewares/JWT.js";
 import { registerUser, loginUser, findUser, setEmpresaUser } from "./ContadorService.js";
 

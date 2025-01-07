@@ -1,4 +1,5 @@
-import { Router, Response, Request } from "express";
+import type { Response, Request } from "express";
+import { Router } from "express"
 
 import Contador from "./controllers/Contador/Contador.js";
 import Empresa from "./controllers/Empresa/Empresa.js";

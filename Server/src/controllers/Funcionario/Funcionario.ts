@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { createFuncionario, findFuncionarios, removeFuncionario } from "./FuncionarioService.js";
 
 const create = async (req: Request, res: Response) => {

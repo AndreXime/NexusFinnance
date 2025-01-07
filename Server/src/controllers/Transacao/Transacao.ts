@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { createTransacao, findTransacao } from "./TransacaoService.js";
 
 const create = async (req: Request, res: Response) => {
