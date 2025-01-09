@@ -34,7 +34,7 @@ const Demo = () => {
       <>
          <div className="drawer lg:drawer-open">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content lg:mx-10 mt-9">
+            <div className="drawer-content lg:mx-10 mt-16">
                {renderContent()} 
                
                <label htmlFor="my-drawer"

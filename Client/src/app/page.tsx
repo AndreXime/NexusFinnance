@@ -184,10 +184,10 @@ const HomePage = () => {
             Nossos planos de assinaturas
           </h1>
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="card bg-base-100 w-80 shadow-xl border border-solid">
+            <div className="card bg-base-100 w-100 shadow-xl border border-solid">
               <figure className="px-10 pt-10">
                 <Image
-                  src="/gratuito.svg"
+                  src="/landing_page/gratuito.svg"
                   height={100}
                   width={300}
                   alt="Foto de um individuo"
@@ -202,10 +202,10 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="card bg-base-100 w-80 shadow-xl border border-solid">
+            <div className="card bg-base-100 w-100 shadow-xl border border-solid">
               <figure className="px-10 pt-10">
                 <Image
-                  src="/pequeno.svg"
+                  src="/landing_page/pequeno.svg"
                   height={100}
                   width={300}
                   alt="Foto de um time pequeno"
@@ -220,10 +220,10 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="card bg-base-100 w-80 shadow-xl border border-solid">
+            <div className="card bg-base-100 w-100 shadow-xl border border-solid">
               <figure className="px-10 pt-10">
                 <Image
-                  src="/enterprise.svg"
+                  src="/landing_page/enterprise.svg"
                   height={100}
                   width={300}
                   alt="Foto de um time empresarial"

@@ -8,13 +8,13 @@ const Footer: React.FC = () => {
       </aside>
       <nav className="grid-flow-col gap-4 md:place-self-center justify-self-center md:justify-self-end">
         <a>
-          <FaGoogle />
+          <FaGoogle size={20} />
         </a>
         <a>
-          <FaInstagram />
+          <FaInstagram size={20} />
         </a>
         <a>
-          <FaTwitter />
+          <FaTwitter size={20} />
         </a>
       </nav>
     </footer>
