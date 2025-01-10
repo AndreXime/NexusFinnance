@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { FaBars } from "react-icons/fa"
-import { FaRocket as Rocket} from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
+import { FaRocket as Rocket } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const mudarTema = (tema: string) => {
@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
     </nav>
-  );  
+  );
 };
 
 export default Navbar;
